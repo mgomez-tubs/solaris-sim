@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<RCC>
+    <qresource prefix="/">
+        <file alias="main.qml">../untitled/main.qml</file>
+        <file alias="Button.qml">../untitled/Button.qml</file>
+        <file alias="ButtonForm.ui.qml">../untitled/ButtonForm.ui.qml</file>
+        <file alias="ButtonTest.qml">../untitled/ButtonTest.qml</file>
+        <file alias="Planet.qml">../untitled/Planet.qml</file>
+        <file alias="Sonne.qml">../untitled/Sonne.qml</file>
+        <file alias="Erde.qml">../untitled/Erde.qml</file>
+        <file alias="Fps.qml">../untitled/Fps.qml</file>
+        <file alias="FpsForm.ui.qml">../untitled/FpsForm.ui.qml</file>
+        <file alias="Merkur.qml">../untitled/Merkur.qml</file>
+        <file alias="Mars.qml">../untitled/Mars.qml</file>
+        <file alias="Venus.qml">../untitled/Venus.qml</file>
+    </qresource>
+</RCC>
