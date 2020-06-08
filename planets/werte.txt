@@ -1,0 +1,9 @@
+bahnperiode in a
+große halbachse in m
+exentrizität
+mittlere Orbital geschwindigkeit in m/s
+aequatordurchmesser in m
+poldurchmesser in m
+Masse in kg
+dichte in g/cm^3
+mittlere entfernung zur sonne in m
