@@ -19,7 +19,7 @@ do {
 
   if (planet == "merkur") {
     ofstream myfile;
-    myfile.open ("mercury.txt");
+    myfile.open ("pl_mercury.txt");
     myfile << 0.241010959 <<endl;
     myfile << 5.790934 * pow(10,10) <<endl;
     myfile << 0.2056 <<endl;
@@ -36,7 +36,7 @@ do {
   }
   else if (planet == "venus"){
     ofstream myfile;
-    myfile.open ("venus.txt");
+    myfile.open ("pl_venus.txt");
     myfile << 0.6156191781 <<endl;
     myfile << 10.816 * pow(10, 10) <<endl;
     myfile << 0.0068 <<endl;
@@ -52,7 +52,7 @@ do {
   }
   else if (planet == "erde"){
     ofstream myfile;
-    myfile.open ("earth.txt");
+    myfile.open ("pl_earth.txt");
     myfile << 1 <<endl;
     myfile << 149598022.96 * pow(10, 10) <<endl;
     myfile << 0.0167086342 <<endl;
@@ -68,7 +68,7 @@ do {
   }
   else if (planet == "mars"){
     ofstream myfile;
-    myfile.open ("mars.txt");
+    myfile.open ("pl_mars.txt");
     myfile << 1.88213699 <<endl;
     myfile << 227990000 * pow(10, 10) <<endl;
     myfile << 0.0935 <<endl;
@@ -84,7 +84,7 @@ do {
   }
   else if (planet == "jupiter"){
     ofstream myfile;
-    myfile.open ("jupiter.txt");
+    myfile.open ("pl_jupiter.txt");
     myfile << 11.863014 <<endl;
     myfile << 778510000 <<endl;
     myfile << 0.0489 <<endl;
@@ -100,7 +100,7 @@ do {
   }
   else if (planet == "saturn"){
     ofstream myfile;
-    myfile.open ("saturn.txt");
+    myfile.open ("pl_saturn.txt");
     myfile << 29.457 <<endl;
     myfile << 1433400000 <<endl;
     myfile << 0.0542 <<endl;
@@ -116,7 +116,7 @@ do {
   }
   else if (planet == "uranus"){
     ofstream myfile;
-    myfile.open ("uranus.txt");
+    myfile.open ("pl_uranus.txt");
     myfile << 84.011 <<endl;
     myfile << 2872400000 <<endl;
     myfile << 0.0472 <<endl;
@@ -132,7 +132,7 @@ do {
   }
   else if (planet == "neptun"){
     ofstream myfile;
-    myfile.open ("neptun.txt");
+    myfile.open ("pl_neptun.txt");
     myfile << 164.79 <<endl;
     myfile << 4495000000 <<endl;
     myfile << 0.00859 <<endl;
