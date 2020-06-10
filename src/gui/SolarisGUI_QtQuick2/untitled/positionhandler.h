@@ -1,7 +1,6 @@
 #ifndef ROTATIONHANDLER_H
 #define ROTATIONHANDLER_H
 
-#include <QObject>
 #include <QVector3D>
 #include <QTimer>
 
@@ -13,15 +12,16 @@ public:
     void setPosition(QVector3D);
     void setqmlObject(QObject*);
     void setqmlId(QString);
+    void setTimer(QTimer*);
     void circularRotation(float radius, float speed);
 
-private:
-
-    // Create a QTimer Object to handle rate of value transmittion
-    QTimer *timer = new QTimer(this);
+    QTimer *timer;
 
     // Vector properties
     QVector3D pos;
+
+private:
+
     float currentAngle=0.0;
     float radius = 300;
     QString id;
@@ -29,21 +29,24 @@ private:
     // Animation properties
     bool moving = false;
     float speed = 0.25;
-    void setPosition();
+    int order;
 
-    float msintervall = 250;       // Send a new value every 250 ms
+    float msintervall = 16;       // Send a new value every 250 ms
                                    // This intervall should be syncronized between QML and Backend
                                    // so the movement smoothing works properly
     QObject *qmlObject_ptr;
-    QObject *erdeHandler;
+    QObject *planetHandler;
 
-
-private slots:
-
-    void updatePosition();
+public:
+    void setOrder(int);
 
 public slots:
+    void updatePosition();
+    void updateDebugData();
+    void positionEmitter_helper();
 
+signals:
+    void positionEmitter(int, QVector3D vector);
 };
 
 #endif // ROTATIONHANDLER_H

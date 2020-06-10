@@ -11,7 +11,7 @@ Model {
             id: material
             diffuseColor: "orange"
             emissiveColor: "yellow"
-            emissiveFactor: .75
+            emissiveFactor: 1
         }
     ]
 }

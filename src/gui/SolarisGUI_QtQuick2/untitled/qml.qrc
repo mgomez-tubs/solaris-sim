@@ -12,5 +12,6 @@
         <file>Merkur.qml</file>
         <file>Mars.qml</file>
         <file>Venus.qml</file>
+        <file>Test1.qml</file>
     </qresource>
 </RCC>

@@ -5,10 +5,10 @@
 #include <QMetaObject>
 #include <math.h>
 
-PositionHandler::PositionHandler():QObject(){
+// static declarations
 
+PositionHandler::PositionHandler(){
 }
-
 
 void PositionHandler::circularRotation(float radius, float speed) {
     if(moving == false){
@@ -19,21 +19,20 @@ void PositionHandler::circularRotation(float radius, float speed) {
         // Connect QTimer to position updater
         connect(timer, SIGNAL(timeout()), this, SLOT(updatePosition()));
 
-        // Set up QTimer
-        timer->start(msintervall);
+        // Start Timer
+        this->timer->start(16);
 
-        // set moving flag to true
+        // Set moving flag to true
         moving = true;
         qDebug()<<"Animation started for"<<this->id;
 
-        // set initial position
-        //qDebug()<<radius;
+        // Set initial position
         pos = QVector3D(radius,0.0,0.0);
 
-        // set initial angle
+        // Set initial angle
         currentAngle=0.0;
 
-        // update first frame
+        // Update first frame
         setPosition(pos);
     }
 }
@@ -42,8 +41,7 @@ void PositionHandler::setPosition(QVector3D vector){
 
     // Send Vector3D object to receiver, which will update the position
     // of the planet in real time.
-    QMetaObject::invokeMethod(erdeHandler, "receive", Q_ARG(QVector3D, vector));
-
+    QMetaObject::invokeMethod(planetHandler, "receive", Q_ARG(QVector3D, vector));
 }
 
 void PositionHandler::updatePosition(){
@@ -61,11 +59,20 @@ void PositionHandler::updatePosition(){
 void PositionHandler::setqmlObject(QObject* ptr){
     this->qmlObject_ptr=ptr;
     // Create a handler to the planet properties from created QML Pointer
-    erdeHandler = qmlObject_ptr->findChild<QObject*>(id);
+    planetHandler = qmlObject_ptr->findChild<QObject*>(id);
 }
 
 void PositionHandler::setqmlId(QString id){
     this->id = id;
 }
 
+void PositionHandler::updateDebugData(){
+}
 
+void PositionHandler::positionEmitter_helper(){
+    emit positionEmitter(this->order,pos); // change zero with order number
+}
+
+void PositionHandler::setOrder(int order){
+    this->order=order;
+}

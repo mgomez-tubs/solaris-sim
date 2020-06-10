@@ -1,6 +1,11 @@
-QT += quick quick3d 3drender gui quickcontrols2
+QT += quick quick3d gui quickcontrols2
+QT += core
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
 
 CONFIG += c++11
+CONFIG += qtquickcompiler
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -8,17 +13,23 @@ CONFIG += c++11
 # deprecated API to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 
+DEFINES += DEBUG_IS_ENABLED
+
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        debugwindow.cpp \
         main.cpp \
         planet.cpp \
-        positionhandler.cpp
+        positionhandler.cpp \
+        simulation.cpp
 
 RESOURCES += qml.qrc
+
+TARGET = SolarisGUI
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -32,7 +43,12 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    debugwindow.h \
     planet.h \
-    positionhandler.h
+    positionhandler.h \
+    simulation.h
 
 DISTFILES +=
+
+FORMS += \
+    debugwindow.ui

@@ -16,19 +16,20 @@ Node {
         id: sphere
         position: Qt.vector3d(0, 0, 0)
         source: "#Sphere"
-        scale: Qt.vector3d(.1, .1, .1)
+        scale: Qt.vector3d(.2, .2, .2)
         materials: [ DefaultMaterial {
                 id: material
                 diffuseColor: "blue"
                 //lighting: DefaultMaterial.NoLighting;
             }
         ]
-
+/*
         Behavior on position {
             PropertyAnimation{
                 easing.type: Easing.Linear;
+                duration: 50;
             }
-        }
+        }*/
     }
 }
 

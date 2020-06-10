@@ -1,14 +1,18 @@
-
 #include <QGuiApplication>
+#include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QDebug>
+#include <QObject>
+#include <QTimer>
 
 // Project headers
-#include "positionhandler.h"
-#include "planet.h"
+#include "simulation.h"
 
 #include <QtQuick3D/qquick3d.h>
 #include <QtQuickControls2>
+
+// Static stuff
+// please no static stuff.
 
 int main(int argc, char *argv[])
 {
@@ -17,12 +21,13 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     // Create Window
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);   // use QApplication only for debug widget, else QGuiApplication is more appropiate
+                                    // if changing to QGuiApplication remove QApplication header!
 
     // Environment variables
     qDebug()<<qputenv("QSG_INFO", "1");
 
-    // Create engine
+    // Create engine object
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
 
@@ -33,9 +38,6 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);    
 
-    // Force renderer
-    //QQuickWindow::setSceneGraphBackend(QSGRendererInterface::OpenGLRhi);
-
     // Load engine in Window
     engine.load(url);           /*[!] The QObject is created IN THIS LINE !! */
 
@@ -44,16 +46,8 @@ int main(int argc, char *argv[])
     // Create a pointer to the root QML Object (needed for editing QML properties)
     QObject *rootObject = engine.rootObjects().first();
 
-    // Create Planets
-    Planet Merkur(rootObject,"Planet Merkur","merkur");     // name, QML id
-    Planet Venus(rootObject,"Planet Venus", "venus");
-    Planet Erde(rootObject,"Planet Erde","erde");
-    Planet Mars(rootObject,"Planet Mars","mars");
+    // Start Simulation object
+    Simulation s(rootObject);
 
-    // Animate the planets, first arg ist starting position, second speed
-    Merkur.setOrbitType("cRotation", 200.0, .15);   // cRotation : circular rotation
-    Venus.setOrbitType("cRotation", 400.0, .19);
-    Erde.setOrbitType("cRotation", 600.0, .18);
-    Mars.setOrbitType("cRotation", 700.0, .1);
     return app.exec();
 }

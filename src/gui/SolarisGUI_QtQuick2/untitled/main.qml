@@ -3,6 +3,7 @@ import QtQuick.Window 2.15
 import QtQuick3D 1.15
 import QtQuick3D.Effects 1.15
 import QtQuick.Controls 2.15
+import QtQuick3D.Helpers 1.15
 
 ApplicationWindow {
     id: window
@@ -39,7 +40,6 @@ ApplicationWindow {
         fpsCounter.elementText=window.fps + " fps"
     }
 
-
     View3D {
         id: view
         anchors.fill: parent
@@ -54,13 +54,10 @@ ApplicationWindow {
             //multisampleAAMode: "SceneEnvironment.X4"
 
             // Qt 2.15
-
             antialiasingMode: "MSAA"            // Multisample AA
             antialiasingQuality: "High"         // High quality
 
             backgroundMode: SceneEnvironment.Color
-
-
         }
         //! [environment]
 
@@ -71,12 +68,14 @@ ApplicationWindow {
 
         }
 
+        WasdController {
+            controlledObject: camera
+        }
+
         // Sonne
 
         Sonne {
-
         }
-
 
         PointLight {
             position: Qt.vector3d(0,0,0)
@@ -106,12 +105,12 @@ ApplicationWindow {
             id: mars
             sphereDiffuseColor: "red"
         }
-
+/*
         DirectionalLight {
             position: Qt.vector3d(10000,0,0)
             eulerRotation: Qt.vector3d(-1, 0, 0)
             //rotation: Qt.quaternion(1,0,0,0)
-        }
+        }*/
 
 
         // [+] 2D Elements
@@ -161,6 +160,7 @@ ApplicationWindow {
         }
     }
 }
+
 
 
 
