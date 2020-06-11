@@ -7,7 +7,6 @@
 
 // Project headers
 #include "simulation.h"
-
 #include <QtQuick3D/qquick3d.h>
 #include <QtQuickControls2>
 
@@ -25,21 +24,18 @@ int main(int argc, char *argv[])
                                     // if changing to QGuiApplication remove QApplication header!
 
     // Environment variables
-    qDebug()<<qputenv("QSG_INFO", "1");
+    //qDebug()<<qputenv("QSG_INFO", "1");
+
+    QSurfaceFormat::setDefaultFormat(QQuick3D::idealSurfaceFormat());
 
     // Create engine object
     QQmlApplicationEngine engine;
-    const QUrl url(QStringLiteral("qrc:/main.qml"));
+    //const QUrl url(QStringLiteral("qrc:/main.qml"));
 
-    // Something added by qt creator?
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
-                     &app, [url](QObject *obj, const QUrl &objUrl) {
-        if (!obj && url == objUrl)
-            QCoreApplication::exit(-1);
-    }, Qt::QueuedConnection);    
-
-    // Load engine in Window
-    engine.load(url);           /*[!] The QObject is created IN THIS LINE !! */
+    // Load engine
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    if (engine.rootObjects().isEmpty())
+        return -1;
 
     // ++++                     -----------------------                        ++++ //
 

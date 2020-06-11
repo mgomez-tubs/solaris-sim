@@ -24,7 +24,6 @@ DebugWindow::~DebugWindow()
 
 void DebugWindow::addRow(QString rowName){
     ui->tableWidget->insertRow(ui->tableWidget->rowCount());
-    qDebug()<<ui->tableWidget->rowCount();
     ui->tableWidget->setVerticalHeaderItem(ui->tableWidget->rowCount()-1,new QTableWidgetItem(rowName));    // use setVerticalHeaderItem when to create and verticalheaderitem to cange already created row
 }
 
