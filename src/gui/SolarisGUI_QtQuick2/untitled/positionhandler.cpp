@@ -1,9 +1,5 @@
 #include "positionhandler.h"
-#include <QTimer>
-#include <QDebug>
-#include <QQmlProperty>
-#include <QMetaObject>
-#include <math.h>
+
 
 // static declarations
 

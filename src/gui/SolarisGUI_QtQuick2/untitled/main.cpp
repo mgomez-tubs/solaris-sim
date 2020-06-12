@@ -10,6 +10,9 @@
 #include <QtQuick3D/qquick3d.h>
 #include <QtQuickControls2>
 
+#define QT_NO_DEBUG_OUTPUT
+#define QT_NO_INFO_OUTPUT
+
 // Static stuff
 // please no static stuff.
 

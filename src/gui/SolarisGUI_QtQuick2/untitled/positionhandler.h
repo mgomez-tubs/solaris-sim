@@ -3,6 +3,11 @@
 
 #include <QVector3D>
 #include <QTimer>
+#include <QTimer>
+#include <QDebug>
+#include <QQmlProperty>
+#include <QMetaObject>
+#include <math.h>
 
 class PositionHandler : public QObject
 {

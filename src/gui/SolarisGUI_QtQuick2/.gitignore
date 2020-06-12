@@ -1,2 +1,6 @@
+# locale builds ignorieren
 build*
+# außer der Ordner mit den statischen build
 !build-deploy
+# alle batch scripts in diesem ordner ignorieren
+/*.bat

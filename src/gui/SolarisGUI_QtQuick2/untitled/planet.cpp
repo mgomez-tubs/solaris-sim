@@ -1,5 +1,5 @@
 #include "planet.h"
-#include <QDebug>
+
 
 Planet::Planet(){
 

@@ -2,6 +2,7 @@
 #define PLANET_H
 
 #include "positionhandler.h"
+#include <QDebug>
 
 class Planet : public QObject
 {
