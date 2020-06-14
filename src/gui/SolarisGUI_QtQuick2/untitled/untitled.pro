@@ -23,8 +23,8 @@ DEFINES += DEBUG_IS_ENABLED
 SOURCES += \
         debugwindow.cpp \
         main.cpp \
+        orbits.cpp \
         planet.cpp \
-        positionhandler.cpp \
         simulation.cpp
 
 RESOURCES += qml.qrc
@@ -45,7 +45,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     debugwindow.h \
     planet.h \
-    positionhandler.h \
     simulation.h
 
 DISTFILES +=

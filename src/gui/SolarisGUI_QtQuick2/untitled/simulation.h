@@ -10,13 +10,13 @@ class Simulation : public QObject
     Q_OBJECT
 public:
     Simulation(QObject*);
-    static int numtest;
-    QTimer * GLOBAL_TIMER;
+    QTimer * SIMULATION_TIMER;
     QTimer * DEBUG_TIMER;
+    QObject * rootObject;
     DebugWindow w;
     Planet Planeten [10];             // eventuell soll das dynamisch gemacht werden
 
-    void addPlanet(QObject *,QString,QString);
+    void addPlanet(QObject*,QString,QString);
 
     static int & anzahlPlaneten(){   // this method acts as a variable. to add a planet: anzahlPlaneten++, to see how many plaenets, anzahlplanete()
         static int counter = 0;
@@ -30,9 +30,10 @@ public:
     void startTimer();
     void stopTimer();
 
-private slots:
-    void foo_slot();
-
+    // Simulation flow
+    void Init();
+    void Run();
+    void Reset();
 };
 
 
