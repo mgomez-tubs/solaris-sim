@@ -4,6 +4,8 @@ DebugWindow::DebugWindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::DebugWindow)
 {
+    Qt::WindowFlags flags;
+    flags = Qt::Dialog;
     ui->setupUi(this);
     model1 = ui->tableWidget->model();
 /*

@@ -20,6 +20,11 @@ Simulation::Simulation(QObject * rootObject)
     // Display DEBUG window
     this->w.show();
 #endif
+
+    // Closing the main window will close the whole Application
+    connect(rootObject, SIGNAL(mainWclosed()),
+            qApp, SLOT(quit()));
+
     startTimer();
 }
 
@@ -27,22 +32,22 @@ void Simulation::addPlanet(QObject * rootObject, QString name, QString id){
     // Set timer
     Planeten[anzahlPlaneten()].setTimer(this->GLOBAL_TIMER);
 
+    // Connections
 #ifdef DEBUG_IS_ENABLED
     connect(&Planeten[anzahlPlaneten()], &Planet::rowNameEmitter,&w,&DebugWindow::addRow);
     connect(DEBUG_TIMER, &QTimer::timeout, &Planeten[anzahlPlaneten()].positionHandler, &PositionHandler::positionEmitter_helper);
     connect(&Planeten[anzahlPlaneten()].positionHandler, &PositionHandler::positionEmitter,&w,&DebugWindow::setTableValues);
 
-    //GUI connections
+    // GUI connections
     connect(&w,&DebugWindow::resumeSimulation,this,&Simulation::startTimer);
     connect(&w,&DebugWindow::stopSimulation,this,&Simulation::stopTimer);
 
 #endif
-
     // Planeten bilden
     Planeten[anzahlPlaneten()].setOrder(anzahlPlaneten());
     Planeten[anzahlPlaneten()].setProperties(rootObject,name,id);
 
-    // up the counter
+    // Up the planet counter
     this->addOnePlanet();
 }
 

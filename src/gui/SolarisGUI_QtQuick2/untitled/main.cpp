@@ -10,9 +10,6 @@
 #include <QtQuick3D/qquick3d.h>
 #include <QtQuickControls2>
 
-#define QT_NO_DEBUG_OUTPUT
-#define QT_NO_INFO_OUTPUT
-
 // Static stuff
 // please no static stuff.
 
@@ -33,7 +30,6 @@ int main(int argc, char *argv[])
 
     // Create engine object
     QQmlApplicationEngine engine;
-    //const QUrl url(QStringLiteral("qrc:/main.qml"));
 
     // Load engine
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

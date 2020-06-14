@@ -36,6 +36,9 @@ ApplicationWindow {
     // FPS counter
     property int fps: 0
 
+    // Signals
+    signal mainWclosed()
+
     onFpsChanged: {
         fpsCounter.elementText=window.fps + " fps"
     }
@@ -158,6 +161,10 @@ ApplicationWindow {
             anchors.bottomMargin: 1
             anchors.bottom: button1.top
         }
+    }
+
+    onClosing:  {
+        mainWclosed()
     }
 }
 
