@@ -51,6 +51,7 @@ void Simulation::addPlanet(QObject * rootObject, QString name, QString id){
     this->addOnePlanet();
 }
 
+// Timer control
 void Simulation::startTimer(){
     // Start global timer
     GLOBAL_TIMER->start(16);
@@ -63,6 +64,7 @@ void Simulation::stopTimer(){
     DEBUG_TIMER->stop();
 }
 
+// Misc
 void Simulation::foo_slot()
 {
 }

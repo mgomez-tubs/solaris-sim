@@ -1,6 +1,6 @@
 #include "planet.h"
 
-
+/*  Konstruktor */
 Planet::Planet(){
 
 }
@@ -23,8 +23,8 @@ void Planet::setRootObject(QObject * rootObject){
 
 void Planet::setName(QString name){
     this->name = name;
-
 }
+
 void Planet::setId(QString id){
     this->positionHandler.setqmlId(id);
 }
@@ -69,6 +69,7 @@ QString Planet::getName(){
 QVector3D Planet::getCurrentPosition(){
     return this->positionHandler.pos;
 }
+
 Planet::~Planet(){
     qDebug()<<this->name << "was destroyed.";
 }

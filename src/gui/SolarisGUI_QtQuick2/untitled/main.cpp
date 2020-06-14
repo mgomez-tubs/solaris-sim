@@ -17,14 +17,12 @@ int main(int argc, char *argv[])
 {
     // ++++                     Load Window and Engine                        ++++ //
 
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-
     // Create Window
     QApplication app(argc, argv);   // use QApplication only for debug widget, else QGuiApplication is more appropiate
                                     // if changing to QGuiApplication remove QApplication header!
 
     // Environment variables
-    //qDebug()<<qputenv("QSG_INFO", "1");
+    // qDebug()<<qputenv("QSG_INFO", "1");
 
     QSurfaceFormat::setDefaultFormat(QQuick3D::idealSurfaceFormat());
 
