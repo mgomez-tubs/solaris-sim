@@ -13,5 +13,9 @@
         <file>Mars.qml</file>
         <file>Venus.qml</file>
         <file>Test1.qml</file>
+        <file>Jupiter.qml</file>
+        <file>Saturn.qml</file>
+        <file>Uranus.qml</file>
+        <file>Neptun.qml</file>
     </qresource>
 </RCC>

@@ -3,6 +3,7 @@ import QtQuick 2.14
 Item {
     width: 100
     height: 30
+    property alias elementText: element.text
 
     Rectangle {
         id: rectangle
@@ -18,7 +19,7 @@ Item {
             width: 23
             height: 0
             color: "#ffffff"
-            text: qsTr("Button")
+            text: qsTr("dies ist ein button")
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
             anchors.horizontalCenter: parent.horizontalCenter
@@ -30,7 +31,7 @@ Item {
 
 /*##^##
 Designer {
-    D{i:1;anchors_height:200;anchors_width:200;anchors_x:143;anchors_y:208}
+    D{i:0;formeditorZoom:1.75}D{i:1;anchors_height:200;anchors_width:200;anchors_x:143;anchors_y:208}
 }
 ##^##*/
 

@@ -91,23 +91,44 @@ ApplicationWindow {
 
         Merkur{
             id: merkur
-            sphereDiffuseColor: "orange"
+            sphereDiffuseColor: "grey"
         }
 
         Venus {
             id: venus
-            sphereDiffuseColor: "green"
+            sphereDiffuseColor: "yellow"
         }
 
         Erde {
             id: erde
-            sphereDiffuseColor: "blue"
+            sphereDiffuseColor: "#FF34B3"
         }
 
         Mars{
             id: mars
-            sphereDiffuseColor: "red"
+            sphereDiffuseColor: "#800020"
         }
+
+        Jupiter{
+            id: jupiter
+            sphereDiffuseColor: "brown"
+        }
+
+        Saturn{
+            id: saturn
+            sphereDiffuseColor: "beige"
+        }
+
+        Uranus{
+            id: uranus
+            sphereDiffuseColor: "#6495ED"
+        }
+
+        Neptun{
+            id: neptun
+            sphereDiffuseColor: "#6A5ACD"
+        }
+
 /*
         DirectionalLight {
             position: Qt.vector3d(10000,0,0)
