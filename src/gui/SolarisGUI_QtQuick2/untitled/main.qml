@@ -1,5 +1,7 @@
-import QtQuick 2.15
+
+import QtQuick 2.14
 import QtQuick.Window 2.15
+
 import QtQuick3D 1.15
 import QtQuick3D.Effects 1.15
 import QtQuick.Controls 2.15
@@ -11,7 +13,7 @@ ApplicationWindow {
     width: 800
     height: 600
     title: qsTr("Solaris")
-    menuBar: MenuBar{
+    menuBar: MenuBar{       // There is a bug with the menu bar!!
         Menu {
                    title: qsTr("&File")
                    Action { text: qsTr("&New...") }
@@ -46,11 +48,16 @@ ApplicationWindow {
     View3D {
         id: view
         anchors.fill: parent
+/*
+        AxisHelper{
+            enableXYGrid: false
+            enableXZGrid: false
+            enableYZGrid: false
+        }*/
 
         //! [environment]
 
         environment: SceneEnvironment{
-
             clearColor: "black"
 
             // Qt 2.14
@@ -91,7 +98,7 @@ ApplicationWindow {
 
 
         // Planeten
-        // change size with property sphereScale:
+        // [!!] change size with property sphereScale:
 
         Merkur{
             id: merkur
@@ -131,10 +138,12 @@ ApplicationWindow {
         Neptun{
             id: neptun
             sphereDiffuseColor: "#6A5ACD"
+            // sphereScale: Qt.vector3d(3,3,3)
 
         }
 
         Node {
+            opacity: 0.25;
             Model {
                 id: grid
                 geometry: GridGeometry{
@@ -158,16 +167,9 @@ ApplicationWindow {
 
         }
 
-/*
-        DirectionalLight {
-            position: Qt.vector3d(10000,0,0)
-            eulerRotation: Qt.vector3d(-1, 0, 0)
-            //rotation: Qt.quaternion(1,0,0,0)
-        }*/
-
 
         // [+] 2D Elements
-        Button {
+        ButtonForm {
             id: button
             buttonText : "Button 0"
             anchors.bottom: parent.bottom
@@ -193,9 +195,9 @@ ApplicationWindow {
             }
         }
 
-        Button {
+        ButtonForm {
             id: button1
-            buttonText : "Button 1"
+            buttonText : "Button 1";
             x: 690
             y: 496
             anchors.rightMargin: 10
@@ -204,7 +206,7 @@ ApplicationWindow {
             anchors.bottom: button.top
         }
 
-        Button {
+        ButtonForm {
             id: button2
             buttonText: "Button 2"
             x: 690
@@ -213,6 +215,44 @@ ApplicationWindow {
             anchors.right: parent.right
             anchors.bottomMargin: 1
             anchors.bottom: button1.top
+        }
+
+        ButtonForm {
+            id: buttonForm
+            width: 50
+            height: 50
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 10
+            buttonTextFontpixelSize: 20
+            buttonText: "[P]"
+        }
+
+        ButtonForm {
+            id: buttonForm1
+            y: 540
+            width: 35
+            height: 35
+            buttonText: qsTr("[S]")
+            anchors.leftMargin: 5
+            buttonTextFontpixelSize: 20
+            anchors.bottomMargin: 10
+            anchors.left: buttonForm.right
+            anchors.bottom: parent.bottom
+        }
+
+        ButtonForm {
+            id: buttonForm2
+            y: 555
+            width: 35
+            height: 35
+            anchors.left: buttonForm1.right
+            anchors.leftMargin: 5
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 10
+            buttonTextFontpixelSize: 20
+            buttonText: qsTr("[T]")
         }
     }
 
@@ -226,6 +266,6 @@ ApplicationWindow {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.6600000262260437}
+    D{i:39;anchors_x:8}D{i:40;anchors_x:8}
 }
 ##^##*/

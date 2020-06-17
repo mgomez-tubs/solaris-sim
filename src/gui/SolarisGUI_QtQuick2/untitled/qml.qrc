@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>Button.qml</file>
         <file>ButtonForm.ui.qml</file>
         <file>ButtonTest.qml</file>
         <file>Planet.qml</file>
@@ -12,7 +11,6 @@
         <file>Merkur.qml</file>
         <file>Mars.qml</file>
         <file>Venus.qml</file>
-        <file>Test1.qml</file>
         <file>Jupiter.qml</file>
         <file>Saturn.qml</file>
         <file>Uranus.qml</file>
