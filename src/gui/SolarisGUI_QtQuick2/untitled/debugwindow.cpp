@@ -1,4 +1,5 @@
 #include "debugwindow.h"
+#include <QtMath>
 
 DebugWindow::DebugWindow(QWidget *parent) :
     QWidget(parent),
@@ -14,9 +15,10 @@ DebugWindow::DebugWindow(QWidget *parent) :
 */
 }
 
-void DebugWindow::setTableValues(int zeile, QVector3D vec){
+void DebugWindow::setTableValues(int zeile, QVector3D vec, float angle){
     model1->setData(model1->index(zeile,0),vec.x());
     model1->setData(model1->index(zeile,1),vec.y());
+    model1->setData(model1->index(zeile,2),qRadiansToDegrees(angle));
 }
 
 DebugWindow::~DebugWindow()

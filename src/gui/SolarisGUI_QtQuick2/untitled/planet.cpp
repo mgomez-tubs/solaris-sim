@@ -47,9 +47,8 @@ QString Planet::getName(){
 
 ////          SIGNALS               ////
 void Planet::positionEmitter_helper(){
-    emit positionEmitter(this->order,position);
+    emit positionEmitter(this->order,position, this->currentAngle);
 }
-
 ////          DESTRUCTOR           ////
 Planet::~Planet(){
     qDebug()<<this->name << "was destroyed.";

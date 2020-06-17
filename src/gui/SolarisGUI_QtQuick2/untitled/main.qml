@@ -89,6 +89,10 @@ ApplicationWindow {
             quadraticFade: 0
         }
 
+
+        // Planeten
+        // change size with property sphereScale:
+
         Merkur{
             id: merkur
             sphereDiffuseColor: "grey"
@@ -127,6 +131,31 @@ ApplicationWindow {
         Neptun{
             id: neptun
             sphereDiffuseColor: "#6A5ACD"
+
+        }
+
+        Node {
+            Model {
+                id: grid
+                geometry: GridGeometry{
+                    name: "grid"    // for whatever reason wont work w/o a grid
+                    horizontalLines: 50
+                    verticalLines: 50
+                    horizontalStep: 50
+                    verticalStep: 50
+                }
+                //scale: Qt.vector3d(50,50,50)
+                materials: [
+                    DefaultMaterial {
+                        emissiveColor: "gray"
+                        lighting: DefaultMaterial.NoLighting
+                    }
+                ]
+            }
+        }
+
+        Node {
+
         }
 
 /*
@@ -140,6 +169,7 @@ ApplicationWindow {
         // [+] 2D Elements
         Button {
             id: button
+            buttonText : "Button 0"
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 10
             anchors.right: parent.right
@@ -165,6 +195,7 @@ ApplicationWindow {
 
         Button {
             id: button1
+            buttonText : "Button 1"
             x: 690
             y: 496
             anchors.rightMargin: 10
@@ -175,6 +206,7 @@ ApplicationWindow {
 
         Button {
             id: button2
+            buttonText: "Button 2"
             x: 690
             y: 441
             anchors.rightMargin: 10
@@ -194,6 +226,6 @@ ApplicationWindow {
 
 /*##^##
 Designer {
-    D{i:0;3d-view:false}
+    D{i:0;formeditorZoom:0.6600000262260437}
 }
 ##^##*/

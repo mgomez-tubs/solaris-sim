@@ -25,7 +25,7 @@ private:
     Ui::DebugWindow *ui;
 
 public slots:
-    void setTableValues(int,QVector3D);
+    void setTableValues(int,QVector3D,float);
     void addRow(QString);
     void foo_slot();
 

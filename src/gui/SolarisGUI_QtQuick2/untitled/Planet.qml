@@ -1,5 +1,5 @@
-import QtQuick 2.15
 import QtQuick3D 1.15
+import QtQuick3D.Effects 1.15
 
 Node {
     property alias spherePosition : sphere.position
@@ -21,6 +21,7 @@ Node {
                 id: material
                 diffuseColor: "blue"
                 //lighting: DefaultMaterial.NoLighting;
+
             }
         ]
 /*

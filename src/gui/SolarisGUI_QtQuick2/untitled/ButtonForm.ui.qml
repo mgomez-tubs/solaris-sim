@@ -3,7 +3,7 @@ import QtQuick 2.14
 Item {
     width: 100
     height: 30
-    property alias elementText: element.text
+    property alias buttonText: buttonText.text
 
     Rectangle {
         id: rectangle
@@ -13,7 +13,7 @@ Item {
         border.color: "#cd5614"
 
         Text {
-            id: element
+            id: buttonText
             x: 39
             y: 43
             width: 23

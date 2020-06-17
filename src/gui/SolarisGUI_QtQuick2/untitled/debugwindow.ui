@@ -65,8 +65,11 @@
        <attribute name="horizontalHeaderCascadingSectionResizes">
         <bool>false</bool>
        </attribute>
+       <attribute name="horizontalHeaderMinimumSectionSize">
+        <number>24</number>
+       </attribute>
        <attribute name="horizontalHeaderDefaultSectionSize">
-        <number>200</number>
+        <number>150</number>
        </attribute>
        <attribute name="horizontalHeaderStretchLastSection">
         <bool>false</bool>
@@ -79,6 +82,11 @@
        <column>
         <property name="text">
          <string>ypos [px]</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>angle</string>
         </property>
        </column>
       </widget>

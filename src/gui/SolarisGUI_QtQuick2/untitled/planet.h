@@ -43,7 +43,7 @@ public:
 
 signals:
     void rowNameEmitter(QString value);
-    void positionEmitter(int, QVector3D);
+    void positionEmitter(int, QVector3D,float);
 
 public slots:
     void positionEmitter_helper();

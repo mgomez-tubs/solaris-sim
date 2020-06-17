@@ -18,7 +18,7 @@ Simulation::Simulation(QObject * rootObject)
         this->w.show();
     #endif
 
-    // Closing the main window will close the whole Application
+    // Closing the main window should close the whole Application
     connect(rootObject, SIGNAL(mainWclosed()),
             qApp, SLOT(quit()));
 
@@ -34,7 +34,8 @@ void Simulation::addPlanet(QObject * rootObject, QString name, QString id){
     // Bei jedem timeout von DEBUG_TIMER rufe die Methode positionEmitter_helper auf
     connect(DEBUG_TIMER, &QTimer::timeout, &Planeten[anzahlPlaneten()], &Planet::positionEmitter_helper);
 
-    // Wenn positionEmitter aufgerufen wird, aktualisiere die Daten in der Tabelle
+    // Wenn positionEmitter_helper aufgerufen wird, aktualisiere die Daten in der Tabelle
+    // This method seems redundant but its not and its of common usage.
     connect(&Planeten[anzahlPlaneten()], &Planet::positionEmitter, &w, &DebugWindow::setTableValues);
 
     // GUI connections
