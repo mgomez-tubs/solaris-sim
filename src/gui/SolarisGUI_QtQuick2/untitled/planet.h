@@ -22,6 +22,7 @@ public:
     QObject * rootObject;
     QString id;
     QObject *planetHandler;
+    QVector3D defaultPosition;
 
     // Move 1 specific properties
     float currentAngle;
@@ -32,11 +33,15 @@ public:
     void setOrbitType(QString,float,float);
     void setProperties(QObject *,QString,QString);
     void setName(QString);
+    void resetPosition();
     void setId(QString);
     void setOrder(int);
+    void setRadius();
 
     // Getters
     QString getName();
+    QVector3D getDefaultPosition();
+    QObject * getPlanetHandler();
 
     // Destructor
     ~Planet();

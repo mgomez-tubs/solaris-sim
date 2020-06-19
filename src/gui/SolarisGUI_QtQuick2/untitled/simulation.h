@@ -15,6 +15,7 @@ public:
     QObject * rootObject;
     DebugWindow w;
     Planet Planeten [10];             // eventuell soll das dynamisch gemacht werden
+    bool simulTimerRunning = false;
 
     void addPlanet(QObject*,QString,QString);
 
@@ -33,6 +34,10 @@ public:
     // Simulation flow
     void Init();
     void Run();
+
+
+private slots:
+    void tooglePlayPause();
     void Reset();
 };
 

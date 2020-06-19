@@ -1,64 +1,55 @@
-
-import QtQuick 2.14
-import QtQuick.Window 2.15
-
+import QtQuick 2.12
+import QtQuick.Window 2.12
 import QtQuick3D 1.15
 import QtQuick3D.Effects 1.15
-import QtQuick.Controls 2.15
+import QtQuick.Controls 2.12
 import QtQuick3D.Helpers 1.15
+import DrawCircleQt 1.0
 
 ApplicationWindow {
     id: window
     visible: true
-    width: 800
+    width: 1024
     height: 600
     title: qsTr("Solaris")
-    menuBar: MenuBar{       // There is a bug with the menu bar!!
-        Menu {
-                   title: qsTr("&File")
-                   Action { text: qsTr("&New...") }
-                   Action { text: qsTr("&Open...") }
-                   Action { text: qsTr("&Save") }
-                   Action { text: qsTr("Save &As...") }
-                   MenuSeparator { }
-                   Action { text: qsTr("&Quit") }
-               }
-        Menu {
-                    title: qsTr("&Edit")
-                    Action { text: qsTr("Cu&t") }
-                    Action { text: qsTr("&Copy") }
-                    Action { text: qsTr("&Paste") }
-                }
-        Menu {
-                    title: qsTr("&Help")
-                    Action { text: qsTr("&About") }
-                }
-    }
 
     // FPS counter
     property int fps: 0
 
     // Signals
     signal mainWclosed()
+    signal tooglePlayPause()
+    signal resetSimulation();
+
+    // Signal Helpers
+    function tooglePlayPause_helper(){
+        tooglePlayPause()
+    }
+
+    function resetSimulation_helper(){
+        resetSimulation();
+    }
 
     onFpsChanged: {
         fpsCounter.elementText=window.fps + " fps"
     }
 
+    onClosing:  {
+        mainWclosed()
+    }
+
     View3D {
         id: view
         anchors.fill: parent
-/*
-        AxisHelper{
-            enableXYGrid: false
-            enableXZGrid: false
-            enableYZGrid: false
-        }*/
 
         //! [environment]
 
         environment: SceneEnvironment{
             clearColor: "black"
+            effects: HDRBloomTonemap{
+                bloomThreshold: .8
+                exposure: 0
+            }
 
             // Qt 2.14
             //multisampleAAMode: "SceneEnvironment.X4"
@@ -82,6 +73,23 @@ ApplicationWindow {
             controlledObject: camera
         }
 
+        // functions
+        function getPlanetList(){
+            var planets = ["merkur","venus","erde","mars","jupiter","saturn","uranus","venus"]
+            return planets
+        }
+
+        function disableOrbits(){
+            merkur.toogleOrbitTransparency();
+            venus.toogleOrbitTransparency();
+            erde.toogleOrbitTransparency();
+            mars.toogleOrbitTransparency();
+            jupiter.toogleOrbitTransparency();
+            saturn.toogleOrbitTransparency();
+            uranus.toogleOrbitTransparency();
+            neptun.toogleOrbitTransparency();
+        }
+
         // Sonne
 
         Sonne {
@@ -90,14 +98,14 @@ ApplicationWindow {
         PointLight {
             position: Qt.vector3d(0,0,0)
             scale: Qt.vector3d(1, 1, 1)
-            brightness: 100
-            constantFade: .5
-            linearFade: 0
+            brightness: 180
+            constantFade: 1
+            linearFade: .1
             quadraticFade: 0
         }
 
-
         // Planeten
+        // Alle Planeten in einen SolarSystem.qml datei bringen
         // [!!] change size with property sphereScale:
 
         Merkur{
@@ -139,43 +147,25 @@ ApplicationWindow {
             id: neptun
             sphereDiffuseColor: "#6A5ACD"
             // sphereScale: Qt.vector3d(3,3,3)
-
         }
-
-        Node {
-            opacity: 0.25;
-            Model {
-                id: grid
-                geometry: GridGeometry{
-                    name: "grid"    // for whatever reason wont work w/o a grid
-                    horizontalLines: 50
-                    verticalLines: 50
-                    horizontalStep: 50
-                    verticalStep: 50
-                }
-                //scale: Qt.vector3d(50,50,50)
-                materials: [
-                    DefaultMaterial {
-                        emissiveColor: "gray"
-                        lighting: DefaultMaterial.NoLighting
-                    }
-                ]
-            }
-        }
-
-        Node {
-
-        }
-
 
         // [+] 2D Elements
         ButtonForm {
-            id: button
-            buttonText : "Button 0"
+            id: buttonSettings
+            buttonText : "Settings"
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 10
             anchors.right: parent.right
             anchors.rightMargin: 10
+            MouseArea {
+                id: buttonSettings_mouseArea
+                anchors.fill: parent
+                onClicked: {
+                    if(!rightMenu.visible){
+                        rightMenu.visible = true;
+                    } else rightMenu.visible = false;
+                }
+            }
         }
 
         Fps {
@@ -203,7 +193,7 @@ ApplicationWindow {
             anchors.rightMargin: 10
             anchors.right: parent.right
             anchors.bottomMargin: 1
-            anchors.bottom: button.top
+            anchors.bottom: button2.top
         }
 
         ButtonForm {
@@ -214,58 +204,71 @@ ApplicationWindow {
             anchors.rightMargin: 10
             anchors.right: parent.right
             anchors.bottomMargin: 1
-            anchors.bottom: button1.top
+            anchors.bottom: buttonSettings.top
         }
 
         ButtonForm {
-            id: buttonForm
+            id: playButton
             width: 50
             height: 50
+            scale: 1
             anchors.left: parent.left
             anchors.leftMargin: 10
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 10
-            buttonTextFontpixelSize: 20
-            buttonText: "[P]"
+            buttonTextFontpixelSize: 15
+            buttonText: "⏯"
+
+            MouseArea {
+                id: playButton_mouseArea
+                anchors.fill: parent
+
+                Connections {
+                    target: playButton_mouseArea
+                    onClicked: tooglePlayPause_helper();
+                }
+            }
         }
 
         ButtonForm {
-            id: buttonForm1
+            id: stopButton
             y: 540
             width: 35
             height: 35
-            buttonText: qsTr("[S]")
+            buttonText: qsTr("⏹")
             anchors.leftMargin: 5
-            buttonTextFontpixelSize: 20
+            buttonTextFontpixelSize: 15
             anchors.bottomMargin: 10
-            anchors.left: buttonForm.right
+            anchors.left: playButton.right
             anchors.bottom: parent.bottom
+
+            MouseArea {
+                id: stopButton_mouseArea
+                anchors.fill: parent
+
+                Connections {
+                    target: stopButton_mouseArea
+                    onClicked: resetSimulation_helper();
+                }
+            }
         }
 
-        ButtonForm {
-            id: buttonForm2
-            y: 555
-            width: 35
-            height: 35
-            anchors.left: buttonForm1.right
-            anchors.leftMargin: 5
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 10
-            buttonTextFontpixelSize: 20
-            buttonText: qsTr("[T]")
+        RightMenu {
+            id: rightMenu
+            x: 590
+            y: 37
+            height: 450
+            visible: false
+            opacity: 0.75
+            anchors.right: parent.right
+            anchors.rightMargin: 5
         }
-    }
-
-    onClosing:  {
-        mainWclosed()
     }
 }
 
 
-
-
 /*##^##
 Designer {
-    D{i:39;anchors_x:8}D{i:40;anchors_x:8}
+    D{i:0;formeditorZoom:0.6600000262260437}D{i:23;anchors_height:100;anchors_width:100}
 }
 ##^##*/

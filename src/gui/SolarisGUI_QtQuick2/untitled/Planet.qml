@@ -1,16 +1,38 @@
 import QtQuick3D 1.15
-import QtQuick3D.Effects 1.15
+import DrawCircleQt 1.0
 
 Node {
+    id: rootNode
     property alias spherePosition : sphere.position
     property alias sphereDiffuseColor: material.diffuseColor
     property alias sphereScale: sphere.scale
     property alias sphereEmissiveColor: material.emissiveColor
-    property alias sphereEmissiveFactor: material.emissiveFactor
+    property alias orbitTransparency : orbitKreisNode.opacity
+    property bool showOrbit : true
 
     function receive(vector: vector3d){
         spherePosition = vector
     }
+
+    function setRadiusKreisBahn(rad : double){
+        orbitKreis.radius = rad
+    }
+
+    function toogleOrbitTransparency(){
+        showOrbit = !showOrbit
+        console.log("Tranparency was set to",showOrbit)
+        orbitKreisNode.visible  = showOrbit;
+    }
+
+    function whatName(name){
+        console.log("Name changed for ",name);
+    }
+
+    function orbitName(){
+        var a = Math.random();
+        return a;
+    }
+
 
     Model {
         id: sphere
@@ -21,16 +43,21 @@ Node {
                 id: material
                 diffuseColor: "blue"
                 //lighting: DefaultMaterial.NoLighting;
-
             }
         ]
-/*
-        Behavior on position {
-            PropertyAnimation{
-                easing.type: Easing.Linear;
-                duration: 50;
-            }
-        }*/
+    }
+    Node {
+        id: orbitKreisNode
+        opacity: .45
+        OrbitKreis{
+            id: orbitKreis
+            name: orbitName()                          // this will make it usable for now . . . //
+                                                        /* this implmentation is very important */
+                                                        /* - the renderer wont display the orbit circle if a name is not set */
+                                                        /* - and will almost always crash with no errors if two geometries have the same name */
+                                                        /* currently assigning random values at start */
+                                                        /* if app crashes it might be this */
+        }
     }
 }
 

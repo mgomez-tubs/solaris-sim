@@ -15,5 +15,10 @@
         <file>Saturn.qml</file>
         <file>Uranus.qml</file>
         <file>Neptun.qml</file>
+        <file>DropDownMenu.qml</file>
+        <file>DropDownMenuForm.ui.qml</file>
+        <file>RightMenu.qml</file>
+        <file>RightMenuForm.ui.qml</file>
+        <file>OrbitKreis.qml</file>
     </qresource>
 </RCC>

@@ -9,6 +9,7 @@
 #include "simulation.h"
 #include <QtQuick3D/qquick3d.h>
 #include <QtQuickControls2>
+#include "QML/drawcircleqt.h"
 
 // Static stuff
 // please no static stuff.
@@ -20,14 +21,15 @@ int main(int argc, char *argv[])
     // Create Window
     QApplication app(argc, argv);   // use QApplication only for debug widget, else QGuiApplication is more appropiate
                                     // if changing to QGuiApplication remove QApplication header!
-
+    //QSurfaceFormat::setDefaultFormat(QQuick3D::idealSurfaceFormat());
     // Environment variables
     // qDebug()<<qputenv("QSG_INFO", "1");
 
-    QSurfaceFormat::setDefaultFormat(QQuick3D::idealSurfaceFormat());
-
     // Create engine object
     QQmlApplicationEngine engine;
+
+    // Import custom QML Objects
+    qmlRegisterType<DrawCircleQt>("DrawCircleQt",1,0,"DrawCircleQt");
 
     // Load engine
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

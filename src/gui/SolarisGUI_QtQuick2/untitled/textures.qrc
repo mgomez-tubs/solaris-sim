@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>textures/2k_sun.jpg</file>
+        <file>RollOutMenu.qml</file>
+        <file>RollOutMenuForm.ui.qml</file>
+    </qresource>
+</RCC>

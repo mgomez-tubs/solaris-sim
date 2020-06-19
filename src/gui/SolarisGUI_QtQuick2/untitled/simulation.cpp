@@ -10,19 +10,19 @@ Simulation::Simulation(QObject * rootObject)
     this->SIMULATION_TIMER = new QTimer(this);
     this->DEBUG_TIMER = new QTimer(this);
 
-    // Initialize planets
-    this->Init();
-
     #ifdef DEBUG_IS_ENABLED
         // Display DEBUG window
         this->w.show();
     #endif
 
     // Closing the main window should close the whole Application
+
     connect(rootObject, SIGNAL(mainWclosed()),
             qApp, SLOT(quit()));
-
     startTimer();
+
+    // Initialize planets
+    this->Init();
 }
 
 void Simulation::addPlanet(QObject * rootObject, QString name, QString id){
@@ -44,6 +44,7 @@ void Simulation::addPlanet(QObject * rootObject, QString name, QString id){
     connect(&w,&DebugWindow::stopSimulation,this,&Simulation::stopTimer);
 
 #endif
+
     // Eigenschaften
     // Order Number
     Planeten[anzahlPlaneten()].setOrder(anzahlPlaneten());
@@ -56,6 +57,10 @@ void Simulation::addPlanet(QObject * rootObject, QString name, QString id){
 
 // Simulation flow
 void Simulation::Init(){
+
+    // Set Up QML Connections
+    connect(rootObject,SIGNAL(tooglePlayPause()),this,SLOT(tooglePlayPause()));
+    connect(rootObject,SIGNAL(resetSimulation()),this,SLOT(Reset()));
 
 
     addPlanet(rootObject,"Merkur","merkur");    // find a way to dynamically create objects
@@ -78,6 +83,7 @@ void Simulation::Init(){
 
     // Connect Run() method to simulation timer
     connect(SIMULATION_TIMER, &QTimer::timeout, this, &Simulation::Run);
+
 }
 
 void Simulation::Run(){
@@ -87,18 +93,38 @@ void Simulation::Run(){
 }
 
 void Simulation::Reset(){
-
+    stopTimer();
+    for(int i = 0; i<anzahlPlaneten();i++){
+        Planeten[i].resetPosition();
+    }
 }
 
 // Timer control
 void Simulation::startTimer(){
+    qDebug()<<"Simulation Started";
+    simulTimerRunning = true;
     // Start simulation timer
     SIMULATION_TIMER->start(16);
+
+#ifdef DEBUG_IS_ENABLED
     // Start debug timer
     DEBUG_TIMER->start(250);
+#endif
 }
 
 void Simulation::stopTimer(){
+    qDebug()<<"Simulation Paused";
+    simulTimerRunning = false;
     SIMULATION_TIMER->stop();
+#ifdef DEBUG_IS_ENABLED
     DEBUG_TIMER->stop();
+#endif
+}
+
+void Simulation::tooglePlayPause(){
+    if(simulTimerRunning==true){
+        stopTimer();
+    } else {
+        startTimer();
+    }
 }

@@ -1,4 +1,4 @@
-import QtQuick 2.15
+import QtQuick 2.12
 import QtQuick3D 1.15
 import QtQuick3D.Effects 1.15
 
@@ -9,9 +9,14 @@ Model {
     materials: [
         DefaultMaterial{
             id: material
-            diffuseColor: "orange"
+            //diffuseColor: "orange"
             emissiveColor: "yellow"
             emissiveFactor: 1
+            //lighting: DefaultMaterial.NoLighting
+
+            diffuseMap: Texture {
+                source: "/textures/2k_sun.jpg"
+            }
         }
     ]
 }
