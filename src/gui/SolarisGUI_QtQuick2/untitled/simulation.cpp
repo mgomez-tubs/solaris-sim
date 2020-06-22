@@ -59,9 +59,9 @@ void Simulation::addPlanet(QObject * rootObject, QString name, QString id){
 void Simulation::Init(){
 
     // Set Up QML Connections
-    connect(rootObject,SIGNAL(tooglePlayPause()),this,SLOT(tooglePlayPause()));
-    connect(rootObject,SIGNAL(resetSimulation()),this,SLOT(Reset()));
-
+    connect(rootObject,SIGNAL(tooglePlayPause()),   this,SLOT(tooglePlayPause()));
+    connect(rootObject,SIGNAL(resetSimulation()),   this,SLOT(Reset()));
+    connect(rootObject,SIGNAL(setSpeedMultiplier(qreal)), this,SLOT(setSpeedMultiplier(qreal)));
 
     addPlanet(rootObject,"Merkur","merkur");    // find a way to dynamically create objects
     addPlanet(rootObject,"Venus","venus");
@@ -81,6 +81,8 @@ void Simulation::Init(){
     Planeten[6].setOrbitType("kreisBewegung", 700.0, 1/(84.011*365.0));
     Planeten[7].setOrbitType("kreisBewegung", 800.0, 1/(164.79*365.0));
 
+
+
     // Connect Run() method to simulation timer
     connect(SIMULATION_TIMER, &QTimer::timeout, this, &Simulation::Run);
 
@@ -97,6 +99,10 @@ void Simulation::Reset(){
     for(int i = 0; i<anzahlPlaneten();i++){
         Planeten[i].resetPosition();
     }
+}
+
+void Simulation::setSpeedMultiplier(qreal multiplier){
+    Planet::speedMultiplier = multiplier;
 }
 
 // Timer control

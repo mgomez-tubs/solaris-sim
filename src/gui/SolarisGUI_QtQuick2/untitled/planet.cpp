@@ -1,6 +1,12 @@
 #include "planet.h"
 #include <QVariant>
 
+
+
+////          static declarations   ////
+float Planet::speedMultiplier = 1.0;
+
+
 ////          CONSTRUCTOR           ////
 Planet::Planet(){
 }
@@ -13,7 +19,7 @@ void Planet::setName(QString name){
 void Planet::resetPosition(){
     // Reset circular rotation angle
     this->currentAngle = 0.0;
-    QMetaObject::invokeMethod(planetHandler, "receive", Q_ARG(QVector3D, this->defaultPosition));
+    QMetaObject::invokeMethod(planetHandler, "receive", Q_ARG(QVector3D, this->defaultPosition), Q_ARG(double, this->currentAngle));
 }
 
 void Planet::setOrder(int order){
@@ -37,7 +43,7 @@ void Planet::setOrbitType(QString type, float radius, float speed){
         this->currentAngle = 0.0;
         this->position = QVector3D(radius,0.0,0.0);
         this->defaultPosition = QVector3D(radius,0.0,0.0);
-        setRadius();
+        // setRadius(); // change to addRadius()
         qDebug()<<"Circular rotation was set for"<<this->name;
     }else{
         qDebug()<<"Error setting orbit type. Typo?";

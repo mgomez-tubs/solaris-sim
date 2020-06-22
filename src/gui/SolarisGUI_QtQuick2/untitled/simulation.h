@@ -39,6 +39,7 @@ public:
 private slots:
     void tooglePlayPause();
     void Reset();
+    void setSpeedMultiplier(qreal);
 };
 
 

@@ -20,5 +20,6 @@
         <file>RightMenu.qml</file>
         <file>RightMenuForm.ui.qml</file>
         <file>OrbitKreis.qml</file>
+        <file>CircularOrbits.qml</file>
     </qresource>
 </RCC>

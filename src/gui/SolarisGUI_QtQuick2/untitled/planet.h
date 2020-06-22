@@ -12,6 +12,9 @@ public:
     explicit Planet();
     QString name = "UNDEFINED";     // Default name for not created planets.
 
+    // static vars
+    static float speedMultiplier;
+
     // Available orbit methods
     void move1();
     void kreisBewegung();
