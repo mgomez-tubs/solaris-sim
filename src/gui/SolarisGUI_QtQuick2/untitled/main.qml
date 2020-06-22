@@ -7,6 +7,9 @@ import QtQuick.Controls 2.12
 import QtQuick3D.Helpers 1.15
 import DrawCircleQt 1.0
 
+import "qrc:/SolarSystem"
+import "qrc:/MainGUI"
+
 ApplicationWindow {
     id: window
     visible: true
@@ -48,7 +51,7 @@ ApplicationWindow {
         // Handlers
         function planetCamera_handler(cameraName : String){
             if      (cameraName==="erde"){
-                view.camera=erde.planetCamera
+                view.camera=solarSystem.erde.planetCamera
                 erde.planetCamera.reset()
             }
             else if (cameraName==="saturn"){
@@ -232,68 +235,13 @@ ApplicationWindow {
 
         // Sonne
 
-        Sonne {
-            id: sonne
-        }
-
-        PointLight {
-            position: Qt.vector3d(0,0,0)
-            scale: Qt.vector3d(1, 1, 1)
-            brightness: 180
-            constantFade: 1
-            linearFade: .1
-            quadraticFade: 0
-        }
-
-        // Planeten
-        // Alle Planeten in einen SolarSystem.qml datei bringen
-        // + implement something like https://stackoverflow.com/questions/31206813/how-to-find-qml-item-by-its-string-id
-        // to access planets (and further himmleskörper) by string name
-        // [!!] change size with property sphereScale:
-
         CircularOrbits{
             id: circularOrbits
         }
 
-        Merkur{
-            id: merkur
-            sphereDiffuseColor: "grey"
-        }
+        SolarSystem {
+            id: solarSystem
 
-        Venus {
-            id: venus
-            sphereDiffuseColor: "yellow"
-        }
-
-        Erde {
-            id: erde
-            sphereDiffuseColor: "#FF34B3"
-        }
-
-        Mars{
-            id: mars
-            sphereDiffuseColor: "#800020"
-        }
-
-        Jupiter{
-            id: jupiter
-            sphereDiffuseColor: "brown"
-        }
-
-        Saturn{
-            id: saturn
-            sphereDiffuseColor: "beige"
-        }
-
-        Uranus{
-            id: uranus
-            sphereDiffuseColor: "#6495ED"
-        }
-
-        Neptun{
-            id: neptun
-            sphereDiffuseColor: "#6A5ACD"
-            // sphereScale: Qt.vector3d(3,3,3)
         }
 
         // [+] GUI Elements
