@@ -26,5 +26,6 @@
         <file>DropDownMenuForm.ui.qml</file>
         <file>RightMenu.qml</file>
         <file>RightMenuForm.ui.qml</file>
+        <file>Layer_MainGUI.qml</file>
     </qresource>
 </RCC>
