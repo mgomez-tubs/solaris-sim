@@ -1,10 +1,11 @@
 import QtQuick 2.15
-import QtQuick.Window 2.12
 import QtQuick.Extras 1.4
+import QtQuick.Controls 2.12
+
 import QtQuick3D 1.15
 import QtQuick3D.Effects 1.15
-import QtQuick.Controls 2.12
 import QtQuick3D.Helpers 1.15
+
 import DrawCircleQt 1.0
 
 import "qrc:/SolarSystem"
@@ -17,16 +18,16 @@ ApplicationWindow {
     height: 600
     title: qsTr("Solaris")
 
-    // FPS counter
+    //          FPS counter
     property int fps: 0
 
-    // Signals
+    //          Signals
     signal mainWclosed()
     signal tooglePlayPause()
     signal resetSimulation()
     signal setSpeedMultiplier(real multiplier)
 
-    // Signal Helpers
+    //          Signal Helpers
     function tooglePlayPause_helper(){
         tooglePlayPause()
     }
@@ -35,6 +36,7 @@ ApplicationWindow {
         resetSimulation();
     }
 
+    //          Handlers
     onFpsChanged: {
         fpsCounter.elementText=window.fps + " fps"
     }
@@ -50,15 +52,7 @@ ApplicationWindow {
 
         //                           Handlers                            //
         function planetCamera_handler(cameraName : String){
-            if      (cameraName==="erde"){
-                view.camera=solarSystem.erde.planetCamera
-                solarSystem.erde.planetCamera.reset()
-            }
-            else if (cameraName==="saturn"){
-                view.camera=erde.planetCamera
-                erde.planetCamera.reset()
-            }
-            else if (cameraName==="defaultCamera"){
+            if (cameraName==="defaultCamera"){
                 view.camera=defaultCamera
                 defaultCamera.reset()
             }
@@ -79,7 +73,7 @@ ApplicationWindow {
             return planets
         }
 
-        function disableOrbits(){   // TODO : change name to toogle Orbits
+        function toogleOrbits(){
             if(circularOrbits.visible){
                 circularOrbits.visible=false
                 console.log("Orbits disabled")
@@ -89,7 +83,7 @@ ApplicationWindow {
             }
         }
 
-        //          Keyboard control - preferable in a separate file     //
+        //          Keyboard control - preferable in a separate file?    //
         Keys.onPressed: {
             if(event.key === Qt.Key_I){
                         console.log("Rotated on the x axis");
@@ -118,7 +112,6 @@ ApplicationWindow {
         }
 
         //! [environment]
-
         environment: SceneEnvironment{
             clearColor: "black"
             effects: HDRBloomTonemap{
@@ -135,7 +128,6 @@ ApplicationWindow {
 
             backgroundMode: SceneEnvironment.Color
         }
-        //! [environment]
 
         PerspectiveCamera {
             id: freeView
@@ -174,65 +166,9 @@ ApplicationWindow {
             }*/
         }
 
-        // Planet Camera
-
-        Node {  /* maybe place this node in the camera*/
-            Timer {
-                id: cameraTimer
-                running: false
-                repeat: true
-                interval: 16
-                onTriggered:{
-                    planetCamera.position = jupiter.spherePosition.times(Qt.vector3d(1.4,1.4,1.4))
-                    planetCamera.lookAt(Qt.vector3d(0,0,0))
-                }
-            }
-
-        // some nice camera
-            PerspectiveCamera {     // no rendering w/o PerspectiveCamera!!
-                id: planetCamera
-                eulerRotation: Qt.vector3d(0,0,90)
-                scale: Qt.vector3d(5,5,5)
-        /*
-                onPositionChanged: function(){
-                    rectangle1.text = "x: "      + Math.round(position.x)      + "\ny: "    + Math.round(position.y)      + "\nz: "    + Math.round(position.z)     +
-                                      "\nrotx: " + Math.round(eulerRotation.x) + "\nroty: " + Math.round(eulerRotation.y) + "\nrotz: " + Math.round(eulerRotation.z)
-                }*/
-            }
-        }
-
-        Node {
-            Timer {
-                id: cameraTimer2
-                running: false
-                repeat: true
-                interval: 16
-                onTriggered:{
-                    //planetCamera2.position = jupiter.spherePosition.times(Qt.vector3d(-1.4,-1.4,-1.4))
-                    planetCamera2.position = Qt.vector3d(0,0,0)
-                    planetCamera2.eulerRotation = merkur.spherePosition
-                    //console.log("looking at jupiter")
-                }
-            }
-        // some nice camera
-            PerspectiveCamera {     // no rendering w/o PerspectiveCamera!!
-                id: planetCamera2
-                eulerRotation: Qt.vector3d(0,0,90)
-                scale: Qt.vector3d(5,5,5)
-/*
-                onPositionChanged: function(){
-                    rectangle1.text = "x: "      + Math.round(position.x)      + "\ny: "    + Math.round(position.y)      + "\nz: "    + Math.round(position.z)     +
-                                      "\nrotx: " + Math.round(eulerRotation.x) + "\nroty: " + Math.round(eulerRotation.y) + "\nrotz: " + Math.round(eulerRotation.z)
-                }*/
-            }
-        }
-
         WasdController {
-            //controlledObject: merkur.planetCamera
             controlledObject: freeView
         }
-
-        // Sonne
 
         CircularOrbits{
             id: circularOrbits
@@ -258,7 +194,6 @@ ApplicationWindow {
                 }
             }
         }
-
 
         /*
         Rectangle {
@@ -289,12 +224,11 @@ ApplicationWindow {
             id: viewMouseArea
             anchors.fill: parent
             onClicked: {
-                console.log("click detected");
                 var clickPos = view.pick(mouse.x,mouse.y);
                 if(clickPos.objectHit){
                     var pickedObject = clickPos.objectHit;
-                    // Toggle the isPicked property for the model
                     pickedObject.isPicked = !pickedObject.isPicked;
+                    console.log("Planet with id: " + pickedObject.objectName + " was clicked!");
                 }
             }
             onDoubleClicked: {
@@ -302,15 +236,15 @@ ApplicationWindow {
                 if(clickPos.objectHit){
                     var pickedObject = clickPos.objectHit;
                     pickedObject.isPicked = !pickedObject.isPicked;
+                    // Toggle the isPicked property for the model
                     view.camera=pickedObject.planetCamera
 
                 }
             }
         }
-    }
 
-    Layer_MainGUI {
-        id: layer_MainGUI
+        Layer_MainGUI {
+        }
     }
 }
 

@@ -3,21 +3,20 @@
 
 
 
-////          static declarations   ////
+////          STATIC DECLARATIONS           ////
 float Planet::speedMultiplier = 1.0;
 
 
-////          CONSTRUCTOR           ////
+////          CONSTRUCTOR                   ////
 Planet::Planet(){
 }
 
-////          SETTERS               ////
+////          SETTERS                       ////
 void Planet::setName(QString name){
     this->name = name;
 }
 
 void Planet::resetPosition(){
-    // Reset circular rotation angle
     this->currentAngle = 0.0;
     QMetaObject::invokeMethod(planetHandler, "receive", Q_ARG(QVector3D, this->defaultPosition), Q_ARG(double, this->currentAngle));
 }

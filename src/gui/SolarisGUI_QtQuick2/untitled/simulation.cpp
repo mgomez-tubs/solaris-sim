@@ -63,7 +63,7 @@ void Simulation::Init(){
     connect(rootObject,SIGNAL(resetSimulation()),   this,SLOT(Reset()));
     connect(rootObject,SIGNAL(setSpeedMultiplier(qreal)), this,SLOT(setSpeedMultiplier(qreal)));
 
-    addPlanet(rootObject,"Merkur","merkur");    // find a way to dynamically create objects
+    addPlanet(rootObject,"Merkur","merkur");
     addPlanet(rootObject,"Venus","venus");
     addPlanet(rootObject,"Erde","erde");
     addPlanet(rootObject,"Mars","mars");
@@ -80,8 +80,6 @@ void Simulation::Init(){
     Planeten[5].setOrbitType("kreisBewegung", 600.0, 1/(29.457*365.0));
     Planeten[6].setOrbitType("kreisBewegung", 700.0, 1/(84.011*365.0));
     Planeten[7].setOrbitType("kreisBewegung", 800.0, 1/(164.79*365.0));
-
-
 
     // Connect Run() method to simulation timer
     connect(SIMULATION_TIMER, &QTimer::timeout, this, &Simulation::Run);

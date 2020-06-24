@@ -28,4 +28,5 @@
         <file>RightMenuForm.ui.qml</file>
         <file>Layer_MainGUI.qml</file>
     </qresource>
+    <qresource prefix="/PlanetSelectedGUI"/>
 </RCC>

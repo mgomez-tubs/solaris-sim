@@ -1,18 +1,14 @@
-#include <QGuiApplication>
+//#include <QGuiApplication>
 #include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QDebug>
 #include <QObject>
-#include <QTimer>
 
 // Project headers
 #include "simulation.h"
 #include <QtQuick3D/qquick3d.h>
 #include <QtQuickControls2>
 #include "QML/drawcircleqt.h"
-
-// Static stuff
-// please no static stuff.
 
 int main(int argc, char *argv[])
 {

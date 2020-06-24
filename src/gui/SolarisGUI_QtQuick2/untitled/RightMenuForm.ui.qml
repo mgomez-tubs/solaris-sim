@@ -72,7 +72,7 @@ Item {
                     Connections {
                         // @disable-check M222
                         onToggled: function () {
-                            view.disableOrbits()
+                            view.toogleOrbits()
                         }
                     }
                 }

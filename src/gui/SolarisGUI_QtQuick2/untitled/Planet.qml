@@ -6,8 +6,6 @@ import Qt3D.Render 2.15
 
 Node {
     id: rootNode
-
-    //property alias spherePosition : sphere.position
     property alias planetPosition: rootNode.position
     property alias planetDiffuseColor: material.diffuseColor
     property alias planetScale: model.scale
@@ -41,9 +39,7 @@ Node {
         pickable: true
         property bool isPicked: false
         property alias planetCamera :rootNode.planetCamera
-        onIsPickedChanged: function () {
-            console.log("You clicked the planet " + rootNode.objectName + "!");
-        }
+        property alias objectName: rootNode.objectName
     }
 
     Node{
