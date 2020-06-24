@@ -73,28 +73,6 @@ Item {
         }
     }
 
-    ButtonForm {
-        id: button1
-        buttonText : "Button 1";
-        x: 690
-        y: 496
-        anchors.rightMargin: 10
-        anchors.right: parent.right
-        anchors.bottomMargin: 1
-        anchors.bottom: button2.top
-    }
-
-    ButtonForm {
-        id: button2
-        buttonText: "Button 2"
-        x: 690
-        y: 441
-        anchors.rightMargin: 10
-        anchors.right: parent.right
-        anchors.bottomMargin: 1
-        anchors.bottom: buttonSettings.top
-    }
-
     RightMenu {
         id: rightMenu
         x: 590
@@ -119,7 +97,6 @@ Item {
         focusPolicy: Qt.NoFocus
         stepSize: 0.1
         to: 10
-        inputMode: Dial.Circular
         value: 1
         onValueChanged: setSpeedMultiplier(value)
     }

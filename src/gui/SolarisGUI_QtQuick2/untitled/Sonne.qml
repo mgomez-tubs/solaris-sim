@@ -9,11 +9,10 @@ Model {
     materials: [
         DefaultMaterial{
             id: material
-            //diffuseColor: "orange"
+            diffuseColor: "orange"
             emissiveColor: "yellow"
             emissiveFactor: 1
-            //lighting: DefaultMaterial.NoLighting
-
+            lighting: DefaultMaterial.NoLighting
             diffuseMap: Texture {
                 source: "/textures/2k_sun.jpg"
             }

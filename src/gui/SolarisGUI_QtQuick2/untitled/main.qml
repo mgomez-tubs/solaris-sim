@@ -48,11 +48,11 @@ ApplicationWindow {
         anchors.fill: parent
         camera: freeView
 
-        // Handlers
+        //                           Handlers                            //
         function planetCamera_handler(cameraName : String){
             if      (cameraName==="erde"){
                 view.camera=solarSystem.erde.planetCamera
-                erde.planetCamera.reset()
+                solarSystem.erde.planetCamera.reset()
             }
             else if (cameraName==="saturn"){
                 view.camera=erde.planetCamera
@@ -73,7 +73,7 @@ ApplicationWindow {
             }
         }
 
-        // Functions
+        //                           Functions                           //
         function getPlanetList(){   // derzeit nicht benutzt
             var planets = ["merkur","venus","erde","mars","jupiter","saturn","uranus","venus"]
             return planets
@@ -89,7 +89,7 @@ ApplicationWindow {
             }
         }
 
-        // Keyboard control - preferable in a separate file
+        //          Keyboard control - preferable in a separate file     //
         Keys.onPressed: {
             if(event.key === Qt.Key_I){
                         console.log("Rotated on the x axis");
@@ -122,7 +122,7 @@ ApplicationWindow {
         environment: SceneEnvironment{
             clearColor: "black"
             effects: HDRBloomTonemap{
-                bloomThreshold: .8
+                bloomThreshold: .7
                 exposure: 0
             }
 
@@ -232,7 +232,6 @@ ApplicationWindow {
             controlledObject: freeView
         }
 
-
         // Sonne
 
         CircularOrbits{
@@ -284,6 +283,30 @@ ApplicationWindow {
 
             }
         }*/
+
+         //          MouseArea on WHOLE view, to make objects "pickable"  //
+        MouseArea {
+            id: viewMouseArea
+            anchors.fill: parent
+            onClicked: {
+                console.log("click detected");
+                var clickPos = view.pick(mouse.x,mouse.y);
+                if(clickPos.objectHit){
+                    var pickedObject = clickPos.objectHit;
+                    // Toggle the isPicked property for the model
+                    pickedObject.isPicked = !pickedObject.isPicked;
+                }
+            }
+            onDoubleClicked: {
+                var clickPos = view.pick(mouse.x,mouse.y);
+                if(clickPos.objectHit){
+                    var pickedObject = clickPos.objectHit;
+                    pickedObject.isPicked = !pickedObject.isPicked;
+                    view.camera=pickedObject.planetCamera
+
+                }
+            }
+        }
     }
 
     Layer_MainGUI {
@@ -294,6 +317,6 @@ ApplicationWindow {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.6600000262260437}
+    D{i:0;formeditorZoom:0.5}
 }
 ##^##*/

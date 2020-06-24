@@ -17,7 +17,6 @@ Node {
 
     PointLight {
         position: Qt.vector3d(0,0,0)
-        scale: Qt.vector3d(1, 1, 1)
         brightness: 180
         constantFade: 1
         linearFade: .1
@@ -30,42 +29,41 @@ Node {
 
     Merkur {
         id: merkur
-        sphereDiffuseColor: "gray"
+        planetDiffuseColor: "gray"
     }
 
     Venus {
         id: venus
-        sphereDiffuseColor: "yellow"
+        planetDiffuseColor: "yellow"
     }
 
     Erde {
         id: erde
-        sphereDiffuseColor: "#FF34B3"
+        planetDiffuseColor: "#FF34B3"
     }
 
     Mars{
         id: mars
-        sphereDiffuseColor: "#800020"
+        planetDiffuseColor: "#800020"
     }
 
     Jupiter{
         id: jupiter
-        sphereDiffuseColor: "brown"
+        planetDiffuseColor: "brown"
     }
 
     Saturn{
         id: saturn
-        sphereDiffuseColor: "beige"
+        planetDiffuseColor: "beige"
     }
 
     Uranus{
         id: uranus
-        sphereDiffuseColor: "#6495ED"
+        planetDiffuseColor: "#6495ED"
     }
 
     Neptun{
         id: neptun
-        sphereDiffuseColor: "#6A5ACD"
-        // sphereScale: Qt.vector3d(3,3,3)
+        planetDiffuseColor: "#6A5ACD"
     }
 }
