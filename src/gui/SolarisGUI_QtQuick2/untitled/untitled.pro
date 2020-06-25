@@ -7,6 +7,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++11
 CONFIG += qtquickcompiler
 CONFIG += qml_debug
+CONFIG += resources_big # this is needed for huge files in qrc, else memory will fill to its max
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -30,12 +31,14 @@ SOURCES += \
         simulation.cpp
 
 RESOURCES += qml.qrc \
-    textures.qrc
+    assets/maps/8k_mercury.jpg \
+    textures/2k_sun.jpg
+
 
 TARGET = SolarisGUI
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH =
+QML_IMPORT_PATH += assets/maps/8k_mercury.jpg
 
 # Additional import path used to resolve QML modules just for Qt Quick Designer
 QML_DESIGNER_IMPORT_PATH =
@@ -51,7 +54,6 @@ HEADERS += \
     planet.h \
     simulation.h
 
-DISTFILES +=
-
 FORMS += \
     debugwindow.ui
+

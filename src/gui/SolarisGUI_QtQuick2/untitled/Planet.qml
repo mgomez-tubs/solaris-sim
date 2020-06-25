@@ -1,8 +1,7 @@
 import QtQuick3D 1.15
 import QtQuick3D.Helpers 1.15
 import DrawCircleQt 1.0
-import QtQuick 2.0
-import Qt3D.Render 2.15
+import QtQuick 2.15
 
 Node {
     id: rootNode
@@ -17,6 +16,8 @@ Node {
     property alias planetCamera: planetCamera
     property alias planetCameraPosition : planetCamera.position
     property alias planetCameraEulerRotation : planetCamera.eulerRotation
+
+    eulerRotation: Qt.vector3d(90,0,0)
 
     function receive(vector: vector3d, angle : double){
         planetPosition = vector;
@@ -44,7 +45,9 @@ Node {
 
     Node{
         id: spherenode
-        eulerRotation: Qt.vector3d(0,0,currentAngle)
+        eulerRotation: Qt.vector3d(0,currentAngle+90,0)
+
+        // AxisHelper { enableXYGrid: false; enableXZGrid: false ; enableYZGrid: false }
 
         Model {
             id: model
@@ -57,19 +60,24 @@ Node {
                     //lighting: DefaultMaterial.NoLighting;
                 }
             ]
+        }
 
+        Node {
+            id: cameraPivot
+            pivot: Qt.vector3d(0,0,0)
             PerspectiveCamera {
                  id: planetCamera
                  function reset(){
-                     planetCamera.position      = Qt.vector3d(150,0,0)
-                     planetCamera.eulerRotation = Qt.vector3d(0,90,90)
+                     planetCamera.position = Qt.vector3d(0,0,75)
+                     planetCamera.eulerRotation = Qt.vector3d(0,0,0)
                  }
-                 position: Qt.vector3d(250, 0, 0)
-                 eulerRotation: Qt.vector3d(0, 90, 90)
+                 position: Qt.vector3d(0, 0, 75)
+                 eulerRotation: Qt.vector3d(0, 0, 0)
                  clipNear: 50
-                 fieldOfViewOrientation: Camera.Vertical
+                 fieldOfViewOrientation: Camera.Horizontal
             }
         }
+
     }
 }
 
