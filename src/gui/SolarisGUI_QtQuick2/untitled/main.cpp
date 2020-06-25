@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     // Create Window
     QApplication app(argc, argv);   // use QApplication only for debug widget, else QGuiApplication is more appropiate
                                     // if changing to QGuiApplication remove QApplication header!
-    // QSurfaceFormat::setDefaultFormat(QQuick3D::idealSurfaceFormat());
+    QSurfaceFormat::setDefaultFormat(QQuick3D::idealSurfaceFormat());
     // Environment variables
     // qDebug()<<qputenv("QSG_INFO", "1");
 

@@ -11,6 +11,8 @@ import DrawCircleQt 1.0
 import "qrc:/SolarSystem"
 import "qrc:/MainGUI"
 
+import "DefaultKeys.js" as DefaultKeys
+
 ApplicationWindow {
     id: window
     visible: true
@@ -53,8 +55,8 @@ ApplicationWindow {
         //                           Handlers                            //
         function planetCamera_handler(cameraName : String){
             if (cameraName==="defaultCamera"){
-                view.camera=defaultCamera
-                defaultCamera.reset()
+                view.camera=topCamera
+                topCamera.reset()
             }
             else if (cameraName==="angledView"){
                 view.camera=angledView
@@ -84,62 +86,43 @@ ApplicationWindow {
         }
 
         //          Keyboard control - preferable in a separate file?    //
-        Keys.onPressed: {
-            if(event.key === Qt.Key_I){
-                        console.log("Rotated on the x axis");
-                        erde.planetCameraEulerRotation.x+=10
-                    }
-            if(event.key === Qt.Key_O){
-                        erde.planetCameraEulerRotation.x-=10
-                        console.log("Rotated on the y axis");
-                    }
-            if(event.key === Qt.Key_K){
-                        erde.planetCameraEulerRotation.y+=10
-                        console.log("Rotated on the y axis");
-                    }
-            if(event.key === Qt.Key_L){
-                        erde.planetCameraEulerRotation.y-=10
-                        console.log("Rotated on the y axis");
-                    }
-            if(event.key === Qt.Key_N){
-                        erde.planetCameraEulerRotation.z+=10
-                        console.log("Rotated on the z axis");
-                    }
-            if(event.key === Qt.Key_M){
-                        erde.planetCameraEulerRotation.z-=10
-                        console.log("Rotated on the z axis");
-                    }
-        }
+        Keys.onPressed: DefaultKeys.func(event);
 
         //! [environment]
         environment: SceneEnvironment{
             clearColor: "black"
-            effects: HDRBloomTonemap{
-                bloomThreshold: .7
-                exposure: 0
-            }
 
-            // Qt 2.14
-            //multisampleAAMode: "SceneEnvironment.X4"
+            effects: [
+                HDRBloomTonemap{
+                    bloomThreshold: .95
+                    exposure: 0
+                }
+            ]
+
 
             // Qt 2.15
             antialiasingMode: "MSAA"            // Multisample AA
             antialiasingQuality: "High"         // High quality
 
+
             backgroundMode: SceneEnvironment.Color
         }
 
-        PerspectiveCamera {
-            id: freeView
-            position: Qt.vector3d(0, 0, 1000)
-            eulerRotation: Qt.vector3d(0, 0, 0)
+        Node {
+            id: cameraPivot
+            pivot: Qt.vector3d(0,0,0)
+            PerspectiveCamera {
+                id: freeView
+                position: Qt.vector3d(0, 0, 1000)
+                eulerRotation: Qt.vector3d(0, 0, 0)
+            }
         }
 
         PerspectiveCamera {
-            id: defaultCamera
+            id: topCamera
             function reset(){
-                defaultCamera.position      = Qt.vector3d(0, 0, 1000);
-                defaultCamera.eulerRotation = Qt.vector3d(0, 0, 0);
+                topCamera.position      = Qt.vector3d(0, 0, 1000);
+                topCamera.eulerRotation = Qt.vector3d(0, 0, 0);
             }
 
             position: Qt.vector3d(0, 0, 1000)
@@ -166,17 +149,18 @@ ApplicationWindow {
             }*/
         }
 
-        WasdController {
-            controlledObject: freeView
+        InputController{
+            // In order to rotate the camera around an object:
+            // Place the camera inside a node
+            // Set the pivot of that node to the coordinate origin
+            // and connect this controlledObject with that [!] Node (also: cameras parent)
+            controlledObject: view.camera.parent
+            keysEnabled: false
         }
 
-        CircularOrbits{
-            id: circularOrbits
-        }
+        CircularOrbits  { id: circularOrbits}
 
-        SolarSystem {
-            id: solarSystem
-        }
+        SolarSystem     { id: solarSystem}
 
         Fps {
             id: fpsCounter
@@ -238,9 +222,22 @@ ApplicationWindow {
                     pickedObject.isPicked = !pickedObject.isPicked;
                     // Toggle the isPicked property for the model
                     view.camera=pickedObject.planetCamera
+                    view.camera.reset();
 
                 }
             }
+            onWheel: {              // [!] refine the wheel handler
+                if(view.camera.position.z>250){
+                    view.camera.position.z += wheel.angleDelta.y/.5;
+                    return;
+                } else {
+                    view.camera.position.z += wheel.angleDelta.y/50;
+                }
+            }
+        }
+
+        function layerHandler(layer : String){
+            // ???
         }
 
         Layer_MainGUI {

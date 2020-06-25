@@ -19,7 +19,7 @@ Node {
         position: Qt.vector3d(0,0,0)
         brightness: 180
         constantFade: 1
-        linearFade: .1
+        linearFade: .05
         quadraticFade: 0
     }
 
@@ -29,7 +29,6 @@ Node {
 
     Merkur {
         id: merkur
-        planetDiffuseColor: "gray"
     }
 
     Venus {

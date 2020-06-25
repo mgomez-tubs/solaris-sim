@@ -5,6 +5,10 @@
         <file>FpsForm.ui.qml</file>
         <file>OrbitKreis.qml</file>
         <file>CircularOrbits.qml</file>
+        <file>DefaultKeys.js</file>
+        <file>InputController.qml</file>
+        <file>assets/Mercury.qml</file>
+        <file>assets/meshes/kugel.mesh</file>
     </qresource>
     <qresource prefix="/SolarSystem">
         <file>Merkur.qml</file>
@@ -18,6 +22,7 @@
         <file>Venus.qml</file>
         <file>Sonne.qml</file>
         <file>SolarSystem.qml</file>
+        <file>Planet_No_Model.qml</file>
     </qresource>
     <qresource prefix="/MainGUI">
         <file>ButtonForm.ui.qml</file>
