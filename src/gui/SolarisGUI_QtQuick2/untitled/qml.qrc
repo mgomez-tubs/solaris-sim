@@ -9,6 +9,7 @@
         <file>InputController.qml</file>
         <file>assets/Mercury.qml</file>
         <file>assets/meshes/kugel.mesh</file>
+        <file>PlanetGUI/Layer_PlanetGUI.qml</file>
     </qresource>
     <qresource prefix="/SolarSystem">
         <file>Merkur.qml</file>

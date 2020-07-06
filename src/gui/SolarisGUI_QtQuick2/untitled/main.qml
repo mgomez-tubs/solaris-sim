@@ -224,6 +224,9 @@ ApplicationWindow {
                     view.camera=pickedObject.planetCamera
                     view.camera.reset();
 
+                    // Change Layer to planet layer
+                    view.layerHandler("PlanetGUI");
+
                 }
             }
             onWheel: {              // [!] refine the wheel handler
@@ -237,10 +240,24 @@ ApplicationWindow {
         }
 
         function layerHandler(layer : String){
-            // ???
+            if          (layer === "MainGUI"){
+                layerLoader.source = "MainGUI/Layer_MainGUI.qml"
+                return
+            }
+            else if   (layer === "PlanetGUI"){
+                layerLoader.source = "PlanetGUI/Layer_PlanetGUI.qml"
+            }
         }
 
-        Layer_MainGUI {
+
+        Item {
+            anchors.fill: parent
+            Loader {
+                anchors.fill: parent
+                id: layerLoader
+                source: "MainGUI/Layer_MainGUI.qml"
+                //source: "PlanetGUI/Layer_PlanetGUI.qml"
+            }
         }
     }
 }
