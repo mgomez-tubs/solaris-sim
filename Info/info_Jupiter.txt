@@ -1,0 +1,20 @@
+JUPITER
+
+Avg Radius		69911 		km
+Mass			1.8982x10^27 	kg
+
+Sideric Period		4332.59 d
+Synodic Period		398.9	d	
+Length of Day		0 d 9 h 50 min
+Num of Satelites	79
+
+Srf gravity (1 Bar lvl)	2.528 g	    24.79 m/s²
+Avg 1 Bar lvl Temp Eqt	165 		K
+
+Information
+
+Jupiter is the innermost Gas Giant and the Largest Planet in the Sol-system being the only planet with a barycenter outside of the Volume of Sol. Jupiters Atmosphere has many Vortices with the best known "Great Red Spot" which is larger than the Earth and the largest Storm in the solar system.
+
+Exploration
+
+There were 2 Missions that entered Jupiters Orbit Galileo and Juno with more Flybys using it for Grav assists like Voyager 1 and 2 or Cassini-Hyugens. 

@@ -1,0 +1,21 @@
+EARTH
+
+Avg Radius		6371.0 		km
+Mass			5.9723x10^24 	kg
+
+Sideric Period		365.256 d
+Synodic Period			
+Length of Day		0 d 23 h 56 min
+Num of Satelites	1 natural ~17.900 artificial (including debris)
+
+Srf gravity		1 g	    9.81 m/s²
+Avg Srf Atm Press	101.31x10^3	Pa
+Avg Srf Temp Eqt	287.16 		K
+
+Information
+
+The third planet and being one of two in the "habitable zone" of the Sol-System Earth is the only planet mostly covered by liquid Water. The Earths Moon is the largest relative to its planet it is also the only celestial body visited by Humans. 
+
+Exploration
+
+Undoubtely the most explored body of the solar system. Near Earth space has been explored since 1957 with most notable projects the Vostok, Apollo-Programs and the space stations Mir and the ISS.
