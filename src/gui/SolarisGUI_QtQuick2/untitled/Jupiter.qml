@@ -1,6 +1,11 @@
 import QtQuick 2.0
+import "qrc:/assets" as Assets
 
-Planet {
+Planet_No_Model {
     objectName: "jupiter"
+    Assets.Jupiter{
+        id: assetsJupiter
+        scale: Qt.vector3d(0.1,0.1,0.1)
+    }
 
 }

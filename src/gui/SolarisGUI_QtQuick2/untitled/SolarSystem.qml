@@ -33,36 +33,29 @@ Node {
 
     Venus {
         id: venus
-        planetDiffuseColor: "yellow"
     }
 
     Erde {
         id: erde
-        planetDiffuseColor: "#FF34B3"
     }
 
     Mars{
         id: mars
-        planetDiffuseColor: "#800020"
     }
 
     Jupiter{
         id: jupiter
-        planetDiffuseColor: "brown"
     }
 
     Saturn{
         id: saturn
-        planetDiffuseColor: "beige"
     }
 
     Uranus{
         id: uranus
-        planetDiffuseColor: "#6495ED"
     }
 
     Neptun{
         id: neptun
-        planetDiffuseColor: "#6A5ACD"
     }
 }

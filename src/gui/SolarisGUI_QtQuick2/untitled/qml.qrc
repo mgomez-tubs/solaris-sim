@@ -10,6 +10,21 @@
         <file>assets/Mercury.qml</file>
         <file>assets/meshes/kugel.mesh</file>
         <file>PlanetGUI/Layer_PlanetGUI.qml</file>
+        <file>assets/Earth_day.qml</file>
+        <file>assets/Jupiter.qml</file>
+        <file>assets/Mars.qml</file>
+        <file>assets/Neptun.qml</file>
+        <file>assets/Saturn.qml</file>
+        <file>assets/Uranus.qml</file>
+        <file>assets/Venus.qml</file>
+        <file>assets/meshes/erde.mesh</file>
+        <file>assets/meshes/jupiter.mesh</file>
+        <file>assets/meshes/mars.mesh</file>
+        <file>assets/meshes/merkur.mesh</file>
+        <file>assets/meshes/saturn_ring.mesh</file>
+        <file>assets/meshes/torus.mesh</file>
+        <file>assets/meshes/venus.mesh</file>
+        <file>assets/meshes/saturn_main.mesh</file>
     </qresource>
     <qresource prefix="/SolarSystem">
         <file>Merkur.qml</file>

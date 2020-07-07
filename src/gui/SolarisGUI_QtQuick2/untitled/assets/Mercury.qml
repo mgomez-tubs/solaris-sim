@@ -7,7 +7,7 @@ Node {
     Model {
         id: kugel
         eulerRotation.x: -90
-        source: "meshes/kugel.mesh"
+        source: "meshes/merkur.mesh"
 
         DefaultMaterial {
             id: planet_material

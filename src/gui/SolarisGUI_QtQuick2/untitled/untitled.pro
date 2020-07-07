@@ -32,7 +32,16 @@ SOURCES += \
 
 RESOURCES += qml.qrc \
     assets/maps/8k_mercury.jpg \
-    textures/2k_sun.jpg
+    textures/2k_sun.jpg \
+    assets/maps/0.png \
+    assets/maps/2k_neptune.jpg \
+    assets/maps/8k_earth_daymap.jpg \
+    assets/maps/8k_jupiter.jpg \
+    assets/maps/8k_mars.jpg \
+    assets/maps/8k_saturn.jpg \
+    assets/maps/8k_saturn_ring_alpha.png \
+    assets/maps/8k_venus_surface.jpg \
+    assets/maps/Uranus_rings.png
 
 
 TARGET = SolarisGUI

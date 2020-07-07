@@ -17,7 +17,5 @@ Model{
                 lighting: DefaultMaterial.NoLighting
             }
         ]
-        tessellationMode: Model.linear
-        edgeTessellation: 2
     }
 

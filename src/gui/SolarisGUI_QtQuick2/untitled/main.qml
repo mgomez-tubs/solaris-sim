@@ -95,14 +95,14 @@ ApplicationWindow {
             effects: [
                 HDRBloomTonemap{
                     bloomThreshold: .95
-                    exposure: 0
+
                 }
+
             ]
 
-
             // Qt 2.15
-            antialiasingMode: "MSAA"            // Multisample AA
-            antialiasingQuality: "High"         // High quality
+            antialiasingMode: SceneEnvironment.MSAA            // Multisample AA
+            antialiasingQuality: "VeryHigh"         // High quality
 
 
             backgroundMode: SceneEnvironment.Color
@@ -224,8 +224,8 @@ ApplicationWindow {
                     view.camera=pickedObject.planetCamera
                     view.camera.reset();
 
-                    // Change Layer to planet layer
-                    view.layerHandler("PlanetGUI");
+                    // Change Layer to planet layer                                                         [!]
+                    //view.layerHandler("PlanetGUI");
 
                 }
             }
