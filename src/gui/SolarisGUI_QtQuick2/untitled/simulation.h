@@ -5,6 +5,10 @@
 #include "planet.h"
 #include "debugwindow.h"
 
+#include "planetData/lib/libDatenabruf.h"
+
+// External libraries
+
 class Simulation : public QObject
 {
     Q_OBJECT
@@ -34,6 +38,9 @@ public:
     // Simulation flow
     void Init();
     void Run();
+
+    // Handler
+    /*void externalDataHandler();*/
 
 
 private slots:

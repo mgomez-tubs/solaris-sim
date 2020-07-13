@@ -62,14 +62,8 @@ HEADERS += \
     QML/drawcircleqt.h \
     debugwindow.h \
     planet.h \
+    planetData/lib/libDatenabruf.h \
     simulation.h
 
 FORMS += \
     debugwindow.ui
-
-DISTFILES +=
-
-win32: LIBS += -L$$PWD/planetData/lib/ -lDatenabruf
-
-INCLUDEPATH += $$PWD/planetData
-DEPENDPATH += $$PWD/planetData

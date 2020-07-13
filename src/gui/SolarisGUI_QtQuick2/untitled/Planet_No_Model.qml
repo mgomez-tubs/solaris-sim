@@ -12,6 +12,7 @@ Node {
     property alias planetCamera: planetCamera
     property alias planetCameraPosition : planetCamera.position
     property alias planetCameraEulerRotation : planetCamera.eulerRotation
+    property alias planetTilt: planetCamera.eulerRotation.y
 
     eulerRotation: Qt.vector3d(90,0,0)
 
@@ -43,7 +44,7 @@ Node {
         id: spherenode
         eulerRotation: Qt.vector3d(0,currentAngle+90,0)
 
-        // AxisHelper { enableXYGrid: false; enableXZGrid: false ; enableYZGrid: false }
+        //AxisHelper { enableXYGrid: false; enableXZGrid: false ; enableYZGrid: false }
 
         Node {
             id: cameraPivot

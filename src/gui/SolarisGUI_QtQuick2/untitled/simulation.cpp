@@ -71,6 +71,7 @@ void Simulation::Init(){
     addPlanet(rootObject,"Saturn", "saturn");
     addPlanet(rootObject,"Uranus","uranus");
     addPlanet(rootObject,"Neptun", "neptun");
+    addPlanet(rootObject,"Pluto", "pluto");
 
     float distanceScale = 1;
 
@@ -81,7 +82,10 @@ void Simulation::Init(){
     Planeten[4].setOrbitType("kreisBewegung", 500.0 * distanceScale, 1/(11.863*365.0));
     Planeten[5].setOrbitType("kreisBewegung", 600.0 * distanceScale, 1/(29.457*365.0));
     Planeten[6].setOrbitType("kreisBewegung", 700.0 * distanceScale, 1/(84.011*365.0));
+    Planeten[6].setTiltAngle(88.0);     // set tilt for Uranus
+    qDebug()<<Planeten[6].getTiltAngle();
     Planeten[7].setOrbitType("kreisBewegung", 800.0 * distanceScale, 1/(164.79*365.0));
+    Planeten[8].setOrbitType("kreisBewegung", 900.0 * distanceScale, 1/(164.79*365.0));
 
     // Connect Run() method to simulation timer
     connect(SIMULATION_TIMER, &QTimer::timeout, this, &Simulation::Run);
@@ -134,3 +138,9 @@ void Simulation::tooglePlayPause(){
         startTimer();
     }
 }
+
+/*
+void Simulation::externalDataHandler(){
+    std::vector<std::string> names = GetNames("./planets/pl_*.txt");
+    //std::vector<std::vector<float>> data = GetALLEData(names);
+}*/

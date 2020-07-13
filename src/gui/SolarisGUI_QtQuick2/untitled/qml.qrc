@@ -39,6 +39,7 @@
         <file>Sonne.qml</file>
         <file>SolarSystem.qml</file>
         <file>Planet_No_Model.qml</file>
+        <file>Pluto.qml</file>
     </qresource>
     <qresource prefix="/MainGUI">
         <file>ButtonForm.ui.qml</file>

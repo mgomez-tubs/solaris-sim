@@ -58,4 +58,8 @@ Node {
     Neptun{
         id: neptun
     }
+
+    Pluto{
+        id : pluto
+    }
 }

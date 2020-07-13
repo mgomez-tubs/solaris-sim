@@ -1,8 +1,6 @@
 #include "planet.h"
 #include <QVariant>
 
-
-
 ////          STATIC DECLARATIONS           ////
 float Planet::speedMultiplier = 1.0;
 
@@ -53,6 +51,10 @@ void Planet::setRadius(){
     QMetaObject::invokeMethod(planetHandler, "setRadiusKreisBahn", Q_ARG(qreal, this->radius));
 }
 
+void Planet::setTiltAngle(float angle){
+    this->tiltAngle = angle;
+}
+
 ////          GETTERS               ////
 QString Planet::getName(){
     return this->name;
@@ -64,6 +66,10 @@ QVector3D Planet::getDefaultPosition(){
 
 QObject * Planet::getPlanetHandler(){
     return this->planetHandler;
+}
+
+float Planet::getTiltAngle(){
+    return this->tiltAngle;
 }
 
 ////          SIGNALS               ////
