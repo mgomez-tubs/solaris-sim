@@ -69,7 +69,7 @@ FORMS += \
 
 DISTFILES +=
 
-win32: LIBS += -L$$PWD/planetData/lib/ -lDatenabruf
+#win32: LIBS += -L$$PWD/planetData/lib/ -lDatenabruf
 
-INCLUDEPATH += $$PWD/planetData
-DEPENDPATH += $$PWD/planetData
+#INCLUDEPATH += $$PWD/planetData
+#DEPENDPATH += $$PWD/planetData
