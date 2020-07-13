@@ -7,6 +7,7 @@ using namespace std;
 vector<float> GetData(string filename);
 vector<vector<float>> GetALLEData(vector<string> DirCont);
 vector<string> GetNames(string path);
+
 /*
 int main()
 {

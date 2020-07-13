@@ -41,13 +41,14 @@ RESOURCES += qml.qrc \
     assets/maps/8k_saturn.jpg \
     assets/maps/8k_saturn_ring_alpha.png \
     assets/maps/8k_venus_surface.jpg \
-    assets/maps/Uranus_rings.png
+    assets/maps/Uranus_rings.png \
+    assets/maps/2k_uranus.jpg
 
 
 TARGET = SolarisGUI
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH += assets/maps/8k_mercury.jpg
+QML_IMPORT_PATH +=
 
 # Additional import path used to resolve QML modules just for Qt Quick Designer
 QML_DESIGNER_IMPORT_PATH =
@@ -66,3 +67,9 @@ HEADERS += \
 FORMS += \
     debugwindow.ui
 
+DISTFILES +=
+
+win32: LIBS += -L$$PWD/planetData/lib/ -lDatenabruf
+
+INCLUDEPATH += $$PWD/planetData
+DEPENDPATH += $$PWD/planetData

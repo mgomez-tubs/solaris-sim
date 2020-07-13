@@ -93,10 +93,11 @@ ApplicationWindow {
             clearColor: "black"
 
             effects: [
+                /*
                 HDRBloomTonemap{
                     bloomThreshold: .95
 
-                }
+                }*/
 
             ]
 
