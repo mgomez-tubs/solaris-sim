@@ -40,6 +40,11 @@
         <file>SolarSystem.qml</file>
         <file>Planet_No_Model.qml</file>
         <file>Pluto.qml</file>
+        <file>Charon.qml</file>
+        <file>Ceres.qml</file>
+        <file>Haumea.qml</file>
+        <file>MakeMake.qml</file>
+        <file>Eris.qml</file>
     </qresource>
     <qresource prefix="/MainGUI">
         <file>ButtonForm.ui.qml</file>

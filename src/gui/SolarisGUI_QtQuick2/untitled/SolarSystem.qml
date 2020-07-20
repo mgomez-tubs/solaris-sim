@@ -59,7 +59,28 @@ Node {
         id: neptun
     }
 
+    Ceres{
+        id: ceres
+    }
+
     Pluto{
         id : pluto
     }
+
+    Charon{
+        id: charon
+    }
+
+    Haumea{
+        id: haumea
+    }
+
+    MakeMake{
+        id: makemake
+    }
+
+    Eris{
+        id:eris
+    }
+
 }
