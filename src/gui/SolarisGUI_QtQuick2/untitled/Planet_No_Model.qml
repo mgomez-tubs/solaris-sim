@@ -7,6 +7,8 @@ Node {
     id: rootNode
     property alias planetPosition: rootNode.position
 
+    property alias planetScale: rootNode.scale
+
     property real  currentAngle : 0
 
     property alias planetCamera: planetCamera
@@ -18,6 +20,10 @@ Node {
     function receive(vector: vector3d, angle : double){
         planetPosition = vector;
         currentAngle = angle * (180/Math.PI)+180;
+    }
+
+    function receiveScale (vector: vector3d,){
+        planetScale = vector;
     }
 
     Model {

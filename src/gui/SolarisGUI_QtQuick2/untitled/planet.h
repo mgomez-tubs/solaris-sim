@@ -26,6 +26,7 @@ public:
     QString id;
     QObject *planetHandler;
     QVector3D defaultPosition;
+    QVector3D scale;
 
     // Move 1 specific properties
     float currentAngle;
@@ -35,6 +36,7 @@ public:
     // Setters
     void setOrbitType(QString,float,float);
     void setProperties(QObject *,QString,QString);
+    void setScaling(QVector3D);
     void setName(QString);
     void resetPosition();
     void setId(QString);

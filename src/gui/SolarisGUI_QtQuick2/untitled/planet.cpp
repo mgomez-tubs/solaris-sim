@@ -35,6 +35,11 @@ void Planet::setProperties(QObject *rootObject, QString name, QString objectName
     #endif
 }
 
+void Planet::setScaling(QVector3D vector){
+    this -> scale = vector;
+     QMetaObject::invokeMethod(planetHandler, "receiveScale", Q_ARG(QVector3D, this->scale ));
+}
+
 void Planet::setOrbitType(QString type, float radius, float speed){
     if(type == "kreisBewegung"){
         this->radius =radius;
