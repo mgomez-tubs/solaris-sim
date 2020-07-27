@@ -25,6 +25,13 @@
         <file>assets/meshes/torus.mesh</file>
         <file>assets/meshes/venus.mesh</file>
         <file>assets/meshes/saturn_main.mesh</file>
+        <file>assets/Ceres.qml</file>
+        <file>assets/Charon.qml</file>
+        <file>assets/Eris.qml</file>
+        <file>assets/Haumea.qml</file>
+        <file>assets/Makemake.qml</file>
+        <file>assets/Pluto_normal.qml</file>
+        <file>OrbitSpawner.qml</file>
     </qresource>
     <qresource prefix="/SolarSystem">
         <file>Merkur.qml</file>

@@ -36,6 +36,11 @@ void Planet::setProperties(QObject *rootObject, QString name, QString objectName
 void Planet::setOrbitType(QString type, float radius, float speed){
     if(type == "kreisBewegung"){
         this->radius =radius;
+
+        // Add this Orbit to QML Orbit list
+        QObject * viewHandler = rootObject->findChild<QObject*>("view");
+        QMetaObject::invokeMethod(viewHandler, "receiveOrbit", Q_ARG(double, this->radius));
+
         this->speed = speed;
         this->currentAngle = 0.0;
         this->position = QVector3D(radius,0.0,0.0);
@@ -48,6 +53,7 @@ void Planet::setOrbitType(QString type, float radius, float speed){
 }
 
 void Planet::setRadius(){
+    qDebug()<<"is this used????";
     QMetaObject::invokeMethod(planetHandler, "setRadiusKreisBahn", Q_ARG(qreal, this->radius));
 }
 
