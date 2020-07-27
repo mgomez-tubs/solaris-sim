@@ -88,9 +88,9 @@ void Simulation::Init(){
     Planeten[2].setScaling(QVector3D(1.6,1.6,1.6));
     Planeten[3].setScaling(QVector3D(1.2,1.2,1.2));
     Planeten[4].setScaling(QVector3D(6.0,6.0,6.0));
-    Planeten[5].setScaling(QVector3D(2.5,2.5,2.5));
-    Planeten[6].setScaling(QVector3D(1.5,1.5,1.5));
-    Planeten[7].setScaling(QVector3D(2.0,2.0,2.0));
+    Planeten[5].setScaling(QVector3D(2.6,2.6,2.6));
+    Planeten[6].setScaling(QVector3D(2.3,2.3,2.3));
+    Planeten[7].setScaling(QVector3D(4.5,4.5,4.5));
 
     // Connect Run() method to simulation timer
     connect(SIMULATION_TIMER, &QTimer::timeout, this, &Simulation::Run);

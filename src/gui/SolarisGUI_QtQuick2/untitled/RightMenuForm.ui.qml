@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import QtQuick.Controls 2.15
+import Qt.labs.platform 1.1
 
 Item {
     width: 200
@@ -159,7 +160,8 @@ Item {
                     verticalAlignment: Text.AlignVCenter
                     anchors.leftMargin: 20
                 }
-/*
+
+                /*
                 MouseArea {
                     id: rectangle5_mouseArea
                     anchors.fill: parent
@@ -299,6 +301,78 @@ Item {
                 display: AbstractButton.IconOnly
                 // @disable-check M222
                 onCheckedChanged: view.planetCamera_handler("freeView")
+            }
+        }
+
+        DropDownMenu {
+            id: menuGeneral1
+            x: 0
+            y: 81
+            anchors.horizontalCenterOffset: 0
+            anchors.horizontalCenter: parent.horizontalCenter
+            clip: false
+            menuClip: true
+            elementText: "Presets"
+            anchors.top: menuCameras.bottom
+            anchors.topMargin: 2
+
+            Button {
+                id: button
+                x: 36
+                y: 29
+                width: 128
+                height: 20
+                text: qsTr("Save Preset")
+
+                FolderDialog {
+                    id: folderDialog
+                    currentFolder: viewer.folder
+                    acceptLabel: open
+                }
+
+                MouseArea {
+                    id: button_mouseArea
+                    anchors.fill: parent
+
+                    Connections {
+                        target: button_mouseArea
+                        onClicked: folderDialog.open()
+                    }
+                }
+            }
+
+            Button {
+                id: button1
+                x: 36
+                y: 55
+                width: 128
+                height: 20
+                text: qsTr("Load Preset")
+
+                FolderDialog {
+                    id: folderDialog_
+                    currentFolder: viewer.folder
+                    acceptLabel: save
+                }
+
+                MouseArea {
+                    id: button1_mouseArea
+                    anchors.fill: parent
+
+                    Connections {
+                        target: button1_mouseArea
+                        onClicked: folderDialog.open()
+                    }
+                }
+            }
+
+            Button {
+                id: button2
+                x: 36
+                y: 81
+                width: 128
+                height: 20
+                text: qsTr("Use standard Preset")
             }
         }
     }
