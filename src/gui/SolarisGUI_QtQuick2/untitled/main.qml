@@ -24,12 +24,17 @@ ApplicationWindow {
     property int fps: 0
 
     //          Signals
+    signal setPreset_main()
     signal mainWclosed()
     signal tooglePlayPause()
     signal resetSimulation()
     signal setSpeedMultiplier(real multiplier)
 
     //          Signal Helpers
+    function setPreset_main_helper(){
+        setPreset_main()
+    }
+
     function tooglePlayPause_helper(){
         tooglePlayPause()
     }

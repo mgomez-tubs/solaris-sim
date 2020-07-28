@@ -39,6 +39,9 @@ void Planet::setScaling(QVector3D vector){
     this -> scale = vector;
      QMetaObject::invokeMethod(planetHandler, "receiveScale", Q_ARG(QVector3D, this->scale ));
 }
+void setPreset_main(){
+    int distance_mercury = 40, distance_venus = 70, distance_earth = 100, distance_mars = 150, distance_jupiter = 320, distance_saturn = 560, distance_uranus = 820, distance_neptun = 1000;
+}
 
 void Planet::setOrbitType(QString type, float radius, float speed){
     if(type == "kreisBewegung"){

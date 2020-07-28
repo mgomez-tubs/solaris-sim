@@ -19,7 +19,7 @@ public:
 
     void addPlanet(QObject*,QString,QString);
 
-    static int & anzahlPlaneten(){   // this method acts as a variable. to add a planet: anzahlPlaneten++, to see how many plaenets, anzahlplanete()
+    static int & anzahlPlaneten(){   // this method acts as a variable. to add a planet: anzahlPlaneten++, to see how many plaenets, anzahlplaneten()
         static int counter = 0;
         return counter;
     }
@@ -40,6 +40,7 @@ private slots:
     void tooglePlayPause();
     void Reset();
     void setSpeedMultiplier(qreal);
+    //void setPreset_main();
 };
 
 

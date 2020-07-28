@@ -62,6 +62,7 @@ void Simulation::Init(){
     connect(rootObject,SIGNAL(tooglePlayPause()),   this,SLOT(tooglePlayPause()));
     connect(rootObject,SIGNAL(resetSimulation()),   this,SLOT(Reset()));
     connect(rootObject,SIGNAL(setSpeedMultiplier(qreal)), this,SLOT(setSpeedMultiplier(qreal)));
+    connect(rootObject,SIGNAL(setPreset_main()), this,SLOT(setPreset_main));
 
     addPlanet(rootObject,"Merkur","merkur");    //0
     addPlanet(rootObject,"Venus","venus");      //1
@@ -74,14 +75,18 @@ void Simulation::Init(){
 
     float distanceScale = 3;
 
-    Planeten[0].setOrbitType("kreisBewegung", 40.0 * distanceScale, 1/87.969);
-    Planeten[1].setOrbitType("kreisBewegung", 70.0 * distanceScale, 1/224.701);
-    Planeten[2].setOrbitType("kreisBewegung", 100.0 * distanceScale, 1/365.256);
-    Planeten[3].setOrbitType("kreisBewegung", 150.0 * distanceScale, 1/686.980);
-    Planeten[4].setOrbitType("kreisBewegung", 320.0 * distanceScale, 1/(11.863*365.0));
-    Planeten[5].setOrbitType("kreisBewegung", 560.0 * distanceScale, 1/(29.457*365.0));
-    Planeten[6].setOrbitType("kreisBewegung", 820.0 * distanceScale, 1/(84.011*365.0));
-    Planeten[7].setOrbitType("kreisBewegung", 1000.0 * distanceScale, 1/(164.79*365.0));
+    int distance_mercury = 40, distance_venus = 70, distance_earth = 100, distance_mars = 150, distance_jupiter = 320, distance_saturn = 560, distance_uranus = 820, distance_neptun = 1000;
+
+    // 40.0 ; 70.0 ; 100.0 ; 150.0 ; 320.0 ; 560.0 ; 820.0 ; 1000.0
+
+    Planeten[0].setOrbitType("kreisBewegung", distance_mercury * distanceScale, 1/87.969);
+    Planeten[1].setOrbitType("kreisBewegung", distance_venus * distanceScale, 1/224.701);
+    Planeten[2].setOrbitType("kreisBewegung", distance_earth * distanceScale, 1/365.256);
+    Planeten[3].setOrbitType("kreisBewegung", distance_mars * distanceScale, 1/686.980);
+    Planeten[4].setOrbitType("kreisBewegung", distance_jupiter * distanceScale, 1/(11.863*365.0));
+    Planeten[5].setOrbitType("kreisBewegung", distance_saturn * distanceScale, 1/(29.457*365.0));
+    Planeten[6].setOrbitType("kreisBewegung", distance_uranus * distanceScale, 1/(84.011*365.0));
+    Planeten[7].setOrbitType("kreisBewegung", distance_neptun * distanceScale, 1/(164.79*365.0));
 
     Planeten[0].setScaling(QVector3D(0.40,0.4,0.4));
     Planeten[1].setScaling(QVector3D(0.8,0.8,0.8));

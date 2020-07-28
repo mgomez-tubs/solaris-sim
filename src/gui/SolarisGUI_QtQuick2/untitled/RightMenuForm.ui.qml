@@ -161,6 +161,7 @@ Item {
                     anchors.leftMargin: 20
                 }
 
+
                 /*
                 MouseArea {
                     id: rectangle5_mouseArea
@@ -305,7 +306,7 @@ Item {
         }
 
         DropDownMenu {
-            id: menuGeneral1
+            id: menuPresets
             x: 0
             y: 81
             anchors.horizontalCenterOffset: 0
@@ -327,7 +328,7 @@ Item {
                 FolderDialog {
                     id: folderDialog
                     currentFolder: viewer.folder
-                    acceptLabel: open
+                    acceptLabel: "speichern"
                 }
 
                 MouseArea {
@@ -349,10 +350,10 @@ Item {
                 height: 20
                 text: qsTr("Load Preset")
 
-                FolderDialog {
-                    id: folderDialog_
-                    currentFolder: viewer.folder
-                    acceptLabel: save
+                FileDialog {
+                    id: fileDialog
+                    currentFile: document.source
+                    acceptLabel: "laden"
                 }
 
                 MouseArea {
@@ -361,7 +362,7 @@ Item {
 
                     Connections {
                         target: button1_mouseArea
-                        onClicked: folderDialog.open()
+                        onClicked: fileDialog.open()
                     }
                 }
             }
@@ -373,6 +374,18 @@ Item {
                 width: 128
                 height: 20
                 text: qsTr("Use standard Preset")
+
+
+                MouseArea {
+                    id: button2_mouseArea
+                    anchors.fill: parent
+
+                    Connections {
+                        target: button2_mouseArea
+                        onClicked: setPreset_main_helper()
+                    }
+                }
+
             }
         }
     }

@@ -34,6 +34,7 @@ public:
     float speed;
 
     // Setters
+    void setPreset_main();
     void setOrbitType(QString,float,float);
     void setProperties(QObject *,QString,QString);
     void setScaling(QVector3D);
