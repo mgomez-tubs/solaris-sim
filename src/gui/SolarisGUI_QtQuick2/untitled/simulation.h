@@ -40,7 +40,7 @@ private slots:
     void tooglePlayPause();
     void Reset();
     void setSpeedMultiplier(qreal);
-    //void setPreset_main();
+    void setPreset_main();
 };
 
 

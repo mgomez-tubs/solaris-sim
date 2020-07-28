@@ -62,7 +62,7 @@ void Simulation::Init(){
     connect(rootObject,SIGNAL(tooglePlayPause()),   this,SLOT(tooglePlayPause()));
     connect(rootObject,SIGNAL(resetSimulation()),   this,SLOT(Reset()));
     connect(rootObject,SIGNAL(setSpeedMultiplier(qreal)), this,SLOT(setSpeedMultiplier(qreal)));
-    connect(rootObject,SIGNAL(setPreset_main()), this,SLOT(setPreset_main));
+    connect(rootObject,SIGNAL(setPreset_main()), this,SLOT(setPreset_main()));
 
     addPlanet(rootObject,"Merkur","merkur");    //0
     addPlanet(rootObject,"Venus","venus");      //1
@@ -147,4 +147,8 @@ void Simulation::tooglePlayPause(){
     } else {
         startTimer();
     }
+}
+
+void Simulation::setPreset_main(){
+    qDebug()<<"Simulation.cpp: setPreset_main() erfolgreich aufgerufen.";
 }

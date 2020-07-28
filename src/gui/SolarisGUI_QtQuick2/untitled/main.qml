@@ -32,6 +32,7 @@ ApplicationWindow {
 
     //          Signal Helpers
     function setPreset_main_helper(){
+        console.log("Funktion setPreset_main_helper() wurde aufgerufen.")
         setPreset_main()
     }
 
