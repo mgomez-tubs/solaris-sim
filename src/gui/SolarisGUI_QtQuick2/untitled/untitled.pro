@@ -64,6 +64,7 @@ HEADERS += \
     QML/drawcircleqt.h \
     debugwindow.h \
     planet.h \
+    planetData/lib/libDatenabruf.h \
     simulation.h
 
 FORMS += \

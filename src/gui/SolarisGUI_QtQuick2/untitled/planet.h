@@ -26,6 +26,7 @@ public:
     QString id;
     QObject *planetHandler;
     QVector3D defaultPosition;
+    float tiltAngle = 0.0;
     QVector3D scale;
 
     // Move 1 specific properties
@@ -43,11 +44,13 @@ public:
     void setId(QString);
     void setOrder(int);
     void setRadius();
+    void setTiltAngle(float);
 
     // Getters
     QString getName();
     QVector3D getDefaultPosition();
     QObject * getPlanetHandler();
+    float getTiltAngle();
 
     // Destructor
     ~Planet();

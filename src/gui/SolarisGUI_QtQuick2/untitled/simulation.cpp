@@ -218,3 +218,9 @@ void Simulation::setPreset_main(){
     startTimer();
 
 }
+
+/*
+void Simulation::externalDataHandler(){
+    std::vector<std::string> names = GetNames("./planets/pl_*.txt");
+    //std::vector<std::vector<float>> data = GetALLEData(names);
+}*/

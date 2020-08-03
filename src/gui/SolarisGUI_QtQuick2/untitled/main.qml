@@ -55,6 +55,7 @@ ApplicationWindow {
 
     View3D {
         id: view
+        objectName: "view"
         anchors.fill: parent
         camera: freeView
 
@@ -81,6 +82,41 @@ ApplicationWindow {
             return planets
         }
 
+        property var orbits : []
+        /* Planet Orbits */
+
+        function receiveOrbit(orbit: double){
+            // Push Orbit in Orbits list
+            orbits.push(orbit);
+            // Insert new Orbit
+            orbitSpawner.addComponent(orbit);
+        }
+
+        property bool showOrbits : false
+
+        onOrbitsChanged:
+        {
+            console.log("orbits changed")
+            // Delete last
+            orbitSpawner.removeAllComponents();
+            for(var i = 0; i < orbits.length; i++) {
+                addComponent(orbits[i]);
+            }
+        }
+
+        onShowOrbitsChanged:
+            if(showOrbits){
+                /*
+                for(var i = 0; i<12;i++)
+                    orbitSpawner.addComponent(i*100)
+                    */
+
+            } else {
+                orbitSpawner.removeAllComponents();
+                console.log("Orbits disabled")
+            }
+
+/*
         function toogleOrbits(){
             if(circularOrbits.visible){
                 circularOrbits.visible=false
@@ -90,6 +126,7 @@ ApplicationWindow {
                 console.log("Orbits enabled")
             }
         }
+*/
 
         //          Keyboard control - preferable in a separate file?    //
         Keys.onPressed: DefaultKeys.func(event);
@@ -266,7 +303,44 @@ ApplicationWindow {
                 //source: "PlanetGUI/Layer_PlanetGUI.qml"
             }
         }
+
+        Node {
+            id: orbitSpawner
+            property var orbitCount: 0
+            property var instances : []
+
+            function addComponent(radius: double){
+                var orbitComponent = Qt.createComponent("OrbitKreis.qml");
+                if (orbitComponent.status === Component.Ready){
+                    let instance = orbitComponent.createObject(
+                            orbitSpawner,
+                            {
+                                "opacity": .45,
+                                "name"   : orbitCount,
+                                "radius" : radius
+                            });
+                    instances.push(instance);
+                }
+                orbitCount++
+            }
+
+            function removeAllComponents(){
+                for (var i = orbitCount; i<view.orbits.length; i--){
+                    let instance = instances.pop()
+                    instance.destroy();
+                }
+            }
+        }
+
+        Component.onCompleted: {
+            view.showOrbits = true;
+        }
+
+
     }
+//[!]//////// HERE ENDS View3D ///////////[!]//
+//  nothing below this line will be rendered!!
+
 }
 
 

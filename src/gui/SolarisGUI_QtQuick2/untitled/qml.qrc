@@ -25,6 +25,13 @@
         <file>assets/meshes/torus.mesh</file>
         <file>assets/meshes/venus.mesh</file>
         <file>assets/meshes/saturn_main.mesh</file>
+        <file>assets/Ceres.qml</file>
+        <file>assets/Charon.qml</file>
+        <file>assets/Eris.qml</file>
+        <file>assets/Haumea.qml</file>
+        <file>assets/Makemake.qml</file>
+        <file>assets/Pluto_normal.qml</file>
+        <file>OrbitSpawner.qml</file>
     </qresource>
     <qresource prefix="/SolarSystem">
         <file>Merkur.qml</file>
@@ -39,6 +46,12 @@
         <file>Sonne.qml</file>
         <file>SolarSystem.qml</file>
         <file>Planet_No_Model.qml</file>
+        <file>Pluto.qml</file>
+        <file>Charon.qml</file>
+        <file>Ceres.qml</file>
+        <file>Haumea.qml</file>
+        <file>MakeMake.qml</file>
+        <file>Eris.qml</file>
     </qresource>
     <qresource prefix="/MainGUI">
         <file>ButtonForm.ui.qml</file>

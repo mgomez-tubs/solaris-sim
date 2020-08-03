@@ -2,18 +2,14 @@ import QtQuick 2.15
 
 import QtQuick3D 1.15
 
-import DrawCircleQt 1.0
-
-
-
 Node {
+    visible: false
     opacity: .45
     function orbitName(){
         var a = Math.random();
         return a;
     }
     OrbitKreis{
-        id: orbitKreis_merkur
         name: orbitName()
         radius: 100
     }
@@ -53,6 +49,7 @@ Node {
         radius: 800
     }
 }
+
 
 // about orbitKreis.name:
 /* - the renderer wont display the orbit circle if a name is not set */
