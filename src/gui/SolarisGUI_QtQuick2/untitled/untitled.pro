@@ -44,7 +44,17 @@ RESOURCES += qml.qrc \
     assets/maps/8k_saturn_ring_alpha.png \
     assets/maps/8k_venus_surface.jpg \
     assets/maps/Uranus_rings.png \
-    assets/maps/2k_uranus.jpg
+    assets/maps/2k_uranus.jpg \
+    assets/maps/4k_ceres_fictional.jpg \
+    assets/maps/4k_eris_fictional.jpg \
+    assets/maps/4k_haumea_fictional.jpg \
+    assets/maps/4k_makemake_fictional.jpg \
+    assets/maps/4k_venus_atmosphere.jpg \
+    assets/maps/8k_earth_nightmap.jpg \
+    assets/maps/8k_moon.jpg \
+    assets/maps/charon_texture.jpg \
+    assets/maps/pluto_texture.jpg \
+    assets/maps/pluto_texture_nasa_stitched.jpg
 
 
 TARGET = SolarisGUI
@@ -71,7 +81,26 @@ HEADERS += \
 FORMS += \
     debugwindow.ui
 
-DISTFILES +=
+DISTFILES += \ \
+    assets/Ceres.qml \
+    assets/Charon.qml \
+    assets/Earth_day.qml \
+    assets/Earth_night.qml \
+    assets/Eris.qml \
+    assets/Haumea.qml \
+    assets/Jupiter.qml \
+    assets/Makemake.qml \
+    assets/Mars.qml \
+    assets/Mercury.qml \
+    assets/Moon.qml \
+    assets/Neptun.qml \
+    assets/Pluto_normal.qml \
+    assets/Pluto_stiched.qml \
+    assets/Saturn.qml \
+    assets/Uranus.qml \
+    assets/Venus.qml \
+    assets/Venus_atmossphere.qml
+
 
 #INCLUDEPATH += $$PWD/planetData
 #DEPENDPATH += $$PWD/planetData

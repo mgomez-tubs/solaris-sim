@@ -14,27 +14,29 @@ void consoleOutputHandler(QtMsgType type, const QMessageLogContext &context, con
 {
     Q_UNUSED(context);
     QByteArray localMsg = msg.toLocal8Bit();
+    const char *file = context.file ? context.file : "";
+    const char *function = context.function ? context.function : "";
     if(localMsg.length()>200){
         localMsg.truncate(200);
         localMsg.append(" [...]");
     }
     switch (type) {
-    case QtDebugMsg:
-        fprintf(stderr, "Debug: %s\n", localMsg.constData());
-        break;
-    case QtInfoMsg:
-        fprintf(stderr, "Info: %s\n", localMsg.constData());
-        break;
-    case QtWarningMsg:
-        fprintf(stderr, "Warning: %s\n", localMsg.constData());
-        break;
-    case QtCriticalMsg:
-        fprintf(stderr, "Critical: %s\n", localMsg.constData());
-        break;
-    case QtFatalMsg:
-        fprintf(stderr, "Fatal: %s\n", localMsg.constData());
-        break;
-    }
+        case QtDebugMsg:
+            fprintf(stderr, "Debug: %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
+            break;
+        case QtInfoMsg:
+            fprintf(stderr, "Info: %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
+            break;
+        case QtWarningMsg:
+            fprintf(stderr, "Warning: %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
+            break;
+        case QtCriticalMsg:
+            fprintf(stderr, "Critical: %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
+            break;
+        case QtFatalMsg:
+            fprintf(stderr, "Fatal: %s (%s:%u, %s)\n", localMsg.constData(), file, context.line, function);
+            break;
+        }
 }
 
 int main(int argc, char *argv[])

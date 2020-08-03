@@ -34,6 +34,8 @@ public:
     float radius;
     float speed;
 
+    // Adders
+
     // Setters
     void setPreset_main();
     void setOrbitType(QString,float,float);

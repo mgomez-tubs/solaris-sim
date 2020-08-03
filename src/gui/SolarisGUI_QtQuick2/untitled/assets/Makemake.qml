@@ -2,22 +2,26 @@ import QtQuick3D 1.15
 import QtQuick 2.15
 
 Node {
-    id: rootNode_5
+    id: rootNode
 
     Model {
-        id: kugel_5
+        id: kugel
         eulerRotation.x: -90
         scale.x: 192.587
         scale.y: 192.587
         scale.z: 192.587
-        source: "meshes/kugel_5.mesh"
+        source: "meshes/kugel.mesh"
 
         DefaultMaterial {
-            id: planet_material_5
-            diffuseColor: "#ffcccccc"
+            id: planet_material
+            diffuseMap: Texture {
+                source: "maps/4k_makemake_fictional.jpg"
+                tilingModeHorizontal: Texture.Repeat
+                tilingModeVertical: Texture.Repeat
+            }
         }
         materials: [
-            planet_material_5
+            planet_material
         ]
     }
 }

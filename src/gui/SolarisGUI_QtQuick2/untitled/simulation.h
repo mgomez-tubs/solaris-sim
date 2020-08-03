@@ -2,6 +2,7 @@
 #define SIMULATION_H
 
 #include <QTimer>
+#include <vector>
 #include "planet.h"
 #include "debugwindow.h"
 
@@ -21,17 +22,29 @@ public:
     QObject * rootObject;
     DebugWindow w;
     Planet Planeten [10];             // eventuell soll das dynamisch gemacht werden
+    Planet ZwergPlaneten[10];
+
     bool simulTimerRunning = false;
 
     void addPlanet(QObject*,QString,QString);
+    void addZwergPlanet(QObject*,QString,QString);
 
     static int & anzahlPlaneten(){   // this method acts as a variable. to add a planet: anzahlPlaneten++, to see how many plaenets, anzahlplaneten()
-        static int counter = 0;
-        return counter;
+        static int counterP = 0;
+        return counterP;
+    }
+
+    static int & anzahlZwergPlaneten(){   // this method acts as a variable. to add a planet: anzahlPlaneten++, to see how many plaenets, anzahlplaneten()
+        static int counterZP = 0;
+        return counterZP;
     }
 
     void addOnePlanet(){
         anzahlPlaneten()++;
+    }
+
+    void addOneZwergPlanet(){
+        anzahlZwergPlaneten()++;
     }
 
     void startTimer();
@@ -43,7 +56,6 @@ public:
 
     // Handler
     /*void externalDataHandler();*/
-
 
 private slots:
     void tooglePlayPause();

@@ -133,7 +133,7 @@ ApplicationWindow {
 
         //! [environment]
         environment: SceneEnvironment{
-            clearColor: "black"
+            clearColor: "blue"
 
             effects: [
                 /*

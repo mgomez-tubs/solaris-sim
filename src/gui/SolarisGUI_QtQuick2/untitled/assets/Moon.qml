@@ -7,18 +7,14 @@ Node {
     Model {
         id: kugel
         eulerRotation.x: -90
-        scale.x: 100
-        scale.y: 100
-        scale.z: 100
+        scale.x: 192.587
+        scale.y: 192.587
+        scale.z: 192.587
         source: "meshes/kugel.mesh"
 
         DefaultMaterial {
             id: planet_material
-            diffuseMap: Texture {
-                source: "maps/8k_venus_surface.jpg"
-                tilingModeHorizontal: Texture.Repeat
-                tilingModeVertical: Texture.Repeat
-            }
+            diffuseColor: "#ffcccccc"
         }
         materials: [
             planet_material

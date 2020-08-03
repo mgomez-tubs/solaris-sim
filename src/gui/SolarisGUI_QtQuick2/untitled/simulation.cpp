@@ -57,6 +57,18 @@ void Simulation::addPlanet(QObject * rootObject, QString name, QString id){
     this->addOnePlanet();
 }
 
+void Simulation::addZwergPlanet(QObject *rootObject, QString name, QString id){
+
+    // Eigenschaften
+    // Order Number
+    ZwergPlaneten[anzahlZwergPlaneten()].setOrder(anzahlZwergPlaneten());
+    // Set Properties
+    ZwergPlaneten[anzahlZwergPlaneten()].setProperties(rootObject,name,id);
+
+    // Up the planet counter
+    this->addOneZwergPlanet();
+}
+
 // Simulation flow
 void Simulation::Init(){
 
@@ -66,6 +78,7 @@ void Simulation::Init(){
     connect(rootObject,SIGNAL(setSpeedMultiplier(qreal)), this,SLOT(setSpeedMultiplier(qreal)));
     connect(rootObject,SIGNAL(setPreset_main()), this,SLOT(setPreset_main()));
 
+    //                  Planets
     addPlanet(rootObject,"Merkur","merkur");    //0
     addPlanet(rootObject,"Venus","venus");      //1
     addPlanet(rootObject,"Erde","erde");        //2
@@ -74,7 +87,16 @@ void Simulation::Init(){
     addPlanet(rootObject,"Saturn", "saturn");   //5
     addPlanet(rootObject,"Uranus","uranus");    //6
     addPlanet(rootObject,"Neptun", "neptun");   //7
+    qDebug()<< "Planets created";
 
+    //                  Small planets
+
+    addZwergPlanet(rootObject,"Ceres", "ceres");    // between mars and jupiter
+    addZwergPlanet(rootObject,"Pluto", "pluto");
+    addZwergPlanet(rootObject,"Haumea", "haumea");
+    addZwergPlanet(rootObject,"MakeMake", "makemake");
+    addZwergPlanet(rootObject,"Eris", "eris");
+    qDebug()<<"Small planets created";
     distanceScale = 3;
 
     //int distance_mercury = 40, distance_venus = 70, distance_earth = 100, distance_mars = 150, distance_jupiter = 320, distance_saturn = 560, distance_uranus = 820, distance_neptun = 1000;
@@ -93,17 +115,18 @@ void Simulation::Init(){
     planet_distance[7] = 0;
     */
 
-    planet_distance[0] = 40;
-    planet_distance[2] = 70;
-    planet_distance[3] = 150;
-    planet_distance[4] = 320;
-    planet_distance[5] = 560;
-    planet_distance[6] = 820;
-    planet_distance[7] = 1000;
-
+    planet_distance[0] = 40;        // Merkur
+    planet_distance[1] = 50;        // Venus
+    planet_distance[2] = 70;        // Erde
+    planet_distance[3] = 150;       // Mars
+    planet_distance[4] = 320;       // Jupiter
+    planet_distance[5] = 560;       // Saturn
+    planet_distance[6] = 820;       // Uranus
+    planet_distance[7] = 1000;       // Neptun
 
     // 40.0 ; 70.0 ; 100.0 ; 150.0 ; 320.0 ; 560.0 ; 820.0 ; 1000.0
 
+    // Planets
     Planeten[0].setOrbitType("kreisBewegung", planet_distance[0] * distanceScale, 1/87.969);
     Planeten[1].setOrbitType("kreisBewegung", planet_distance[1] * distanceScale, 1/224.701);
     Planeten[2].setOrbitType("kreisBewegung", planet_distance[2] * distanceScale, 1/365.256);
@@ -122,6 +145,13 @@ void Simulation::Init(){
     Planeten[6].setScaling(QVector3D(2.3,2.3,2.3));
     Planeten[7].setScaling(QVector3D(4.5,4.5,4.5));
 
+    // Small Planets
+    ZwergPlaneten[0].setOrbitType("kreisBewegung", 200*distanceScale, 0.01);        //Ceres
+    ZwergPlaneten[1].setOrbitType("kreisBewegung", 1200*distanceScale, 0.01);       // Pkuto
+    ZwergPlaneten[2].setOrbitType("kreisBewegung", 1300*distanceScale, 0.01);       //haumea
+    ZwergPlaneten[3].setOrbitType("kreisBewegung", 1400*distanceScale, 0.01);
+    ZwergPlaneten[4].setOrbitType("kreisBewegung", 1500*distanceScale, 0.01);
+
     // Connect Run() method to simulation timer
     connect(SIMULATION_TIMER, &QTimer::timeout, this, &Simulation::Run);
 
@@ -131,6 +161,9 @@ void Simulation::Run(){
     for(int i = 0; i < anzahlPlaneten();i++){
         Planeten[i].kreisBewegung();
     }
+    for(int i = 0; i < anzahlZwergPlaneten();i++){
+        ZwergPlaneten[i].kreisBewegung();
+    }
 }
 
 void Simulation::Reset(){
@@ -138,6 +171,8 @@ void Simulation::Reset(){
     for(int i = 0; i<anzahlPlaneten();i++){
         Planeten[i].resetPosition();
     }
+
+    qDebug()<<distanceScale;
     Planeten[0].setOrbitType("kreisBewegung", planet_distance[0] * distanceScale, 1/87.969);
     Planeten[1].setOrbitType("kreisBewegung", planet_distance[1] * distanceScale, 1/224.701);
     Planeten[2].setOrbitType("kreisBewegung", planet_distance[2] * distanceScale, 1/365.256);

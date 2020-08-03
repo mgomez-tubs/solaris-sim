@@ -47,6 +47,10 @@ Node {
         id: jupiter
     }
 
+    Ceres{
+        id: ceres
+    }
+
     Saturn{
         id: saturn
     }
@@ -57,10 +61,6 @@ Node {
 
     Neptun{
         id: neptun
-    }
-
-    Ceres{
-        id: ceres
     }
 
     Pluto{
@@ -80,7 +80,7 @@ Node {
     }
 
     Eris{
-        id:eris
+        id: eris
     }
 
 }
