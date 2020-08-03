@@ -4,5 +4,5 @@
 .\Info\info_Mars.txt
 .\Info\info_Jupiter.txt
 .\Info\info_Saturn.txt
-.\Info\info_Neptune.txt
 .\Info\info_Uranus.txt
+.\Info\info_Neptune.txt
