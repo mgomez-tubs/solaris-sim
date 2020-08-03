@@ -1,3 +1,0 @@
-Due to conflicts between the official MinGW g++ compiler and the Qt MinGW g++ compiler (particularly because of glob.h, which seems to be a platform dependent header that is not present in Qt - nor can be copied and included as a header since it has some MinGW specific dependencies which again, are not present in the Qt MinGW version) this file was precompiled into a library. 
-
-The source code lies in "Datenabruf.cpp".

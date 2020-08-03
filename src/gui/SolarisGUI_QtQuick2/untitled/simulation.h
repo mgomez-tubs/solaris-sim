@@ -5,8 +5,6 @@
 #include "planet.h"
 #include "debugwindow.h"
 
-#include "planetData/lib/libDatenabruf.h"
-
 // External libraries
 
 class Simulation : public QObject

@@ -1,0 +1,21 @@
+VENUS
+---
+Avg Radius		6051.8 		km
+Mass			4.8675x10^24 	kg
+---
+Sideric Period		224.701 d
+Synodic Period		583.92	d
+Length of Day		-243 d 0 h 26 min
+Num of Satelites	0
+---
+Srf gravity		0.904 g	    8.87 m/s^2
+Avg Srf Atm Press	9.2x10^6	Pa
+Avg Srf Temp Eqt	737 		K
+---
+Information
+
+Venus is similiar in size, weight and general composition to the earth, but in many other respect it is different. The Atmosphere is mainly composed of CO2 and the resulting greenhouse effect lifts the surface temperature to about 737 K, making it with about a quarter of the solar light it hotter than the surface of Mercury. It is also one of two Planets which is turning retrograde.
+---
+Exploration
+
+There were about 42 launches to Venus mostly by the Soviet Union and the United States with the soviet Venera series making the first landings on another planet and returning Images. Some Probes like Gallileo, Cassini and BepiColombo used Venus for Gravity assists to reach their targets like Jupoter, Saturn or Mercury.

@@ -1,11 +1,11 @@
 #include <iostream>
 #include <fstream>
-#include <glob.h>
+//#include <glob.h>
 #include <vector>
 
 std::vector<float> GetData(std::string filename);
 std::vector<std::vector<float>> GetFinData(std::vector<std::string> DirCont);
-std::vector<std::string> GetNames(std::string path);
+std::vector<std::string> GetNames();
 
 //HEADER Matrix with Data
 class call
@@ -14,12 +14,13 @@ class call
 public:
     std::vector<std::vector<float>> calling()
     {
-        std::vector<std::string> names = GetNames("./planets/pl_*.txt");
+        std::vector<std::string> names = GetNames();
         std::vector<std::vector<float>> dataTRF = GetFinData(names);
         return dataTRF;
     }
 };
 
+/*
 //READ Names of Files in Dir
 std::vector<std::string> GetNames(std::string path)
 {
@@ -32,6 +33,21 @@ std::vector<std::string> GetNames(std::string path)
     }
     globfree(&glob_result);
     return dir;
+}*/
+
+//READ Filenames BYPASS
+std::vector<std::string> GetNames()
+{
+    std::fstream myfile("PlData.txt");
+    std::vector<std::string> datStr;
+
+    std::string str;
+    while (std::getline(myfile, str))
+    {
+        if (str.size() > 0)
+            datStr.push_back(str);
+    }
+    return datStr;
 }
 
 //READ Planetary Data into Vector

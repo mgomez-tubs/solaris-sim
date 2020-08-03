@@ -81,7 +81,7 @@ void Simulation::Init(){
 
     //distance_mercury = 0;
 
-
+    /*
     planet_distance[0] = 0;
     planet_distance[2] = 0;
     planet_distance[3] = 0;
@@ -89,14 +89,15 @@ void Simulation::Init(){
     planet_distance[5] = 0;
     planet_distance[6] = 0;
     planet_distance[7] = 0;
+    */
 
-    /*planet_distance[0] = 40;
+    planet_distance[0] = 40;
     planet_distance[2] = 70;
     planet_distance[3] = 150;
     planet_distance[4] = 320;
     planet_distance[5] = 560;
     planet_distance[6] = 820;
-    planet_distance[7] = 1000;*/
+    planet_distance[7] = 1000;
 
 
     // 40.0 ; 70.0 ; 100.0 ; 150.0 ; 320.0 ; 560.0 ; 820.0 ; 1000.0
