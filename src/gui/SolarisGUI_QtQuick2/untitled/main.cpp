@@ -14,6 +14,33 @@ void consoleOutputHandler(QtMsgType type, const QMessageLogContext &context, con
 {
     Q_UNUSED(context);
     QByteArray localMsg = msg.toLocal8Bit();
+    if(localMsg.length()>200){
+        localMsg.truncate(200);
+        localMsg.append(" [...]");
+    }
+    switch (type) {
+        case QtDebugMsg:
+            fprintf(stderr, "Debug: %s \n", localMsg.constData());
+            break;
+        case QtInfoMsg:
+            fprintf(stderr, "Info: %s \n", localMsg.constData());
+            break;
+        case QtWarningMsg:
+            fprintf(stderr, "Warning: %s \n", localMsg.constData());
+            break;
+        case QtCriticalMsg:
+            fprintf(stderr, "Critical: %s \n", localMsg.constData());
+            break;
+        case QtFatalMsg:
+            fprintf(stderr, "Fatal: %s \n", localMsg.constData());
+            break;
+        }
+}
+
+void consoleOutputHandler_verbose(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    Q_UNUSED(context);
+    QByteArray localMsg = msg.toLocal8Bit();
     const char *file = context.file ? context.file : "";
     const char *function = context.function ? context.function : "";
     if(localMsg.length()>200){
@@ -51,7 +78,7 @@ int main(int argc, char *argv[])
     // qDebug()<<qputenv("QSG_INFO", "1");
 
     // Install handler for console output
-    qInstallMessageHandler(consoleOutputHandler);
+    qInstallMessageHandler(consoleOutputHandler_verbose);
 
     // Create engine object
     QQmlApplicationEngine engine;
