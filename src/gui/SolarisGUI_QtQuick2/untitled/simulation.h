@@ -14,7 +14,7 @@ class Simulation : public QObject
     Q_OBJECT
 public:
     //int distance_mercury;
-    int planet_distance[8];
+    int planet_distance[13];
     float distanceScale;
 
     Simulation(QObject*);

@@ -1,5 +1,11 @@
 import QtQuick 2.0
+import "qrc:/assets" as Assets
 
-Planet {
+Planet_No_Model {
+    objectName: "haumea"
+    Assets.Haumea{
+        id: assetsHaumea
+        scale: Qt.vector3d(0.1,0.1,0.1)
+    }
 
 }

@@ -1,10 +1,10 @@
 import QtQuick 2.0
+import "qrc:/assets" as Assets
 
-Planet {
+Planet_No_Model {
     objectName: "pluto"
-
-    Planet {
-        planetPosition: Qt.vector3d(50,0,0)
-        planetScale: Qt.vector3d(0.02,0.02,0.02)
+    Assets.Pluto_normal{
+        id: assetsPluto_normal
+        scale: Qt.vector3d(0.1,0.1,0.1)
     }
 }
