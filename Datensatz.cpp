@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "Header.h"
+#include "Header_Planet.h"
 #include "Header_Info.h"
 
 using namespace std;
@@ -54,7 +54,6 @@ int main()
                 cout << str << '\n';
                 numInt4++;
             } while (numInt4 <= 255);
-            cout << infoOUT[numInt1][numInt2] << '\n';
         }
 
     } while (numSel != 0);

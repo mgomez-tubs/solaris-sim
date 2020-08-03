@@ -1,4 +1,3 @@
-.\Info\info_Test.txt
 .\Info\info_Mercury.txt
 .\Info\info_Venus.txt
 .\Info\info_Earth.txt
