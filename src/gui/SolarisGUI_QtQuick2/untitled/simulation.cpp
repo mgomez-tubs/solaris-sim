@@ -73,20 +73,42 @@ void Simulation::Init(){
     addPlanet(rootObject,"Uranus","uranus");    //6
     addPlanet(rootObject,"Neptun", "neptun");   //7
 
-    float distanceScale = 3;
+    distanceScale = 3;
 
-    int distance_mercury = 40, distance_venus = 70, distance_earth = 100, distance_mars = 150, distance_jupiter = 320, distance_saturn = 560, distance_uranus = 820, distance_neptun = 1000;
+    //int distance_mercury = 40, distance_venus = 70, distance_earth = 100, distance_mars = 150, distance_jupiter = 320, distance_saturn = 560, distance_uranus = 820, distance_neptun = 1000;
+
+    //int distance_venus = 40, distance_earth = 40, distance_mars = 40, distance_jupiter = 40, distance_saturn = 40, distance_uranus = 40, distance_neptun = 40;
+
+    //distance_mercury = 0;
+
+
+    planet_distance[0] = 0;
+    planet_distance[2] = 0;
+    planet_distance[3] = 0;
+    planet_distance[4] = 0;
+    planet_distance[5] = 0;
+    planet_distance[6] = 0;
+    planet_distance[7] = 0;
+
+    /*planet_distance[0] = 40;
+    planet_distance[2] = 70;
+    planet_distance[3] = 150;
+    planet_distance[4] = 320;
+    planet_distance[5] = 560;
+    planet_distance[6] = 820;
+    planet_distance[7] = 1000;*/
+
 
     // 40.0 ; 70.0 ; 100.0 ; 150.0 ; 320.0 ; 560.0 ; 820.0 ; 1000.0
 
-    Planeten[0].setOrbitType("kreisBewegung", distance_mercury * distanceScale, 1/87.969);
-    Planeten[1].setOrbitType("kreisBewegung", distance_venus * distanceScale, 1/224.701);
-    Planeten[2].setOrbitType("kreisBewegung", distance_earth * distanceScale, 1/365.256);
-    Planeten[3].setOrbitType("kreisBewegung", distance_mars * distanceScale, 1/686.980);
-    Planeten[4].setOrbitType("kreisBewegung", distance_jupiter * distanceScale, 1/(11.863*365.0));
-    Planeten[5].setOrbitType("kreisBewegung", distance_saturn * distanceScale, 1/(29.457*365.0));
-    Planeten[6].setOrbitType("kreisBewegung", distance_uranus * distanceScale, 1/(84.011*365.0));
-    Planeten[7].setOrbitType("kreisBewegung", distance_neptun * distanceScale, 1/(164.79*365.0));
+    Planeten[0].setOrbitType("kreisBewegung", planet_distance[0] * distanceScale, 1/87.969);
+    Planeten[1].setOrbitType("kreisBewegung", planet_distance[1] * distanceScale, 1/224.701);
+    Planeten[2].setOrbitType("kreisBewegung", planet_distance[2] * distanceScale, 1/365.256);
+    Planeten[3].setOrbitType("kreisBewegung", planet_distance[3] * distanceScale, 1/686.980);
+    Planeten[4].setOrbitType("kreisBewegung", planet_distance[4] * distanceScale, 1/(11.863*365.0));
+    Planeten[5].setOrbitType("kreisBewegung", planet_distance[5] * distanceScale, 1/(29.457*365.0));
+    Planeten[6].setOrbitType("kreisBewegung", planet_distance[6] * distanceScale, 1/(84.011*365.0));
+    Planeten[7].setOrbitType("kreisBewegung", planet_distance[7] * distanceScale, 1/(164.79*365.0));
 
     Planeten[0].setScaling(QVector3D(0.40,0.4,0.4));
     Planeten[1].setScaling(QVector3D(0.8,0.8,0.8));
@@ -113,6 +135,23 @@ void Simulation::Reset(){
     for(int i = 0; i<anzahlPlaneten();i++){
         Planeten[i].resetPosition();
     }
+    Planeten[0].setOrbitType("kreisBewegung", planet_distance[0] * distanceScale, 1/87.969);
+    Planeten[1].setOrbitType("kreisBewegung", planet_distance[1] * distanceScale, 1/224.701);
+    Planeten[2].setOrbitType("kreisBewegung", planet_distance[2] * distanceScale, 1/365.256);
+    Planeten[3].setOrbitType("kreisBewegung", planet_distance[3] * distanceScale, 1/686.980);
+    Planeten[4].setOrbitType("kreisBewegung", planet_distance[4] * distanceScale, 1/(11.863*365.0));
+    Planeten[5].setOrbitType("kreisBewegung", planet_distance[5] * distanceScale, 1/(29.457*365.0));
+    Planeten[6].setOrbitType("kreisBewegung", planet_distance[6] * distanceScale, 1/(84.011*365.0));
+    Planeten[7].setOrbitType("kreisBewegung", planet_distance[7] * distanceScale, 1/(164.79*365.0));
+
+    Planeten[0].setScaling(QVector3D(0.40,0.4,0.4));
+    Planeten[1].setScaling(QVector3D(0.8,0.8,0.8));
+    Planeten[2].setScaling(QVector3D(1.6,1.6,1.6));
+    Planeten[3].setScaling(QVector3D(1.2,1.2,1.2));
+    Planeten[4].setScaling(QVector3D(6.0,6.0,6.0));
+    Planeten[5].setScaling(QVector3D(2.6,2.6,2.6));
+    Planeten[6].setScaling(QVector3D(2.3,2.3,2.3));
+    Planeten[7].setScaling(QVector3D(4.5,4.5,4.5));
 }
 
 void Simulation::setSpeedMultiplier(qreal multiplier){
@@ -150,5 +189,32 @@ void Simulation::tooglePlayPause(){
 }
 
 void Simulation::setPreset_main(){
+
+    //qDebug() << "wert mercury : " << distance_mercury;
+
+    qDebug() << "wert merkur liste: " <<planet_distance[0];
+
+    planet_distance[0] = 40;
+    planet_distance[1] = 70;
+    planet_distance[2] = 100;
+    planet_distance[3] = 150;
+    planet_distance[4] = 320;
+    planet_distance[5] = 560;
+    planet_distance[6] = 820;
+    planet_distance[7] = 1000;
+
+    // 40.0 ; 70.0 ; 100.0 ; 150.0 ; 320.0 ; 560.0 ; 820.0 ; 1000.0
+
+    //distance_mercury = 40,
+
+    //qDebug() << "wert mercury : " << distance_mercury;
+
+    qDebug() << "wert merkur liste: " <<planet_distance[0];
+
     qDebug()<<"Simulation.cpp: setPreset_main() erfolgreich aufgerufen.";
+
+    Reset();
+
+    startTimer();
+
 }

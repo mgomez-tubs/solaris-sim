@@ -9,6 +9,10 @@ class Simulation : public QObject
 {
     Q_OBJECT
 public:
+    //int distance_mercury;
+    int planet_distance[8];
+    float distanceScale;
+
     Simulation(QObject*);
     QTimer * SIMULATION_TIMER;
     QTimer * DEBUG_TIMER;

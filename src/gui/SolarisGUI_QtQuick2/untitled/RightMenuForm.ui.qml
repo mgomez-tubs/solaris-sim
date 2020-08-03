@@ -375,7 +375,6 @@ Item {
                 height: 20
                 text: qsTr("Use standard Preset")
 
-
                 MouseArea {
                     id: button2_mouseArea
                     anchors.fill: parent
@@ -385,7 +384,6 @@ Item {
                         onClicked: setPreset_main_helper()
                     }
                 }
-
             }
         }
     }

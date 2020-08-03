@@ -3,6 +3,7 @@
 
 
 
+
 ////          STATIC DECLARATIONS           ////
 float Planet::speedMultiplier = 1.0;
 
@@ -41,6 +42,8 @@ void Planet::setScaling(QVector3D vector){
 }
 void setPreset_main(){
     int distance_mercury = 40, distance_venus = 70, distance_earth = 100, distance_mars = 150, distance_jupiter = 320, distance_saturn = 560, distance_uranus = 820, distance_neptun = 1000;
+    int planet_distance[8] = {40,70,100,150,320,560,820,1000};
+    //console.log("test")
 }
 
 void Planet::setOrbitType(QString type, float radius, float speed){
