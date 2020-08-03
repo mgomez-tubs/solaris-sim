@@ -10,16 +10,46 @@
 #include <QtQuickControls2>
 #include "QML/drawcircleqt.h"
 
+void consoleOutputHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    Q_UNUSED(context);
+    QByteArray localMsg = msg.toLocal8Bit();
+    if(localMsg.length()>200){
+        localMsg.truncate(200);
+        localMsg.append(" [...]");
+    }
+    switch (type) {
+    case QtDebugMsg:
+        fprintf(stderr, "Debug: %s\n", localMsg.constData());
+        break;
+    case QtInfoMsg:
+        fprintf(stderr, "Info: %s\n", localMsg.constData());
+        break;
+    case QtWarningMsg:
+        fprintf(stderr, "Warning: %s\n", localMsg.constData());
+        break;
+    case QtCriticalMsg:
+        fprintf(stderr, "Critical: %s\n", localMsg.constData());
+        break;
+    case QtFatalMsg:
+        fprintf(stderr, "Fatal: %s\n", localMsg.constData());
+        break;
+    }
+}
+
 int main(int argc, char *argv[])
 {
     // ++++                     Load Window and Engine                        ++++ //
-
     // Create Window
     QApplication app(argc, argv);   // use QApplication only for debug widget, else QGuiApplication is more appropiate
                                     // if changing to QGuiApplication remove QApplication header!
     QSurfaceFormat::setDefaultFormat(QQuick3D::idealSurfaceFormat());
+
     // Environment variables
     // qDebug()<<qputenv("QSG_INFO", "1");
+
+    // Install handler for console output
+    qInstallMessageHandler(consoleOutputHandler);
 
     // Create engine object
     QQmlApplicationEngine engine;
@@ -31,7 +61,6 @@ int main(int argc, char *argv[])
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
-
     // ++++                     -----------------------                        ++++ //
 
     // Create a pointer to the root QML Object (needed for editing QML properties)
@@ -42,3 +71,5 @@ int main(int argc, char *argv[])
 
     return app.exec();
 }
+
+

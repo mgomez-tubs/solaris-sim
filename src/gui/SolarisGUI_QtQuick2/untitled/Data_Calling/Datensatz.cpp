@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int main()
+int ___main()
 {
     int numSel = 255;
 
@@ -57,4 +57,5 @@ int main()
         }
 
     } while (numSel != 0);
+    return 0;
 }
