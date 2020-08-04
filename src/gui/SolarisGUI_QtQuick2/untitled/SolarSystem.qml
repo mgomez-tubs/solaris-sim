@@ -66,11 +66,11 @@ Node {
     Pluto{
         id : pluto
     }
-
+/*
     Charon{
         id: charon
     }
-
+*/
     Haumea{
         id: haumea
     }

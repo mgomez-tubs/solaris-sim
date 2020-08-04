@@ -50,12 +50,11 @@ Node {
         id: spherenode
         eulerRotation: Qt.vector3d(0,currentAngle+90,0)
 
-        //AxisHelper { enableXYGrid: false; enableXZGrid: false ; enableYZGrid: false }
-
         Node {
             id: cameraPivot
             pivot: Qt.vector3d(0,0,0)
             PerspectiveCamera {
+
                  id: planetCamera
                  function reset(){
                      planetCamera.position = Qt.vector3d(0,0,75)
@@ -65,6 +64,7 @@ Node {
                  eulerRotation: Qt.vector3d(0, 0, 0)
                  clipNear: 1
                  fieldOfViewOrientation: Camera.Vertical
+
             }
         }
     }

@@ -80,7 +80,8 @@ Item {
             z: 10
             scale: 1
             Connections {
-                onClicked: {
+                // @disable-check M222
+                onClicked: function () {
                     if (maximized == false) {
                         menu.state = "max"
                     } else {

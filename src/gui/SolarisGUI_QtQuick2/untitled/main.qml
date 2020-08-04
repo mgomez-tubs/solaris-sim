@@ -57,7 +57,7 @@ ApplicationWindow {
         id: view
         objectName: "view"
         anchors.fill: parent
-        camera: freeView
+        camera: centerCamera
 
         //                           Handlers                            //
         function planetCamera_handler(cameraName : String){
@@ -133,7 +133,7 @@ ApplicationWindow {
 
         //! [environment]
         environment: SceneEnvironment{
-            clearColor: "blue"
+            clearColor: "black"
 
             effects: [
                 /*
@@ -165,11 +165,11 @@ ApplicationWindow {
         PerspectiveCamera {
             id: topCamera
             function reset(){
-                topCamera.position      = Qt.vector3d(0, 0, 1000);
+                topCamera.position      = Qt.vector3d(0, 0, 7960);
                 topCamera.eulerRotation = Qt.vector3d(0, 0, 0);
             }
 
-            position: Qt.vector3d(0, 0, 1000)
+            position: Qt.vector3d(0, 0, 1500)
             /*
             onPositionChanged: function(){
                 rectangle1.text = "x: "      + Math.round(position.x)      + "\ny: "    + Math.round(position.y)      + "\nz: "    + Math.round(position.z)     +
@@ -191,6 +191,31 @@ ApplicationWindow {
                 rectangle1.text = "x: "      + Math.round(position.x)      + "\ny: "    + Math.round(position.y)      + "\nz: "    + Math.round(position.z)     +
                                   "\nrotx: " + Math.round(eulerRotation.x) + "\nroty: " + Math.round(eulerRotation.y) + "\nrotz: " + Math.round(eulerRotation.z)
             }*/
+        }
+        Node {
+            id: node_centerCamera
+            property real distance : 1400
+            property real angle : 25
+            property real currentAngle : angle + 180
+
+            eulerRotation: Qt.vector3d(90,0,0)
+
+            Node {
+                eulerRotation: Qt.vector3d(-19.7, -0.700003, 0)
+
+                PerspectiveCamera {
+                     id: centerCamera
+                     function reset(){
+                         centerCamera.position = Qt.vector3d(0, -1228, 400)
+                     }
+                     position: Qt.vector3d(0, 0, node_centerCamera.distance)
+
+                     //on position changed: change euler rotation
+                     eulerRotation: Qt.vector3d(0, 0, 0)
+                     clipNear: 1
+                     fieldOfViewOrientation: Camera.Vertical
+                }
+            }
         }
 
         InputController{
@@ -280,6 +305,7 @@ ApplicationWindow {
                 } else {
                     view.camera.position.z += wheel.angleDelta.y/50;
                 }
+
             }
         }
 

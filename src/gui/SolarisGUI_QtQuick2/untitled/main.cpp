@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
     // qDebug()<<qputenv("QSG_INFO", "1");
 
     // Install handler for console output
-    qInstallMessageHandler(consoleOutputHandler_verbose);
+    qInstallMessageHandler(consoleOutputHandler);
 
     // Create engine object
     QQmlApplicationEngine engine;

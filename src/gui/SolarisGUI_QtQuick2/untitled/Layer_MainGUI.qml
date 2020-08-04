@@ -25,7 +25,9 @@ Item {
 
             Connections {
                 target: playButton_mouseArea
-                onClicked: tooglePlayPause_helper();
+                onClicked: function(){
+                    tooglePlayPause_helper();
+                }
             }
         }
     }
@@ -49,7 +51,9 @@ Item {
 
             Connections {
                 target: stopButton_mouseArea
-                onClicked: resetSimulation_helper();
+                onClicked: function(){
+                    resetSimulation_helper();
+                }
             }
         }
     }

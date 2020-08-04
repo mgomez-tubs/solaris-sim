@@ -5,6 +5,9 @@
 
 Simulation::Simulation(QObject * rootObject)
 {
+    // If resources folder doesn't exist, create it and move the files
+
+
     // Set root object
     this->rootObject = rootObject;
 
@@ -18,7 +21,6 @@ Simulation::Simulation(QObject * rootObject)
     #endif
 
     // Closing the main window should close the whole Application
-
     connect(rootObject, SIGNAL(mainWclosed()),
             qApp, SLOT(quit()));
     startTimer();
