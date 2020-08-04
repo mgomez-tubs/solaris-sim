@@ -16,6 +16,9 @@ class Information
 public:
     std::vector<std::vector<std::string>> calling()
     {
+        std::cout<<"Current location: ";
+        std::system("dir");
+
         std::vector<std::string> names = GetNamesInf();
         std::vector<std::vector<std::string>> dataTRF = GetFinDataInf(names);
         return dataTRF;

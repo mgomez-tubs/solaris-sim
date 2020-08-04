@@ -2,7 +2,6 @@
 #define SIMULATION_H
 
 #include <QTimer>
-#include <vector>
 #include "planet.h"
 #include "debugwindow.h"
 
@@ -55,7 +54,8 @@ public:
     void Run();
 
     // Handler
-    /*void externalDataHandler();*/
+    QString getPlanetInfoString(int planetID);
+    void getPlanetOrbitInfo(int planetID);
 
 private slots:
     void tooglePlayPause();

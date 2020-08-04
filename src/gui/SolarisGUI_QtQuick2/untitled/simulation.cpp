@@ -1,9 +1,11 @@
 #include "simulation.h"
 #include <QDebug>
 #include <QDir>
-
-#include "Data_Calling/Datensatz.cpp"
 #include <QDirIterator>
+
+#include "Data_Calling/Header_Info.h"
+#include "Data_Calling/Header_Planet.h"
+#include <vector>
 
 Simulation::Simulation(QObject * rootObject)
 {
@@ -201,6 +203,11 @@ void Simulation::Init(){
     ZwergPlaneten[3].setOrbitType("kreisBewegung", 1400*distanceScale, 0.01);
     ZwergPlaneten[4].setOrbitType("kreisBewegung", 1500*distanceScale, 0.01);
 
+    // Obtain external Data
+    //getPlanetInfoString(0);
+    getPlanetOrbitInfo(0);
+
+
     // Connect Run() method to simulation timer
     connect(SIMULATION_TIMER, &QTimer::timeout, this, &Simulation::Run);
 
@@ -306,8 +313,36 @@ void Simulation::setPreset_main(){
 
 }
 
-/*
-void Simulation::externalDataHandler(){
-    std::vector<std::string> names = GetNames("./planets/pl_*.txt");
-    //std::vector<std::vector<float>> data = GetALLEData(names);
-}*/
+
+QString Simulation::getPlanetInfoString(int planetID){
+    Information i;
+    QString s;
+    std::vector<std::vector<std::string>> infoOUT = i.calling();
+    std::string str;
+
+    unsigned int numInt4 = 0;
+    do{
+        str = infoOUT[planetID][numInt4];    // First element: planet ID
+        //std::cout << str << '\n';
+        s.append(QString::fromStdString(str));
+        qDebug() << QString::fromStdString(str);
+        numInt4++;
+    } while (numInt4 < infoOUT[planetID].size());
+
+    return s;
+}
+
+
+void Simulation::getPlanetOrbitInfo(int planetID){
+    call c;
+    float f;
+    std::vector<std::vector<float>> dataOUT = c.calling();
+
+    unsigned int numInt2 = 0;
+    do{
+        f = dataOUT[planetID][numInt2];    // First element: planet ID
+        //std::cout << str << '\n';
+        qDebug() << f;
+        numInt2++;
+    } while (numInt2 < dataOUT[planetID].size());
+}

@@ -5,7 +5,15 @@
 
 using namespace std;
 
-int ___main()
+double getPlanetaryInfo(int a, int b){
+    call c;
+    int numInt1, numInt2 = 0;
+    vector<vector<float>> dataOUT = c.calling();
+
+    return dataOUT[a][b];
+}
+
+int main()
 {
     int numSel = 255;
 
@@ -36,7 +44,8 @@ int ___main()
             cin >> numInt2;
             cout << '\n';
 
-            cout << dataOUT[numInt1][numInt2] << '\n';
+            //cout << dataOUT[numInt1][numInt2] << '\n';
+            cout << getPlanetaryInfo(numInt1,numInt2) << '\n';
         }
 
         // info_* Matrix (Information texts)
