@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         Data_Calling/Datensatz.cpp \
+        Data_Calling/planets/planets.cpp \
         QML/drawcircleqt.cpp \
         debugwindow.cpp \
         main.cpp \
@@ -54,7 +55,24 @@ RESOURCES += qml.qrc \
     assets/maps/8k_moon.jpg \
     assets/maps/charon_texture.jpg \
     assets/maps/pluto_texture.jpg \
-    assets/maps/pluto_texture_nasa_stitched.jpg
+    assets/maps/pluto_texture_nasa_stitched.jpg \
+    Data_Calling/Info/info_Earth.txt \
+    Data_Calling/Info/info_Jupiter.txt \
+    Data_Calling/Info/info_Mars.txt \
+    Data_Calling/Info/info_Mercury.txt \
+    Data_Calling/Info/info_Neptune.txt \
+    Data_Calling/Info/info_Saturn.txt \
+    Data_Calling/Info/info_Uranus.txt \
+    Data_Calling/Info/info_Venus.txt \
+    Data_Calling/planets/pl_earth.txt \
+    Data_Calling/planets/pl_jupiter.txt \
+    Data_Calling/planets/pl_mars.txt \
+    Data_Calling/planets/pl_mercury.txt \
+    Data_Calling/planets/pl_neptun.txt \
+    Data_Calling/planets/pl_saturn.txt \
+    Data_Calling/planets/pl_uranus.txt \
+    Data_Calling/planets/pl_venus.txt \
+    Data_Calling/planets/werte.txt \
 
 
 TARGET = SolarisGUI
@@ -81,7 +99,7 @@ HEADERS += \
 FORMS += \
     debugwindow.ui
 
-DISTFILES += \ \
+DISTFILES += \
     assets/Ceres.qml \
     assets/Charon.qml \
     assets/Earth_day.qml \

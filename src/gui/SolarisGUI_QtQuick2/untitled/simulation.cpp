@@ -1,11 +1,58 @@
 #include "simulation.h"
 #include <QDebug>
+#include <QDir>
 
 #include "Data_Calling/Datensatz.cpp"
+#include <QDirIterator>
 
 Simulation::Simulation(QObject * rootObject)
 {
-    // If resources folder doesn't exist, create it and move the files
+    // If Info folder and planets folders exist, delete them and move the files
+    QString path_Info = qApp->applicationDirPath();
+    path_Info.append("/Info/");
+    QString path_planets = qApp->applicationDirPath();
+    path_planets.append("/planets/");
+
+    /*
+    if(QDir(path_Info).exists()){
+        QDir dir(path_Info);
+        dir.removeRecursively();
+        qDebug()<<"Directory info deleted";
+    }
+
+    if(QDir(path_planets).exists()){
+        QDir dir(path_planets);
+        dir.removeRecursively();
+        qDebug()<<"Directory planets deleted";
+    }
+*/
+    // Create folders (if they don't already exist)
+    QDir().mkdir(path_Info);
+    QDir().mkdir(path_planets);
+
+    // Fill the folders with the needed files
+
+    // Copy needed Files into Info Folder
+    QDirIterator itInfo(":/Data_Calling/Info/", QDirIterator::Subdirectories);
+    while(itInfo.hasNext())
+    {
+        itInfo.next();        // this looks weird but please dont touch it
+        QString f = path_Info;
+        f.append(itInfo.fileName());
+        //qDebug()<< itInfo.filePath();
+        QFile::copy(itInfo.filePath(), f);
+    }
+
+    // Copy needed Files into planets Folder
+    QDirIterator itPlanets(":/Data_Calling/planets/", QDirIterator::Subdirectories);
+    while(itPlanets.hasNext())
+    {
+        itPlanets.next();
+        QString f = path_planets;
+        f.append(itPlanets.fileName());
+        //qDebug()<< itPlanets.filePath();
+        QFile::copy(itPlanets.filePath(), f);
+    }
 
 
     // Set root object

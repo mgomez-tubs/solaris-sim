@@ -1,4 +1,4 @@
-  }
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -6,7 +6,7 @@
 
 using namespace std;
 
-int main (void){
+int _____main (void){
 
   string planet;
   char stop;
