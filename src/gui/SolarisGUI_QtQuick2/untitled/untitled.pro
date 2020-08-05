@@ -24,6 +24,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        Data_Calling/planets/planets.cpp \
         QML/drawcircleqt.cpp \
         debugwindow.cpp \
         main.cpp \
@@ -54,6 +55,7 @@ RESOURCES += qml.qrc \
     assets/maps/charon_texture.jpg \
     assets/maps/pluto_texture.jpg \
     assets/maps/pluto_texture_nasa_stitched.jpg \
+    Data_Calling/Info.txt \
     Data_Calling/Info/info_Earth.txt \
     Data_Calling/Info/info_Jupiter.txt \
     Data_Calling/Info/info_Mars.txt \
@@ -62,6 +64,7 @@ RESOURCES += qml.qrc \
     Data_Calling/Info/info_Saturn.txt \
     Data_Calling/Info/info_Uranus.txt \
     Data_Calling/Info/info_Venus.txt \
+    Data_Calling/PlData.txt \
     Data_Calling/planets/pl_earth.txt \
     Data_Calling/planets/pl_jupiter.txt \
     Data_Calling/planets/pl_mars.txt \
@@ -70,7 +73,7 @@ RESOURCES += qml.qrc \
     Data_Calling/planets/pl_saturn.txt \
     Data_Calling/planets/pl_uranus.txt \
     Data_Calling/planets/pl_venus.txt \
-    Data_Calling/planets/werte.txt \
+    Data_Calling/planets/werte.txt
 
 
 TARGET = SolarisGUI

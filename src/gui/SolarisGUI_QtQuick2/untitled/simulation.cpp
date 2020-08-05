@@ -35,7 +35,7 @@ Simulation::Simulation(QObject * rootObject)
     // Fill the folders with the needed files
 
     // Copy needed Files into Info Folder
-    QDirIterator itInfo(":/Data_Calling/Info/", QDirIterator::Subdirectories);
+    QDirIterator itInfo(":/Data_Calling/Info/", QDirIterator::NoIteratorFlags);
     while(itInfo.hasNext())
     {
         itInfo.next();        // this looks weird but please dont touch it
@@ -43,10 +43,11 @@ Simulation::Simulation(QObject * rootObject)
         f.append(itInfo.fileName());
         //qDebug()<< itInfo.filePath();
         QFile::copy(itInfo.filePath(), f);
+        QFile::setPermissions(f, QFileDevice::ReadOwner|QFileDevice::WriteOwner);
     }
 
     // Copy needed Files into planets Folder
-    QDirIterator itPlanets(":/Data_Calling/planets/", QDirIterator::Subdirectories);
+    QDirIterator itPlanets(":/Data_Calling/planets/", QDirIterator::NoIteratorFlags);
     while(itPlanets.hasNext())
     {
         itPlanets.next();
@@ -54,12 +55,13 @@ Simulation::Simulation(QObject * rootObject)
         f.append(itPlanets.fileName());
         //qDebug()<< itPlanets.filePath();
         QFile::copy(itPlanets.filePath(), f);
-    }
-
-
-    // Set root object
-    this->rootObject = rootObject;
-
+        QFile::setPermissions(f, QFileDevice::ReadOwner|QFileDevice::WriteOwner);                                                               // Note:
+    }                                                                                                                                           // For reasons which exceed human understanding of nature and science, fstream will not read a file which has
+                                                                                                                                                // the attribute of "write protected", and, for very unfortunate reasons, Qt apparently defaults to copying files
+                                                                                                                                                // with the attribute "write protected" set as default (although this might be wrong and maybe I'm just extremely unlucky).
+    // Set root object                                                                                                                          // Finding the reason why the application would crash when reading the copied files through Qt (and finding out it didn't if I manually copied the files) was a nightmare.
+    this->rootObject = rootObject;                                                                                                              //
+                                                                                                                                                // It took me hours to fix this, so I happily spent 15 minutes ranting about this. I might as well git-blame humanity itself at the repository.
     // Set timers
     this->SIMULATION_TIMER = new QTimer(this);
     this->DEBUG_TIMER = new QTimer(this);
@@ -203,6 +205,9 @@ void Simulation::Init(){
     ZwergPlaneten[3].setOrbitType("kreisBewegung", 1400*distanceScale, 0.01);
     ZwergPlaneten[4].setOrbitType("kreisBewegung", 1500*distanceScale, 0.01);
 
+
+    // Change working directory
+    QDir::setCurrent(qApp->applicationDirPath());
     // Obtain external Data
     //getPlanetInfoString(0);
     getPlanetOrbitInfo(0);
