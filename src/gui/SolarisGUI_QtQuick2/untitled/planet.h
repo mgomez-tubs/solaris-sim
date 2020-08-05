@@ -56,6 +56,8 @@ public:
         QString explo;
     }planetInfo;
 
+    QString infoTextHTML;
+
     // Adders
 
     // Setters

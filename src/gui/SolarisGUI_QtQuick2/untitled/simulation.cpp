@@ -201,7 +201,6 @@ void Simulation::Init(){
     QDir::setCurrent(qApp->applicationDirPath());
 
     // Obtain external Data
-
     // Fill orDt struct for each planet with the external Orbit Data
     for(int i = 0; i < anzahlPlaneten()-1;i++){                                     // [!] Only until Uranus since seems to be wrong
         qDebug()<<"Writing Orbit info for planet " << Planeten[i].getName();
@@ -213,8 +212,13 @@ void Simulation::Init(){
         Planeten[i].orDt.d_pol  = getPlanetOrbitInfo(i).at(5);
         Planeten[i].orDt.m      = getPlanetOrbitInfo(i).at(6);                      // [!] One number is missing from many planets
     }
-
     qDebug() << "Finished writing orbit info";
+
+    // Fill Info Text Struct for each planet
+    for(int i = 0; i < anzahlPlaneten();i++){                                     // [!] Only until Uranus since seems to be wrong
+        qDebug()<<"Writing Text info for planet " << Planeten[i].getName();
+        Planeten[i].infoTextHTML = getPlanetInfoString(i);
+    }
 
     //getPlanetInfoString(0);
     //getPlanetOrbitInfo(0);      // planet mercury!
