@@ -55,7 +55,7 @@ public:
 
     // Handler
     QString getPlanetInfoString(int planetID);
-    void getPlanetOrbitInfo(int planetID);
+    QVector<float> getPlanetOrbitInfo(int planetID);
 
 private slots:
     void tooglePlayPause();

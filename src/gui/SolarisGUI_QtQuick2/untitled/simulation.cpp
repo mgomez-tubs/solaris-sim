@@ -9,31 +9,18 @@
 
 Simulation::Simulation(QObject * rootObject)
 {
+    // ++++                     Copy the needed files                        ++++ // (maybe this doesnt belong in Simulation,cpp? -> move to main.cpp)
     // If Info folder and planets folders exist, delete them and move the files
     QString path_Info = qApp->applicationDirPath();
     path_Info.append("/Info/");
     QString path_planets = qApp->applicationDirPath();
     path_planets.append("/planets/");
 
-    /*
-    if(QDir(path_Info).exists()){
-        QDir dir(path_Info);
-        dir.removeRecursively();
-        qDebug()<<"Directory info deleted";
-    }
-
-    if(QDir(path_planets).exists()){
-        QDir dir(path_planets);
-        dir.removeRecursively();
-        qDebug()<<"Directory planets deleted";
-    }
-*/
     // Create folders (if they don't already exist)
     QDir().mkdir(path_Info);
     QDir().mkdir(path_planets);
 
     // Fill the folders with the needed files
-
     // Copy needed Files into Info Folder
     QDirIterator itInfo(":/Data_Calling/Info/", QDirIterator::NoIteratorFlags);
     while(itInfo.hasNext())
@@ -55,13 +42,17 @@ Simulation::Simulation(QObject * rootObject)
         f.append(itPlanets.fileName());
         //qDebug()<< itPlanets.filePath();
         QFile::copy(itPlanets.filePath(), f);
-        QFile::setPermissions(f, QFileDevice::ReadOwner|QFileDevice::WriteOwner);                                                               // Note:
-    }                                                                                                                                           // For reasons which exceed human understanding of nature and science, fstream will not read a file which has
-                                                                                                                                                // the attribute of "write protected", and, for very unfortunate reasons, Qt apparently defaults to copying files
-                                                                                                                                                // with the attribute "write protected" set as default (although this might be wrong and maybe I'm just extremely unlucky).
-    // Set root object                                                                                                                          // Finding the reason why the application would crash when reading the copied files through Qt (and finding out it didn't if I manually copied the files) was a nightmare.
-    this->rootObject = rootObject;                                                                                                              //
-                                                                                                                                                // It took me hours to fix this, so I happily spent 15 minutes ranting about this. I might as well git-blame humanity itself at the repository.
+        QFile::setPermissions(f, QFileDevice::ReadOwner|QFileDevice::WriteOwner);
+    }
+
+    // Copy Info.txt and PIData.txt
+    QFile::copy(":/Data_Calling/Info.txt", qApp->applicationDirPath()+"/Info.txt");
+    QFile::copy(":/Data_Calling/PIData.txt", qApp->applicationDirPath()+"/PIData.txt");
+    // ++++                     -----------------------                        ++++ //
+
+    // Set root object
+    this->rootObject = rootObject;
+
     // Set timers
     this->SIMULATION_TIMER = new QTimer(this);
     this->DEBUG_TIMER = new QTimer(this);
@@ -208,9 +199,25 @@ void Simulation::Init(){
 
     // Change working directory
     QDir::setCurrent(qApp->applicationDirPath());
+
     // Obtain external Data
+
+    // Fill orDt struct for each planet with the external Orbit Data
+    for(int i = 0; i < anzahlPlaneten()-1;i++){                                     // [!] Only until Uranus since seems to be wrong
+        qDebug()<<"Writing Orbit info for planet " << Planeten[i].getName();
+        Planeten[i].orDt.p      = getPlanetOrbitInfo(i).at(0);
+        Planeten[i].orDt.l_ha   = getPlanetOrbitInfo(i).at(1);
+        Planeten[i].orDt.ex     = getPlanetOrbitInfo(i).at(2);
+        Planeten[i].orDt.v_mo   = getPlanetOrbitInfo(i).at(3);
+        Planeten[i].orDt.d_aeq  = getPlanetOrbitInfo(i).at(4);
+        Planeten[i].orDt.d_pol  = getPlanetOrbitInfo(i).at(5);
+        Planeten[i].orDt.m      = getPlanetOrbitInfo(i).at(6);                      // [!] One number is missing from many planets
+    }
+
+    qDebug() << "Finished writing orbit info";
+
     //getPlanetInfoString(0);
-    getPlanetOrbitInfo(0);
+    //getPlanetOrbitInfo(0);      // planet mercury!
 
 
     // Connect Run() method to simulation timer
@@ -219,17 +226,17 @@ void Simulation::Init(){
 }
 
 void Simulation::Run(){
-    for(int i = 0; i < anzahlPlaneten();i++){
+    for(int i = 1; i < anzahlPlaneten();i++){
         Planeten[i].kreisBewegung();
     }
-    for(int i = 0; i < anzahlZwergPlaneten();i++){
+    for(int i = 1; i < anzahlZwergPlaneten();i++){
         ZwergPlaneten[i].kreisBewegung();
     }
 }
 
 void Simulation::Reset(){
     stopTimer();
-    for(int i = 0; i<anzahlPlaneten();i++){
+    for(int i = 1; i<anzahlPlaneten();i++){
         Planeten[i].resetPosition();
     }
 
@@ -318,36 +325,35 @@ void Simulation::setPreset_main(){
 
 }
 
-
 QString Simulation::getPlanetInfoString(int planetID){
-    Information i;
+    Information Info;
     QString s;
-    std::vector<std::vector<std::string>> infoOUT = i.calling();
+    std::vector<std::vector<std::string>> infoOUT = Info.calling();
     std::string str;
 
-    unsigned int numInt4 = 0;
+    unsigned int j = 0;
     do{
-        str = infoOUT[planetID][numInt4];    // First element: planet ID
+        str = infoOUT[planetID][j];    // First element: planet ID
         //std::cout << str << '\n';
         s.append(QString::fromStdString(str));
         qDebug() << QString::fromStdString(str);
-        numInt4++;
-    } while (numInt4 < infoOUT[planetID].size());
+        j++;
+    } while (j < infoOUT[planetID].size());
 
     return s;
 }
 
-
-void Simulation::getPlanetOrbitInfo(int planetID){
-    call c;
+QVector<float> Simulation::getPlanetOrbitInfo(int planetID){
+    call Call;
     float f;
-    std::vector<std::vector<float>> dataOUT = c.calling();
+    QVector<float> v;       // vector to be returned
+    std::vector<std::vector<float>> dataOUT = Call.calling();
 
-    unsigned int numInt2 = 0;
+    unsigned int i = 0;
     do{
-        f = dataOUT[planetID][numInt2];    // First element: planet ID
-        //std::cout << str << '\n';
-        qDebug() << f;
-        numInt2++;
-    } while (numInt2 < dataOUT[planetID].size());
+        f = dataOUT[planetID][i];    // First element: planet ID
+        v.append(f);
+        i++;
+    } while (i < dataOUT[planetID].size());
+    return v;
 }
