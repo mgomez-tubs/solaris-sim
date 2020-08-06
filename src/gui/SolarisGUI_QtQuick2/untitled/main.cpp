@@ -92,6 +92,46 @@ int main(int argc, char *argv[])
         return -1;
     // ++++                     -----------------------                        ++++ //
 
+    // ++++                     Copy program files                             ++++ //
+    // If Info folder and planets folders exist, delete them and move the files
+    QString path_Info = qApp->applicationDirPath();
+    path_Info.append("/Info/");
+    QString path_planets = qApp->applicationDirPath();
+    path_planets.append("/planets/");
+
+    // Create folders (if they don't already exist)
+    QDir().mkdir(path_Info);
+    QDir().mkdir(path_planets);
+
+    // Copy needed Files into Info Folder
+    QDirIterator itInfo(":/Data_Calling/Info/", QDirIterator::NoIteratorFlags);
+    while(itInfo.hasNext())
+    {
+        itInfo.next();        // this looks weird but please dont touch it
+        QString f = path_Info;
+        f.append(itInfo.fileName());
+        //qDebug()<< itInfo.filePath();
+        QFile::copy(itInfo.filePath(), f);
+        QFile::setPermissions(f, QFileDevice::ReadOwner|QFileDevice::WriteOwner);
+    }
+
+    // Copy needed Files into planets Folder
+    QDirIterator itPlanets(":/Data_Calling/planets/", QDirIterator::NoIteratorFlags);
+    while(itPlanets.hasNext())
+    {
+        itPlanets.next();
+        QString f = path_planets;
+        f.append(itPlanets.fileName());
+        //qDebug()<< itPlanets.filePath();
+        QFile::copy(itPlanets.filePath(), f);
+        QFile::setPermissions(f, QFileDevice::ReadOwner|QFileDevice::WriteOwner);
+    }
+
+    // Copy Info.txt and PIData.txt
+    QFile::copy(":/Data_Calling/Info.txt", qApp->applicationDirPath()+"/Info.txt");
+    QFile::copy(":/Data_Calling/PIData.txt", qApp->applicationDirPath()+"/PIData.txt");
+    // ++++                     -----------------------                        ++++ //
+
     // Create a pointer to the root QML Object (needed for editing QML properties)
     QObject *rootObject = engine.rootObjects().first();
 
