@@ -71,6 +71,7 @@ public:
     void setOrder(int);
     void setRadius();
     void setTiltAngle(float);
+    void setInfoTextHTML(QString);
 
     // Getters
     QString getName();

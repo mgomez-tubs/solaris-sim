@@ -2,6 +2,7 @@ import QtQuick3D 1.15
 import QtQuick 2.12
 
 Node {
+    id: solarSystem
     property alias merkur   : merkur
     property alias venus    : venus
     property alias erde     : erde

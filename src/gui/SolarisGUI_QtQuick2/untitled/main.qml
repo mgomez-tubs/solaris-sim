@@ -76,6 +76,12 @@ ApplicationWindow {
             }
         }
 
+        property Node currentPlanet : undefined
+        function setCurrentPlanet(planet : Node) {
+            currentPlanet = planet;
+        }
+
+
         //                           Functions                           //
         function getPlanetList(){   // derzeit nicht benutzt
             var planets = ["merkur","venus","erde","mars","jupiter","saturn","uranus","venus"]
@@ -224,7 +230,7 @@ ApplicationWindow {
             // Set the pivot of that node to the coordinate origin
             // and connect this controlledObject with that [!] Node (also: cameras parent)
             controlledObject: view.camera.parent
-            keysEnabled: false
+            keysEnabled: true       // Careful, this disables keys GLOBALLY (also Keys in DefaultKeys)
         }
 
         CircularOrbits  { id: circularOrbits}
@@ -293,8 +299,11 @@ ApplicationWindow {
                     view.camera=pickedObject.planetCamera
                     view.camera.reset();
 
+                    // Set current planet
+                    view.setCurrentPlanet(pickedObject)
+
                     // Change Layer to planet layer                                                         [!]
-                    //view.layerHandler("PlanetGUI");
+                    // view.layerHandler("PlanetGUI");
 
                 }
             }
@@ -312,14 +321,23 @@ ApplicationWindow {
         function layerHandler(layer : String){
             if          (layer === "MainGUI"){
                 layerLoader.source = "MainGUI/Layer_MainGUI.qml"
+                view.camera.restore();
                 return
             }
             else if   (layer === "PlanetGUI"){
+                // Save current camera properties
+                view.camera.backUp();
+                // Change the camera to planet mode
+                // Shift current camera to the right
+                view.camera.position                = Qt.vector3d(-30,0,57);
+                view.camera.parent.eulerRotation    = Qt.vector3d(-5.5,76,0);
+
                 layerLoader.source = "PlanetGUI/Layer_PlanetGUI.qml"
+                return
             }
         }
 
-
+        // Layer loader
         Item {
             anchors.fill: parent
             Loader {

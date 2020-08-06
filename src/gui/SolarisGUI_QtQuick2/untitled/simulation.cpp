@@ -203,7 +203,7 @@ void Simulation::Init(){
     // Obtain external Data
     // Fill orDt struct for each planet with the external Orbit Data
     for(int i = 0; i < anzahlPlaneten()-1;i++){                                     // [!] Only until Uranus since seems to be wrong
-        qDebug()<<"Writing Orbit info for planet " << Planeten[i].getName();
+        //qDebug()<<"Writing Orbit info for planet " << Planeten[i].getName();
         Planeten[i].orDt.p      = getPlanetOrbitInfo(i).at(0);
         Planeten[i].orDt.l_ha   = getPlanetOrbitInfo(i).at(1);
         Planeten[i].orDt.ex     = getPlanetOrbitInfo(i).at(2);
@@ -212,12 +212,11 @@ void Simulation::Init(){
         Planeten[i].orDt.d_pol  = getPlanetOrbitInfo(i).at(5);
         Planeten[i].orDt.m      = getPlanetOrbitInfo(i).at(6);                      // [!] One number is missing from many planets
     }
-    qDebug() << "Finished writing orbit info";
 
     // Fill Info Text Struct for each planet
     for(int i = 0; i < anzahlPlaneten();i++){                                     // [!] Only until Uranus since seems to be wrong
-        qDebug()<<"Writing Text info for planet " << Planeten[i].getName();
-        Planeten[i].infoTextHTML = getPlanetInfoString(i);
+        //qDebug()<<"Writing Text info for planet " << Planeten[i].getName();
+        Planeten[i].setInfoTextHTML(getPlanetInfoString(i));
     }
 
     //getPlanetInfoString(0);
@@ -340,7 +339,7 @@ QString Simulation::getPlanetInfoString(int planetID){
         str = infoOUT[planetID][j];    // First element: planet ID
         //std::cout << str << '\n';
         s.append(QString::fromStdString(str));
-        qDebug() << QString::fromStdString(str);
+        s.append("<br>");
         j++;
     } while (j < infoOUT[planetID].size());
 
