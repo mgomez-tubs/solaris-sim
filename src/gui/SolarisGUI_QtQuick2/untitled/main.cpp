@@ -43,8 +43,8 @@ void consoleOutputHandler_verbose(QtMsgType type, const QMessageLogContext &cont
     QByteArray localMsg = msg.toLocal8Bit();
     const char *file = context.file ? context.file : "";
     const char *function = context.function ? context.function : "";
-    if(localMsg.length()>200){
-        localMsg.truncate(200);
+    if(localMsg.length()>150){
+        localMsg.truncate(150);
         localMsg.append(" [...]");
     }
     switch (type) {
@@ -127,9 +127,12 @@ int main(int argc, char *argv[])
         QFile::setPermissions(f, QFileDevice::ReadOwner|QFileDevice::WriteOwner);
     }
 
-    // Copy Info.txt and PIData.txt
+    // Copy Info.txt and PIData.txt and set correct attributes
     QFile::copy(":/Data_Calling/Info.txt", qApp->applicationDirPath()+"/Info.txt");
-    QFile::copy(":/Data_Calling/PIData.txt", qApp->applicationDirPath()+"/PIData.txt");
+    QFile::setPermissions(qApp->applicationDirPath()+"/Info.txt", QFileDevice::ReadOwner|QFileDevice::WriteOwner);
+
+    QFile::copy(":/Data_Calling/PlData.txt", qApp->applicationDirPath()+"/PlData.txt");
+    QFile::setPermissions(qApp->applicationDirPath()+"/PlData.txt", QFileDevice::ReadOwner|QFileDevice::WriteOwner);
     // ++++                     -----------------------                        ++++ //
 
     // Create a pointer to the root QML Object (needed for editing QML properties)
