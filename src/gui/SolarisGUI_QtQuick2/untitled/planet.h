@@ -31,8 +31,10 @@ public:
 
     // Move 1 specific properties
     float currentAngle;
-    float radius;
+    float radius;       // distance to the first pivot point, for almost every planet: distance towards the sun
+    float radius2;      // distance to the second pivot point, only for pluto
     float speed;
+
 
     // Structs
     // Data for the calculation of the planets orbit

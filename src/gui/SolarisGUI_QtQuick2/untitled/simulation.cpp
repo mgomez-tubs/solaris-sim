@@ -129,9 +129,8 @@ void Simulation::Init(){
     // 40.0 ; 70.0 ; 100.0 ; 150.0 ; 320.0 ; 560.0 ; 820.0 ; 1000.0
 
     // Set up planet orbits
-    Planeten[0].setOrbitType("kreisBewegung", planet_distance[0] * distanceScale, 1/87.969);
-
     // Syntax: void setOrbitType({type of orbit},{distance to the sun},{scale of the distance},{angular velocity}
+    Planeten[0].setOrbitType("kreisBewegung", planet_distance[0] * distanceScale, 1/87.969);
     Planeten[1].setOrbitType("kreisBewegung", planet_distance[1] * distanceScale, 1/224.701);
     Planeten[2].setOrbitType("kreisBewegung", planet_distance[2] * distanceScale, 1/365.256);
     Planeten[3].setOrbitType("kreisBewegung", planet_distance[3] * distanceScale, 1/686.980);
@@ -189,10 +188,10 @@ void Simulation::Run(){
 /*  This function is constantly called according to the QTimer SIMULATION TIMER
  *  Each planet has a function which controls its position. That function is called here.
  */
-    for(int i = 1; i < anzahlPlaneten();i++){
+    for(int i = 0; i < anzahlPlaneten();i++){
         Planeten[i].kreisBewegung();
     }
-    for(int i = 1; i < anzahlZwergPlaneten();i++){
+    for(int i = 0; i < anzahlZwergPlaneten();i++){
         ZwergPlaneten[i].kreisBewegung();
     }
 }
