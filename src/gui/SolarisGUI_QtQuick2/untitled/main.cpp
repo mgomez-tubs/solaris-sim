@@ -10,6 +10,10 @@
 #include <QtQuickControls2>
 #include "QML/drawcircleqt.h"
 
+/*  The following two functions handle console output logs.
+ *  The first one will output a simplified, max. 200 char long messages.
+ *  For more detailed debugging, the second function should be used.
+ */
 void consoleOutputHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
     Q_UNUSED(context);
@@ -18,7 +22,7 @@ void consoleOutputHandler(QtMsgType type, const QMessageLogContext &context, con
         localMsg.truncate(200);
         localMsg.append(" [...]");
     }
-    switch (type) {
+    switch (type) {     // The type of the message
         case QtDebugMsg:
             fprintf(stderr, "Debug: %s \n", localMsg.constData());
             break;

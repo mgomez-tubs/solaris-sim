@@ -12,7 +12,6 @@ Simulation::Simulation(QObject * rootObject)
 
     // Set root object
     this->rootObject = rootObject;
-
     // Set timers
     this->SIMULATION_TIMER = new QTimer(this);
     this->DEBUG_TIMER = new QTimer(this);
@@ -32,7 +31,7 @@ Simulation::Simulation(QObject * rootObject)
 }
 
 void Simulation::addPlanet(QObject * rootObject, QString name, QString id){
-    // Connections
+    // Connections (currently only used for debugging purposes)
 #ifdef DEBUG_IS_ENABLED
     // Beim Erstellen eines neues Planets eine neue Zeile in DEBUG WINDOW hinzufügen
     connect(&Planeten[anzahlPlaneten()], &Planet::rowNameEmitter,&w,&DebugWindow::addRow);
@@ -51,10 +50,10 @@ void Simulation::addPlanet(QObject * rootObject, QString name, QString id){
 
 #endif
 
-    // Eigenschaften
+    // Set up planet properties
     // Order Number
     Planeten[anzahlPlaneten()].setOrder(anzahlPlaneten());
-    // Set Properties
+    // Root object pointer, name and ID
     Planeten[anzahlPlaneten()].setProperties(rootObject,name,id);
 
     // Up the planet counter
@@ -63,17 +62,16 @@ void Simulation::addPlanet(QObject * rootObject, QString name, QString id){
 
 void Simulation::addZwergPlanet(QObject *rootObject, QString name, QString id){
 
-    // Eigenschaften
+    // Set up planet properties
     // Order Number
     ZwergPlaneten[anzahlZwergPlaneten()].setOrder(anzahlZwergPlaneten());
-    // Set Properties
+    // Root object pointer, name and ID
     ZwergPlaneten[anzahlZwergPlaneten()].setProperties(rootObject,name,id);
 
-    // Up the planet counter
+    // Up the small planet counter
     this->addOneZwergPlanet();
 }
 
-// Simulation flow
 void Simulation::Init(){
 
     // Set Up QML Connections
@@ -82,7 +80,7 @@ void Simulation::Init(){
     connect(rootObject,SIGNAL(setSpeedMultiplier(qreal)), this,SLOT(setSpeedMultiplier(qreal)));
     connect(rootObject,SIGNAL(setPreset_main()), this,SLOT(setPreset_main()));
 
-    //                  Planets
+    //  Add the (main) Planets
     addPlanet(rootObject,"Merkur","merkur");    //0
     addPlanet(rootObject,"Venus","venus");      //1
     addPlanet(rootObject,"Erde","erde");        //2
@@ -93,14 +91,14 @@ void Simulation::Init(){
     addPlanet(rootObject,"Neptun", "neptun");   //7
     qDebug()<< "Planets created";
 
-    //                  Small planets
-
-    addZwergPlanet(rootObject,"Ceres", "ceres");    // between mars and jupiter
+    // Add the small planets
+    addZwergPlanet(rootObject,"Ceres", "ceres");    // this one is between mars and jupiter
     addZwergPlanet(rootObject,"Pluto", "pluto");
     addZwergPlanet(rootObject,"Haumea", "haumea");
     addZwergPlanet(rootObject,"MakeMake", "makemake");
     addZwergPlanet(rootObject,"Eris", "eris");
     qDebug()<<"Small planets created";
+
     distanceScale = 3;
 
     //int distance_mercury = 40, distance_venus = 70, distance_earth = 100, distance_mars = 150, distance_jupiter = 320, distance_saturn = 560, distance_uranus = 820, distance_neptun = 1000;
@@ -126,12 +124,14 @@ void Simulation::Init(){
     planet_distance[4] = 320;       // Jupiter
     planet_distance[5] = 560;       // Saturn
     planet_distance[6] = 820;       // Uranus
-    planet_distance[7] = 1000;       // Neptun
+    planet_distance[7] = 1000;      // Neptun
 
     // 40.0 ; 70.0 ; 100.0 ; 150.0 ; 320.0 ; 560.0 ; 820.0 ; 1000.0
 
-    // Planets
+    // Set up planet orbits
     Planeten[0].setOrbitType("kreisBewegung", planet_distance[0] * distanceScale, 1/87.969);
+
+    // Syntax: void setOrbitType({type of orbit},{distance to the sun},{scale of the distance},{angular velocity}
     Planeten[1].setOrbitType("kreisBewegung", planet_distance[1] * distanceScale, 1/224.701);
     Planeten[2].setOrbitType("kreisBewegung", planet_distance[2] * distanceScale, 1/365.256);
     Planeten[3].setOrbitType("kreisBewegung", planet_distance[3] * distanceScale, 1/686.980);
@@ -140,6 +140,7 @@ void Simulation::Init(){
     Planeten[6].setOrbitType("kreisBewegung", planet_distance[6] * distanceScale, 1/(84.011*365.0));
     Planeten[7].setOrbitType("kreisBewegung", planet_distance[7] * distanceScale, 1/(164.79*365.0));
 
+    // Set up planet scaling
     Planeten[0].setScaling(QVector3D(0.40,0.4,0.4));
     Planeten[1].setScaling(QVector3D(0.8,0.8,0.8));
     Planeten[2].setScaling(QVector3D(1.6,1.6,1.6));
@@ -149,21 +150,21 @@ void Simulation::Init(){
     Planeten[6].setScaling(QVector3D(2.3,2.3,2.3));
     Planeten[7].setScaling(QVector3D(4.5,4.5,4.5));
 
-    // Small Planets
+    // Set up small planet orbits (same syntax as regular planets)
     ZwergPlaneten[0].setOrbitType("kreisBewegung", 200*distanceScale, 0.01);        //Ceres
     ZwergPlaneten[1].setOrbitType("kreisBewegung", 1200*distanceScale, 0.01);       // Pkuto
     ZwergPlaneten[2].setOrbitType("kreisBewegung", 1300*distanceScale, 0.01);       //haumea
     ZwergPlaneten[3].setOrbitType("kreisBewegung", 1400*distanceScale, 0.01);
     ZwergPlaneten[4].setOrbitType("kreisBewegung", 1500*distanceScale, 0.01);
 
+    //                  Acquire external data
+    // This includes orbit simulation data and planet information texts.
 
-    // Change working directory
+    // First change the working directory
     QDir::setCurrent(qApp->applicationDirPath());
 
-    // Obtain external Data
-    // Fill orDt struct for each planet with the external Orbit Data
+    // Fill orDt (orbit data) struct for each planet
     for(int i = 0; i < anzahlPlaneten()-1;i++){                                     // [!] Only until Uranus since seems to be wrong
-        //qDebug()<<"Writing Orbit info for planet " << Planeten[i].getName();
         Planeten[i].orDt.p      = getPlanetOrbitInfo(i).at(0);
         Planeten[i].orDt.l_ha   = getPlanetOrbitInfo(i).at(1);
         Planeten[i].orDt.ex     = getPlanetOrbitInfo(i).at(2);
@@ -173,22 +174,21 @@ void Simulation::Init(){
         Planeten[i].orDt.m      = getPlanetOrbitInfo(i).at(6);                      // [!] One number is missing from many planets
     }
 
-    // Fill Info Text Struct for each planet
+    // Fill info text string for each planet
     for(int i = 0; i < anzahlPlaneten();i++){                                     // [!] Only until Uranus since seems to be wrong
         //qDebug()<<"Writing Text info for planet " << Planeten[i].getName();
         Planeten[i].setInfoTextHTML(getPlanetInfoString(i));
     }
 
-    //getPlanetInfoString(0);
-    //getPlanetOrbitInfo(0);      // planet mercury!
-
-
-    // Connect Run() method to simulation timer
+    // Connect Run() method to simulation timer. This automatically starts the simulation.
     connect(SIMULATION_TIMER, &QTimer::timeout, this, &Simulation::Run);
 
 }
 
 void Simulation::Run(){
+/*  This function is constantly called according to the QTimer SIMULATION TIMER
+ *  Each planet has a function which controls its position. That function is called here.
+ */
     for(int i = 1; i < anzahlPlaneten();i++){
         Planeten[i].kreisBewegung();
     }
@@ -198,7 +198,17 @@ void Simulation::Run(){
 }
 
 void Simulation::Reset(){
+    /*  When the simulation is reset, the following steps follow:
+     * 1) Simulation Timer is stopped.
+     * 2) Every planet returns to its starting position
+     * 3) The scaling is reset to its default value
+     *
+     */
+
+    // Stop timer
     stopTimer();
+
+    // Reset position for each planet
     for(int i = 1; i<anzahlPlaneten();i++){
         Planeten[i].resetPosition();
     }
@@ -223,7 +233,7 @@ void Simulation::Reset(){
     Planeten[7].setScaling(QVector3D(4.5,4.5,4.5));
 }
 
-void Simulation::setSpeedMultiplier(qreal multiplier){
+void Simulation::setSpeedMultiplier(qreal multiplier){      // what is this
     Planet::speedMultiplier = multiplier;
 }
 
@@ -243,6 +253,7 @@ void Simulation::startTimer(){
 void Simulation::stopTimer(){
     qDebug()<<"Simulation Paused";
     simulTimerRunning = false;
+    // Stop simulation timer
     SIMULATION_TIMER->stop();
 #ifdef DEBUG_IS_ENABLED
     DEBUG_TIMER->stop();
@@ -250,6 +261,9 @@ void Simulation::stopTimer(){
 }
 
 void Simulation::tooglePlayPause(){
+    /*  This function toogles between the paused and resumed states
+     *  of the simulation.
+     */
     if(simulTimerRunning==true){
         stopTimer();
     } else {
