@@ -72,8 +72,8 @@ void Simulation::Init(){
     addPlanet(rootObject,"Saturn","saturn");   //5
     addPlanet(rootObject,"Uranus","uranus");    //6
     addPlanet(rootObject,"Neptun","neptun");   //7
-    addPlanet(rootObject,"Ceres","ceres");      //8
-    addPlanet(rootObject,"Pluto","pluto");      //9
+    //addPlanet(rootObject,"Ceres","ceres");      //8
+    //addPlanet(rootObject,"Pluto","pluto");      //9
   // addPlanet(rootObject,"Haumea","haumea");    //10
    // addPlanet(rootObject,"Makemake","makemake");//11
    // addPlanet(rootObject,"Eris","eris");        //12
@@ -101,6 +101,22 @@ void Simulation::Init(){
     planet_distance[11] = 0;
     planet_distance[12] = 0;
 
+
+    planet_scaling[0] = 0;
+    planet_scaling[1] = 0;
+    planet_scaling[2] = 0;
+    planet_scaling[3] = 0;
+    planet_scaling[4] = 0;
+    planet_scaling[5] = 0;
+    planet_scaling[6] = 0;
+    planet_scaling[7] = 0;
+    planet_scaling[8] = 0;
+    planet_scaling[9] = 0;
+    planet_scaling[10] = 0;
+    planet_scaling[11] = 0;
+    planet_scaling[12] = 0;
+
+
     /*planet_distance[0] = 40;
     planet_distance[2] = 70;
     planet_distance[3] = 150;
@@ -125,22 +141,22 @@ void Simulation::Init(){
     Planeten[5].setOrbitType("kreisBewegung", planet_distance[5] * distanceScale, 1/(29.457*365.0));
     Planeten[6].setOrbitType("kreisBewegung", planet_distance[6] * distanceScale, 1/(84.011*365.0));
     Planeten[7].setOrbitType("kreisBewegung", planet_distance[7] * distanceScale, 1/(164.79*365.0));
-    Planeten[8].setOrbitType("kreisBewegung", planet_distance[8] * distanceScale, 1/(4.221*365.0));
-    Planeten[9].setOrbitType("kreisBewegung", planet_distance[9] * distanceScale, 1/(247.343*365.0));
+    //Planeten[8].setOrbitType("kreisBewegung", planet_distance[8] * distanceScale, 1/(4.221*365.0));
+    //Planeten[9].setOrbitType("kreisBewegung", planet_distance[9] * distanceScale, 1/(247.343*365.0));
     //Planeten[10].setOrbitType("kreisBewegung", planet_distance[10] * distanceScale, 1/(284.287*365.0));
     //Planeten[11].setOrbitType("kreisBewegung", planet_distance[11] * distanceScale, 1/(307.180*365.0));
    // Planeten[12].setOrbitType("kreisBewegung", planet_distance[12] * distanceScale, 1/(204203));
 
-    Planeten[0].setScaling(QVector3D(0.40,0.4,0.4));
-    Planeten[1].setScaling(QVector3D(0.8,0.8,0.8));
-    Planeten[2].setScaling(QVector3D(1.6,1.6,1.6));
-    Planeten[3].setScaling(QVector3D(1.2,1.2,1.2));
-    Planeten[4].setScaling(QVector3D(6.0,6.0,6.0));
-    Planeten[5].setScaling(QVector3D(2.6,2.6,2.6));
-    Planeten[6].setScaling(QVector3D(2.3,2.3,2.3));
-    Planeten[7].setScaling(QVector3D(4.5,4.5,4.5));
-    Planeten[8].setScaling(QVector3D(0.40,0.4,0.4));
-    Planeten[9].setScaling(QVector3D(0.40,0.4,0.4));
+    Planeten[0].setScaling(QVector3D(planet_scaling[0],planet_scaling[0],planet_scaling[0]));
+    Planeten[1].setScaling(QVector3D(planet_scaling[1],planet_scaling[1],planet_scaling[1]));
+    Planeten[2].setScaling(QVector3D(planet_scaling[2],planet_scaling[2],planet_scaling[2]));
+    Planeten[3].setScaling(QVector3D(planet_scaling[3],planet_scaling[3],planet_scaling[3]));
+    Planeten[4].setScaling(QVector3D(planet_scaling[4],planet_scaling[4],planet_scaling[4]));
+    Planeten[5].setScaling(QVector3D(planet_scaling[5],planet_scaling[5],planet_scaling[5]));
+    Planeten[6].setScaling(QVector3D(planet_scaling[6],planet_scaling[6],planet_scaling[6]));
+    Planeten[7].setScaling(QVector3D(planet_scaling[7],planet_scaling[7],planet_scaling[7]));
+    //Planeten[8].setScaling(QVector3D(planet_scaling[8],planet_scaling[8],planet_scaling[8]));
+    //Planeten[9].setScaling(QVector3D(planet_scaling[9],planet_scaling[9],planet_scaling[9]));
    // Planeten[10].setScaling(QVector3D(0.40,0.4,0.4));
    // Planeten[11].setScaling(QVector3D(0.40,0.4,0.4));
    // Planeten[12].setScaling(QVector3D(0.40,0.4,0.4));
@@ -169,8 +185,8 @@ void Simulation::Reset(){
     Planeten[5].setOrbitType("kreisBewegung", planet_distance[5] * distanceScale, 1/(29.457*365.0));
     Planeten[6].setOrbitType("kreisBewegung", planet_distance[6] * distanceScale, 1/(84.011*365.0));
     Planeten[7].setOrbitType("kreisBewegung", planet_distance[7] * distanceScale, 1/(164.79*365.0));
-    Planeten[8].setOrbitType("kreisBewegung", planet_distance[8] * distanceScale, 1/(4.221*365.0));
-   Planeten[9].setOrbitType("kreisBewegung", planet_distance[9] * distanceScale, 1/(247.343*365.0));
+    //Planeten[8].setOrbitType("kreisBewegung", planet_distance[8] * distanceScale, 1/(4.221*365.0));
+    //Planeten[9].setOrbitType("kreisBewegung", planet_distance[9] * distanceScale, 1/(247.343*365.0));
     //Planeten[10].setOrbitType("kreisBewegung", planet_distance[10] * distanceScale, 1/(284.287*365.0));
     //Planeten[11].setOrbitType("kreisBewegung", planet_distance[11] * distanceScale, 1/(307.180*365.0));
    // Planeten[12].setOrbitType("kreisBewegung", planet_distance[12] * distanceScale, 1/(204203));
@@ -183,8 +199,8 @@ void Simulation::Reset(){
     Planeten[5].setScaling(QVector3D(2.6,2.6,2.6));
     Planeten[6].setScaling(QVector3D(2.3,2.3,2.3));
     Planeten[7].setScaling(QVector3D(4.5,4.5,4.5));
-    Planeten[8].setScaling(QVector3D(0.40,0.4,0.4));
-    Planeten[9].setScaling(QVector3D(6.0,6.0,6.0));
+    //Planeten[8].setScaling(QVector3D(0.40,0.4,0.4));
+    //Planeten[9].setScaling(QVector3D(6.0,6.0,6.0));
    // Planeten[10].setScaling(QVector3D(0.40,0.4,0.4));
    // Planeten[11].setScaling(QVector3D(0.40,0.4,0.4));
    // Planeten[12].setScaling(QVector3D(0.40,0.4,0.4));
@@ -242,6 +258,20 @@ void Simulation::setPreset_main(){
     planet_distance[10] = 1600;
     planet_distance[11] = 1750;
     planet_distance[12] = 2000;
+
+    planet_scaling[0] = 0.4;
+    planet_scaling[1] = 0.8;
+    planet_scaling[2] = 1.6;
+    planet_scaling[3] = 1.2;
+    planet_scaling[4] = 6.0;
+    planet_scaling[5] = 2.6;
+    planet_scaling[6] = 2.3;
+    planet_scaling[7] = 4.5;
+    planet_scaling[8] = 0.4;
+    planet_scaling[9] = 0;
+    planet_scaling[10] = 0;
+    planet_scaling[11] = 0;
+    planet_scaling[12] = 0;
 
     // 40.0 ; 70.0 ; 100.0 ; 150.0 ; 320.0 ; 560.0 ; 820.0 ; 1000.0
 
