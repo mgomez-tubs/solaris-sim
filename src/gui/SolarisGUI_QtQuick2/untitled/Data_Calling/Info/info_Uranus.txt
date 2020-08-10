@@ -1,0 +1,20 @@
+URANUS
+---
+Avg Radius		25362 		km
+Mass			6.833x10^25 	kg
+---
+Sideric Period		30688.5 d
+Synodic Period		369.66	d	
+Length of Day		-0 d 17 h 14 min
+Num of Satelites	27
+---
+Srf gravity (1 Bar lvl)	0.886 g	  8.69	m/s^2
+Avg 1 Bar lvl Temp Eqt	76 		K
+---
+Information
+
+Uranus has an axial tilt of about 97° making the axis almos parallel to the plane of the orbit. It has the coldest known planetary atmosphere making it an "ice giant".
+---
+Exploration
+
+The only exploration by a probe has been made by Voyager 2 with a flyby

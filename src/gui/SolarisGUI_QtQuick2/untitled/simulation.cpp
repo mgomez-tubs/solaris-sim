@@ -1,8 +1,15 @@
 #include "simulation.h"
 #include <QDebug>
+#include <QDir>
+#include <QDirIterator>
+
+#include "Data_Calling/Header_Info.h"
+#include "Data_Calling/Header_Planet.h"
+#include <vector>
 
 Simulation::Simulation(QObject * rootObject)
 {
+
     // Set root object
     this->rootObject = rootObject;
 
@@ -16,7 +23,6 @@ Simulation::Simulation(QObject * rootObject)
     #endif
 
     // Closing the main window should close the whole Application
-
     connect(rootObject, SIGNAL(mainWclosed()),
             qApp, SLOT(quit()));
     startTimer();
@@ -55,6 +61,18 @@ void Simulation::addPlanet(QObject * rootObject, QString name, QString id){
     this->addOnePlanet();
 }
 
+void Simulation::addZwergPlanet(QObject *rootObject, QString name, QString id){
+
+    // Eigenschaften
+    // Order Number
+    ZwergPlaneten[anzahlZwergPlaneten()].setOrder(anzahlZwergPlaneten());
+    // Set Properties
+    ZwergPlaneten[anzahlZwergPlaneten()].setProperties(rootObject,name,id);
+
+    // Up the planet counter
+    this->addOneZwergPlanet();
+}
+
 // Simulation flow
 void Simulation::Init(){
 
@@ -64,6 +82,7 @@ void Simulation::Init(){
     connect(rootObject,SIGNAL(setSpeedMultiplier(qreal)), this,SLOT(setSpeedMultiplier(qreal)));
     connect(rootObject,SIGNAL(setPreset_main()), this,SLOT(setPreset_main()));
 
+    //                  Planets
     addPlanet(rootObject,"Merkur","merkur");    //0
     addPlanet(rootObject,"Venus","venus");      //1
     addPlanet(rootObject,"Erde","erde");        //2
@@ -71,14 +90,17 @@ void Simulation::Init(){
     addPlanet(rootObject,"Jupiter","jupiter");  //4
     addPlanet(rootObject,"Saturn","saturn");   //5
     addPlanet(rootObject,"Uranus","uranus");    //6
-    addPlanet(rootObject,"Neptun","neptun");   //7
-    //addPlanet(rootObject,"Ceres","ceres");      //8
-    //addPlanet(rootObject,"Pluto","pluto");      //9
-  // addPlanet(rootObject,"Haumea","haumea");    //10
-   // addPlanet(rootObject,"Makemake","makemake");//11
-   // addPlanet(rootObject,"Eris","eris");        //12
+    addPlanet(rootObject,"Neptun", "neptun");   //7
+    qDebug()<< "Planets created";
 
+    //                  Small planets
 
+    addZwergPlanet(rootObject,"Ceres", "ceres");    // between mars and jupiter
+    addZwergPlanet(rootObject,"Pluto", "pluto");
+    addZwergPlanet(rootObject,"Haumea", "haumea");
+    addZwergPlanet(rootObject,"MakeMake", "makemake");
+    addZwergPlanet(rootObject,"Eris", "eris");
+    qDebug()<<"Small planets created";
     distanceScale = 3;
 
     //int distance_mercury = 40, distance_venus = 70, distance_earth = 100, distance_mars = 150, distance_jupiter = 320, distance_saturn = 560, distance_uranus = 820, distance_neptun = 1000;
@@ -87,7 +109,7 @@ void Simulation::Init(){
 
     //distance_mercury = 0;
 
-
+    /*
     planet_distance[0] = 0;
     planet_distance[2] = 0;
     planet_distance[3] = 0;
@@ -100,6 +122,7 @@ void Simulation::Init(){
     planet_distance[10] = 0;
     planet_distance[11] = 0;
     planet_distance[12] = 0;
+    */
 
 
     planet_scaling[0] = 0;
@@ -130,9 +153,9 @@ void Simulation::Init(){
     planet_distance[11] = 1750;
     planet_distance[12] = 2000;*/
 
-
     // 40.0 ; 70.0 ; 100.0 ; 150.0 ; 320.0 ; 560.0 ; 820.0 ; 1000.0
 
+    // Planets
     Planeten[0].setOrbitType("kreisBewegung", planet_distance[0] * distanceScale, 1/87.969);
     Planeten[1].setOrbitType("kreisBewegung", planet_distance[1] * distanceScale, 1/224.701);
     Planeten[2].setOrbitType("kreisBewegung", planet_distance[2] * distanceScale, 1/365.256);
@@ -161,22 +184,61 @@ void Simulation::Init(){
    // Planeten[11].setScaling(QVector3D(0.40,0.4,0.4));
    // Planeten[12].setScaling(QVector3D(0.40,0.4,0.4));
 
+    // Small Planets
+    ZwergPlaneten[0].setOrbitType("kreisBewegung", 200*distanceScale, 0.01);        //Ceres
+    ZwergPlaneten[1].setOrbitType("kreisBewegung", 1200*distanceScale, 0.01);       // Pkuto
+    ZwergPlaneten[2].setOrbitType("kreisBewegung", 1300*distanceScale, 0.01);       //haumea
+    ZwergPlaneten[3].setOrbitType("kreisBewegung", 1400*distanceScale, 0.01);
+    ZwergPlaneten[4].setOrbitType("kreisBewegung", 1500*distanceScale, 0.01);
+
+
+    // Change working directory
+    QDir::setCurrent(qApp->applicationDirPath());
+
+    // Obtain external Data
+    // Fill orDt struct for each planet with the external Orbit Data
+    for(int i = 0; i < anzahlPlaneten()-1;i++){                                     // [!] Only until Uranus since seems to be wrong
+        //qDebug()<<"Writing Orbit info for planet " << Planeten[i].getName();
+        Planeten[i].orDt.p      = getPlanetOrbitInfo(i).at(0);
+        Planeten[i].orDt.l_ha   = getPlanetOrbitInfo(i).at(1);
+        Planeten[i].orDt.ex     = getPlanetOrbitInfo(i).at(2);
+        Planeten[i].orDt.v_mo   = getPlanetOrbitInfo(i).at(3);
+        Planeten[i].orDt.d_aeq  = getPlanetOrbitInfo(i).at(4);
+        Planeten[i].orDt.d_pol  = getPlanetOrbitInfo(i).at(5);
+        Planeten[i].orDt.m      = getPlanetOrbitInfo(i).at(6);                      // [!] One number is missing from many planets
+    }
+
+    // Fill Info Text Struct for each planet
+    for(int i = 0; i < anzahlPlaneten();i++){                                     // [!] Only until Uranus since seems to be wrong
+        //qDebug()<<"Writing Text info for planet " << Planeten[i].getName();
+        Planeten[i].setInfoTextHTML(getPlanetInfoString(i));
+    }
+
+    //getPlanetInfoString(0);
+    //getPlanetOrbitInfo(0);      // planet mercury!
+
+
     // Connect Run() method to simulation timer
     connect(SIMULATION_TIMER, &QTimer::timeout, this, &Simulation::Run);
 
 }
 
 void Simulation::Run(){
-    for(int i = 0; i < anzahlPlaneten();i++){
+    for(int i = 1; i < anzahlPlaneten();i++){
         Planeten[i].kreisBewegung();
+    }
+    for(int i = 1; i < anzahlZwergPlaneten();i++){
+        ZwergPlaneten[i].kreisBewegung();
     }
 }
 
 void Simulation::Reset(){
     stopTimer();
-    for(int i = 0; i<anzahlPlaneten();i++){
+    for(int i = 1; i<anzahlPlaneten();i++){
         Planeten[i].resetPosition();
     }
+
+    qDebug()<<distanceScale;
     Planeten[0].setOrbitType("kreisBewegung", planet_distance[0] * distanceScale, 1/87.969);
     Planeten[1].setOrbitType("kreisBewegung", planet_distance[1] * distanceScale, 1/224.701);
     Planeten[2].setOrbitType("kreisBewegung", planet_distance[2] * distanceScale, 1/365.256);
@@ -289,8 +351,35 @@ void Simulation::setPreset_main(){
 
 }
 
-/*
-void Simulation::externalDataHandler(){
-    std::vector<std::string> names = GetNames("./planets/pl_*.txt");
-    //std::vector<std::vector<float>> data = GetALLEData(names);
-}*/
+QString Simulation::getPlanetInfoString(int planetID){
+    Information Info;
+    QString s;
+    std::vector<std::vector<std::string>> infoOUT = Info.calling();
+    std::string str;
+
+    unsigned int j = 0;
+    do{
+        str = infoOUT[planetID][j];    // First element: planet ID
+        //std::cout << str << '\n';
+        s.append(QString::fromStdString(str));
+        s.append("<br>");
+        j++;
+    } while (j < infoOUT[planetID].size());
+
+    return s;
+}
+
+QVector<float> Simulation::getPlanetOrbitInfo(int planetID){
+    call Call;
+    float f;
+    QVector<float> v;       // vector to be returned
+    std::vector<std::vector<float>> dataOUT = Call.calling();
+
+    unsigned int i = 0;
+    do{
+        f = dataOUT[planetID][i];    // First element: planet ID
+        v.append(f);
+        i++;
+    } while (i < dataOUT[planetID].size());
+    return v;
+}

@@ -32,6 +32,8 @@
         <file>assets/Makemake.qml</file>
         <file>assets/Pluto_normal.qml</file>
         <file>OrbitSpawner.qml</file>
+        <file>assets/meshes/uranus_kugel.mesh</file>
+        <file>assets/meshes/uranus_torus.mesh</file>
     </qresource>
     <qresource prefix="/SolarSystem">
         <file>Merkur.qml</file>

@@ -14,7 +14,11 @@ Node {
 
         DefaultMaterial {
             id: planet_material
-            diffuseColor: "#ffcccccc"
+            diffuseMap: Texture {
+                source: "maps/4k_ceres_fictional.jpg"
+                tilingModeHorizontal: Texture.Repeat
+                tilingModeVertical: Texture.Repeat
+            }
         }
         materials: [
             planet_material

@@ -2,6 +2,7 @@ import QtQuick3D 1.15
 import QtQuick 2.12
 
 Node {
+    id: solarSystem
     property alias merkur   : merkur
     property alias venus    : venus
     property alias erde     : erde
@@ -47,6 +48,10 @@ Node {
         id: jupiter
     }
 
+    Ceres{
+        id: ceres
+    }
+
     Saturn{
         id: saturn
     }
@@ -59,18 +64,14 @@ Node {
         id: neptun
     }
 
-    Ceres{
-        id: ceres
-    }
-
     Pluto{
         id : pluto
     }
-
+/*
     Charon{
         id: charon
     }
-
+*/
     Haumea{
         id: haumea
     }
@@ -80,7 +81,7 @@ Node {
     }
 
     Eris{
-        id:eris
+        id: eris
     }
 
 }

@@ -7,6 +7,6 @@ Planet_No_Model {
 
     Assets.Mercury{
         id: assetsMercury
-        scale: Qt.vector3d(10,10,10)
+        scale: Qt.vector3d(0.1,0.1,0.1)
     }
 }

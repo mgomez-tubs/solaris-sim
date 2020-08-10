@@ -4,18 +4,6 @@ import QtQuick 2.15
 Node {
     id: rootNode
 
-    PerspectiveCamera {
-        id: camera
-        x: -187.368
-        y: -1.99031
-        z: 1798.66
-        eulerRotation.x: 180
-        eulerRotation.y: 1.11559e-05
-        eulerRotation.z: 180
-        fieldOfView: 25.3608
-        fieldOfViewOrientation: Camera.Horizontal
-    }
-
     Model {
         id: kugel
         eulerRotation.x: -90

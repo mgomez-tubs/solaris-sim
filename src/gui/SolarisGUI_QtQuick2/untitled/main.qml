@@ -57,7 +57,7 @@ ApplicationWindow {
         id: view
         objectName: "view"
         anchors.fill: parent
-        camera: freeView
+        camera: centerCamera
 
         //                           Handlers                            //
         function planetCamera_handler(cameraName : String){
@@ -75,6 +75,12 @@ ApplicationWindow {
                 view.camera=freeView
             }
         }
+
+        property Node currentPlanet : undefined
+        function setCurrentPlanet(planet : Node) {
+            currentPlanet = planet;
+        }
+
 
         //                           Functions                           //
         function getPlanetList(){   // derzeit nicht benutzt
@@ -165,11 +171,11 @@ ApplicationWindow {
         PerspectiveCamera {
             id: topCamera
             function reset(){
-                topCamera.position      = Qt.vector3d(0, 0, 1000);
+                topCamera.position      = Qt.vector3d(0, 0, 7960);
                 topCamera.eulerRotation = Qt.vector3d(0, 0, 0);
             }
 
-            position: Qt.vector3d(0, 0, 1000)
+            position: Qt.vector3d(0, 0, 1500)
             /*
             onPositionChanged: function(){
                 rectangle1.text = "x: "      + Math.round(position.x)      + "\ny: "    + Math.round(position.y)      + "\nz: "    + Math.round(position.z)     +
@@ -192,6 +198,31 @@ ApplicationWindow {
                                   "\nrotx: " + Math.round(eulerRotation.x) + "\nroty: " + Math.round(eulerRotation.y) + "\nrotz: " + Math.round(eulerRotation.z)
             }*/
         }
+        Node {
+            id: node_centerCamera
+            property real distance : 1400
+            property real angle : 25
+            property real currentAngle : angle + 180
+
+            eulerRotation: Qt.vector3d(90,0,0)
+
+            Node {
+                eulerRotation: Qt.vector3d(-19.7, -0.700003, 0)
+
+                PerspectiveCamera {
+                     id: centerCamera
+                     function reset(){
+                         centerCamera.position = Qt.vector3d(0, -1228, 400)
+                     }
+                     position: Qt.vector3d(0, 0, node_centerCamera.distance)
+
+                     //on position changed: change euler rotation
+                     eulerRotation: Qt.vector3d(0, 0, 0)
+                     clipNear: 1
+                     fieldOfViewOrientation: Camera.Vertical
+                }
+            }
+        }
 
         InputController{
             // In order to rotate the camera around an object:
@@ -199,7 +230,7 @@ ApplicationWindow {
             // Set the pivot of that node to the coordinate origin
             // and connect this controlledObject with that [!] Node (also: cameras parent)
             controlledObject: view.camera.parent
-            keysEnabled: false
+            keysEnabled: true       // Careful, this disables keys GLOBALLY (also Keys in DefaultKeys)
         }
 
         CircularOrbits  { id: circularOrbits}
@@ -268,8 +299,11 @@ ApplicationWindow {
                     view.camera=pickedObject.planetCamera
                     view.camera.reset();
 
+                    // Set current planet
+                    view.setCurrentPlanet(pickedObject)
+
                     // Change Layer to planet layer                                                         [!]
-                    //view.layerHandler("PlanetGUI");
+                    // view.layerHandler("PlanetGUI");
 
                 }
             }
@@ -280,20 +314,30 @@ ApplicationWindow {
                 } else {
                     view.camera.position.z += wheel.angleDelta.y/50;
                 }
+
             }
         }
 
         function layerHandler(layer : String){
             if          (layer === "MainGUI"){
                 layerLoader.source = "MainGUI/Layer_MainGUI.qml"
+                view.camera.restore();
                 return
             }
             else if   (layer === "PlanetGUI"){
+                // Save current camera properties
+                view.camera.backUp();
+                // Change the camera to planet mode
+                // Shift current camera to the right
+                view.camera.position                = Qt.vector3d(-30,0,57);
+                view.camera.parent.eulerRotation    = Qt.vector3d(-5.5,76,0);
+
                 layerLoader.source = "PlanetGUI/Layer_PlanetGUI.qml"
+                return
             }
         }
 
-
+        // Layer loader
         Item {
             anchors.fill: parent
             Loader {

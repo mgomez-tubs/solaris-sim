@@ -25,7 +25,9 @@ Item {
 
             Connections {
                 target: playButton_mouseArea
-                onClicked: tooglePlayPause_helper();
+                onClicked: function(){
+                    tooglePlayPause_helper();
+                }
             }
         }
     }
@@ -49,7 +51,9 @@ Item {
 
             Connections {
                 target: stopButton_mouseArea
-                onClicked: resetSimulation_helper();
+                onClicked: function(){
+                    resetSimulation_helper();
+                }
             }
         }
     }
@@ -101,10 +105,27 @@ Item {
         onValueChanged: setSpeedMultiplier(value)
     }
 
+    ButtonForm {
+        id: buttonInfo
+        MouseArea {
+            id: buttonInfo_mouseArea1
+            anchors.fill : parent
+            onClicked: function(){     
+                // Change layer
+                view.layerHandler("PlanetGUI")
+            }
+        }
+        anchors.bottomMargin: 2
+        buttonText: "Info"
+        anchors.rightMargin: 10
+        anchors.bottom: buttonSettings.top
+        anchors.right: parent.right
+    }
+
 }
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.009999999776482582}
+    D{i:0;formeditorColor:"#000000";formeditorZoom:0.6600000262260437}
 }
 ##^##*/

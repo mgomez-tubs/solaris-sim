@@ -9,6 +9,7 @@ Planet_No_Model {
     }
 
     Planet {
+        objectName: "mond"
         planetPosition: Qt.vector3d(50,0,0)
         planetScale: Qt.vector3d(0.02,0.02,0.02)
     }
