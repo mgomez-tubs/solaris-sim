@@ -320,10 +320,11 @@ Item {
             Button {
                 id: button
                 x: 36
-                y: 29
                 width: 128
                 height: 20
                 text: qsTr("Save Preset")
+                anchors.top: parent.top
+                anchors.topMargin: 30
 
                 FolderDialog {
                     id: folderDialog
@@ -333,7 +334,11 @@ Item {
 
                 MouseArea {
                     id: button_mouseArea
-                    anchors.fill: parent
+                    y: 0
+                    height: 0
+                    anchors.topMargin: 5
+                    anchors.bottom: parent.bottom
+                    anchors.top: parent.top
 
                     Connections {
                         target: button_mouseArea
@@ -345,10 +350,11 @@ Item {
             Button {
                 id: button1
                 x: 36
-                y: 55
                 width: 128
                 height: 20
                 text: qsTr("Load Preset")
+                anchors.top: button.bottom
+                anchors.topMargin: 5
 
                 FileDialog {
                     id: fileDialog
@@ -358,7 +364,8 @@ Item {
 
                 MouseArea {
                     id: button1_mouseArea
-                    anchors.fill: parent
+                    anchors.left: parent.left
+                    anchors.top: parent.top
 
                     Connections {
                         target: button1_mouseArea
@@ -370,14 +377,17 @@ Item {
             Button {
                 id: button2
                 x: 36
-                y: 81
                 width: 128
                 height: 20
                 text: qsTr("Use standard Preset")
+                anchors.top: button1.bottom
+                anchors.topMargin: 5
 
                 MouseArea {
                     id: button2_mouseArea
-                    anchors.fill: parent
+                    anchors.right: parent.right
+                    anchors.left: parent.left
+                    anchors.top: parent.top
 
                     Connections {
                         target: button2_mouseArea
@@ -385,14 +395,37 @@ Item {
                     }
                 }
             }
+
+            Button {
+                id: button3
+                x: 36
+                width: 128
+                height: 20
+                text: qsTr("Preset Auswählen")
+                anchors.top: button2.bottom
+                anchors.topMargin: 5
+
+
+                MouseArea {
+                    id: button3_mouseArea
+                    anchors.fill: parent
+                    // @disable-check M222
+                    onClicked: function () {
+                        presetSelectMenu.visible = !presetSelectMenu.visible
+
+                    }
+                }
+            }
         }
     }
+
 }
 
 /*##^##
 Designer {
     D{i:0;formeditorZoom:1.75}D{i:15;anchors_height:100;anchors_width:100;anchors_x:0;anchors_y:"-25"}
-D{i:18;anchors_height:100;anchors_width:100}
+D{i:18;anchors_height:100;anchors_width:100}D{i:26;anchors_y:29}D{i:30;anchors_y:55}
+D{i:34;anchors_y:81}D{i:37;anchors_y:107}
 }
 ##^##*/
 
