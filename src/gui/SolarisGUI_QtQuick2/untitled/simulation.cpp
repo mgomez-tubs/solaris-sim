@@ -95,11 +95,11 @@ void Simulation::Init(){
 
     //                  Small planets
 
-    addZwergPlanet(rootObject,"Ceres", "ceres");    // between mars and jupiter
-    addZwergPlanet(rootObject,"Pluto", "pluto");
-    addZwergPlanet(rootObject,"Haumea", "haumea");
-    addZwergPlanet(rootObject,"MakeMake", "makemake");
-    addZwergPlanet(rootObject,"Eris", "eris");
+    addZwergPlanet(rootObject,"Ceres", "ceres");    // between mars and jupiter 8
+    addZwergPlanet(rootObject,"Pluto", "pluto");    //9
+    addZwergPlanet(rootObject,"Haumea", "haumea");  //10
+    addZwergPlanet(rootObject,"MakeMake", "makemake");  //11
+    addZwergPlanet(rootObject,"Eris", "eris");      //12
     qDebug()<<"Small planets created";
     distanceScale = 3;
 
@@ -109,7 +109,7 @@ void Simulation::Init(){
 
     //distance_mercury = 0;
 
-    /*
+
     planet_distance[0] = 0;
     planet_distance[2] = 0;
     planet_distance[3] = 0;
@@ -122,7 +122,7 @@ void Simulation::Init(){
     planet_distance[10] = 0;
     planet_distance[11] = 0;
     planet_distance[12] = 0;
-    */
+
 
 
     planet_scaling[0] = 0;
@@ -164,11 +164,6 @@ void Simulation::Init(){
     Planeten[5].setOrbitType("kreisBewegung", planet_distance[5] * distanceScale, 1/(29.457*365.0));
     Planeten[6].setOrbitType("kreisBewegung", planet_distance[6] * distanceScale, 1/(84.011*365.0));
     Planeten[7].setOrbitType("kreisBewegung", planet_distance[7] * distanceScale, 1/(164.79*365.0));
-    //Planeten[8].setOrbitType("kreisBewegung", planet_distance[8] * distanceScale, 1/(4.221*365.0));
-    //Planeten[9].setOrbitType("kreisBewegung", planet_distance[9] * distanceScale, 1/(247.343*365.0));
-    //Planeten[10].setOrbitType("kreisBewegung", planet_distance[10] * distanceScale, 1/(284.287*365.0));
-    //Planeten[11].setOrbitType("kreisBewegung", planet_distance[11] * distanceScale, 1/(307.180*365.0));
-   // Planeten[12].setOrbitType("kreisBewegung", planet_distance[12] * distanceScale, 1/(204203));
 
     Planeten[0].setScaling(QVector3D(planet_scaling[0],planet_scaling[0],planet_scaling[0]));
     Planeten[1].setScaling(QVector3D(planet_scaling[1],planet_scaling[1],planet_scaling[1]));
@@ -178,18 +173,19 @@ void Simulation::Init(){
     Planeten[5].setScaling(QVector3D(planet_scaling[5],planet_scaling[5],planet_scaling[5]));
     Planeten[6].setScaling(QVector3D(planet_scaling[6],planet_scaling[6],planet_scaling[6]));
     Planeten[7].setScaling(QVector3D(planet_scaling[7],planet_scaling[7],planet_scaling[7]));
-    //Planeten[8].setScaling(QVector3D(planet_scaling[8],planet_scaling[8],planet_scaling[8]));
-    //Planeten[9].setScaling(QVector3D(planet_scaling[9],planet_scaling[9],planet_scaling[9]));
-   // Planeten[10].setScaling(QVector3D(0.40,0.4,0.4));
-   // Planeten[11].setScaling(QVector3D(0.40,0.4,0.4));
-   // Planeten[12].setScaling(QVector3D(0.40,0.4,0.4));
 
     // Small Planets
-    ZwergPlaneten[0].setOrbitType("kreisBewegung", 200*distanceScale, 0.01);        //Ceres
-    ZwergPlaneten[1].setOrbitType("kreisBewegung", 1200*distanceScale, 0.01);       // Pkuto
-    ZwergPlaneten[2].setOrbitType("kreisBewegung", 1300*distanceScale, 0.01);       //haumea
-    ZwergPlaneten[3].setOrbitType("kreisBewegung", 1400*distanceScale, 0.01);
-    ZwergPlaneten[4].setOrbitType("kreisBewegung", 1500*distanceScale, 0.01);
+    ZwergPlaneten[0].setOrbitType("kreisBewegung", planet_distance[8]*distanceScale, 1/(4.221*365.0));        //Ceres
+    ZwergPlaneten[1].setOrbitType("kreisBewegung", planet_distance[9]*distanceScale,1/(247.343*365.0));       // Pluto
+    ZwergPlaneten[2].setOrbitType("kreisBewegung", planet_distance[10]*distanceScale, 1/(284.287*365.0));       //haumea
+    ZwergPlaneten[3].setOrbitType("kreisBewegung", planet_distance[11]*distanceScale, 1/(307.180*365.0));
+    ZwergPlaneten[4].setOrbitType("kreisBewegung", planet_distance[12]*distanceScale, 1/(204203));
+
+    ZwergPlaneten[0].setScaling(QVector3D(planet_scaling[8],planet_scaling[8],planet_scaling[8]));
+    ZwergPlaneten[1].setScaling(QVector3D(planet_scaling[9],planet_scaling[9],planet_scaling[9]));
+    ZwergPlaneten[2].setScaling(QVector3D(planet_scaling[10],planet_scaling[10],planet_scaling[10]));
+    ZwergPlaneten[3].setScaling(QVector3D(planet_scaling[11],planet_scaling[11],planet_scaling[11]));
+    ZwergPlaneten[4].setScaling(QVector3D(planet_scaling[12],planet_scaling[12],planet_scaling[12]));
 
 
     // Change working directory
@@ -247,25 +243,27 @@ void Simulation::Reset(){
     Planeten[5].setOrbitType("kreisBewegung", planet_distance[5] * distanceScale, 1/(29.457*365.0));
     Planeten[6].setOrbitType("kreisBewegung", planet_distance[6] * distanceScale, 1/(84.011*365.0));
     Planeten[7].setOrbitType("kreisBewegung", planet_distance[7] * distanceScale, 1/(164.79*365.0));
-    //Planeten[8].setOrbitType("kreisBewegung", planet_distance[8] * distanceScale, 1/(4.221*365.0));
-    //Planeten[9].setOrbitType("kreisBewegung", planet_distance[9] * distanceScale, 1/(247.343*365.0));
-    //Planeten[10].setOrbitType("kreisBewegung", planet_distance[10] * distanceScale, 1/(284.287*365.0));
-    //Planeten[11].setOrbitType("kreisBewegung", planet_distance[11] * distanceScale, 1/(307.180*365.0));
-   // Planeten[12].setOrbitType("kreisBewegung", planet_distance[12] * distanceScale, 1/(204203));
 
-    Planeten[0].setScaling(QVector3D(0.40,0.4,0.4));
-    Planeten[1].setScaling(QVector3D(0.8,0.8,0.8));
-    Planeten[2].setScaling(QVector3D(1.6,1.6,1.6));
-    Planeten[3].setScaling(QVector3D(1.2,1.2,1.2));
-    Planeten[4].setScaling(QVector3D(6.0,6.0,6.0));
-    Planeten[5].setScaling(QVector3D(2.6,2.6,2.6));
-    Planeten[6].setScaling(QVector3D(2.3,2.3,2.3));
-    Planeten[7].setScaling(QVector3D(4.5,4.5,4.5));
-    //Planeten[8].setScaling(QVector3D(0.40,0.4,0.4));
-    //Planeten[9].setScaling(QVector3D(6.0,6.0,6.0));
-   // Planeten[10].setScaling(QVector3D(0.40,0.4,0.4));
-   // Planeten[11].setScaling(QVector3D(0.40,0.4,0.4));
-   // Planeten[12].setScaling(QVector3D(0.40,0.4,0.4));
+    ZwergPlaneten[0].setOrbitType("kreisBewegung", planet_distance[8]*distanceScale, 1/(4.221*365.0));
+    ZwergPlaneten[1].setOrbitType("kreisBewegung", planet_distance[9]*distanceScale,1/(247.343*365.0));
+    ZwergPlaneten[2].setOrbitType("kreisBewegung", planet_distance[10]*distanceScale, 1/(284.287*365.0));
+    ZwergPlaneten[3].setOrbitType("kreisBewegung", planet_distance[11]*distanceScale, 1/(307.180*365.0));
+    ZwergPlaneten[4].setOrbitType("kreisBewegung", planet_distance[12]*distanceScale, 1/(204203));
+
+    Planeten[0].setScaling(QVector3D(planet_scaling[0],planet_scaling[0],planet_scaling[0]));
+    Planeten[1].setScaling(QVector3D(planet_scaling[1],planet_scaling[1],planet_scaling[1]));
+    Planeten[2].setScaling(QVector3D(planet_scaling[2],planet_scaling[2],planet_scaling[2]));
+    Planeten[3].setScaling(QVector3D(planet_scaling[3],planet_scaling[3],planet_scaling[3]));
+    Planeten[4].setScaling(QVector3D(planet_scaling[4],planet_scaling[4],planet_scaling[4]));
+    Planeten[5].setScaling(QVector3D(planet_scaling[5],planet_scaling[5],planet_scaling[5]));
+    Planeten[6].setScaling(QVector3D(planet_scaling[6],planet_scaling[6],planet_scaling[6]));
+    Planeten[7].setScaling(QVector3D(planet_scaling[7],planet_scaling[7],planet_scaling[7]));
+
+    ZwergPlaneten[0].setScaling(QVector3D(planet_scaling[8],planet_scaling[8],planet_scaling[8]));
+    ZwergPlaneten[1].setScaling(QVector3D(planet_scaling[9],planet_scaling[9],planet_scaling[9]));
+    ZwergPlaneten[2].setScaling(QVector3D(planet_scaling[10],planet_scaling[10],planet_scaling[10]));
+    ZwergPlaneten[3].setScaling(QVector3D(planet_scaling[11],planet_scaling[11],planet_scaling[11]));
+    ZwergPlaneten[4].setScaling(QVector3D(planet_scaling[12],planet_scaling[12],planet_scaling[12]));
 }
 
 void Simulation::setSpeedMultiplier(qreal multiplier){
@@ -329,11 +327,11 @@ void Simulation::setPreset_main(){
     planet_scaling[5] = 2.6;
     planet_scaling[6] = 2.3;
     planet_scaling[7] = 4.5;
-    planet_scaling[8] = 0.4;
-    planet_scaling[9] = 0;
-    planet_scaling[10] = 0;
-    planet_scaling[11] = 0;
-    planet_scaling[12] = 0;
+    planet_scaling[8] = 1.4;
+    planet_scaling[9] = 0.8;
+    planet_scaling[10] = 0.8;
+    planet_scaling[11] = 0.8;
+    planet_scaling[12] = 0.8;
 
     // 40.0 ; 70.0 ; 100.0 ; 150.0 ; 320.0 ; 560.0 ; 820.0 ; 1000.0
 
