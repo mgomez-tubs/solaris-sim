@@ -61,6 +61,8 @@
         <file>RightMenu.qml</file>
         <file>RightMenuForm.ui.qml</file>
         <file>Layer_MainGUI.qml</file>
+        <file>NewPresetsMenu.qml</file>
+        <file>NewPresetsMenuForm.ui.qml</file>
     </qresource>
     <qresource prefix="/PlanetSelectedGUI"/>
 </RCC>

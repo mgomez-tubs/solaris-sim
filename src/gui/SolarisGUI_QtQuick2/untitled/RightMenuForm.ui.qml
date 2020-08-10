@@ -9,6 +9,10 @@ Item {
     Rectangle {
         id: rectangle
         color: "#3f0641"
+        anchors.rightMargin: 0
+        anchors.bottomMargin: 8
+        anchors.leftMargin: 0
+        anchors.topMargin: -8
         anchors.fill: parent
 
         DropDownMenu {
@@ -317,6 +321,7 @@ Item {
             anchors.top: menuCameras.bottom
             anchors.topMargin: 2
 
+
             Button {
                 id: button
                 x: 36
@@ -385,14 +390,51 @@ Item {
                     }
                 }
             }
+
+            Button {
+                id: button3
+                x: 36
+                y: 107
+                width: 128
+                height: 20
+                text: qsTr("Create new Presets")
+
+                MouseArea {
+                    id: buttonCreateNewPreset_mouseArea
+                    anchors.rightMargin: 0
+                    anchors.bottomMargin: 0
+                    anchors.leftMargin: 0
+                    anchors.topMargin: 0
+                    anchors.fill: parent
+                    /*onClicked: function(){
+                    if(!newPresetsMenu.visible){
+                        newPresetsMenu.visible = true;
+                    } else newPresetsMenu.visible = false;
+                }*/
+
+
+                }
+            }
         }
+        /*NewPresetsMenu{
+            id: newPresetsMenu
+            x: 0
+            y: 0
+            height: 400
+            visible: false
+            opacity: 0.75
+            anchors.right: parent.right
+            anchors.rightMargin: 5
+        }*/
     }
 }
 
+
+
+
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:1.75}D{i:15;anchors_height:100;anchors_width:100;anchors_x:0;anchors_y:"-25"}
+    D{i:0;formeditorZoom:1.25}D{i:15;anchors_height:100;anchors_width:100;anchors_x:0;anchors_y:"-25"}
 D{i:18;anchors_height:100;anchors_width:100}
 }
 ##^##*/
-
