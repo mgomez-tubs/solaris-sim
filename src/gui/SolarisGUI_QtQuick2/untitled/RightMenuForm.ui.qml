@@ -390,9 +390,10 @@ Item {
 
                 MouseArea {
                     id: button2_mouseArea
-                    anchors.right: parent.right
-                    anchors.left: parent.left
-                    anchors.top: parent.top
+                    anchors.fill: parent
+                    //anchors.right: parent.right
+                    //anchors.left: parent.left
+                    //anchors.top: parent.top
 
                     Connections {
                         target: button2_mouseArea
@@ -406,7 +407,7 @@ Item {
                 x: 36
                 width: 128
                 height: 20
-                text: qsTr("Preset Auswählen")
+                text: qsTr("Create new Preset")
                 anchors.top: button2.bottom
                 anchors.topMargin: 5
 

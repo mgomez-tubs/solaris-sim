@@ -108,7 +108,7 @@ void Simulation::Init(){
 
     //distance_mercury = 0;
 
-
+    //use only for testing purposes
     planet_distance[0] = 0;
     planet_distance[2] = 0;
     planet_distance[3] = 0;
@@ -122,20 +122,7 @@ void Simulation::Init(){
     planet_distance[11] = 0;
     planet_distance[12] = 0;
 
-<<<<<<<
-
-=======
-    planet_distance[0] = 40;        // Merkur
-    planet_distance[1] = 50;        // Venus
-    planet_distance[2] = 70;        // Erde
-    planet_distance[3] = 150;       // Mars
-    planet_distance[4] = 320;       // Jupiter
-    planet_distance[5] = 560;       // Saturn
-    planet_distance[6] = 820;       // Uranus
-    planet_distance[7] = 1000;      // Neptun
->>>>>>>
-
-
+    //use only for testing purposes
     planet_scaling[0] = 0;
     planet_scaling[1] = 0;
     planet_scaling[2] = 0;
@@ -150,7 +137,6 @@ void Simulation::Init(){
     planet_scaling[11] = 0;
     planet_scaling[12] = 0;
 
-
     /*planet_distance[0] = 40;
     planet_distance[2] = 70;
     planet_distance[3] = 150;
@@ -162,7 +148,21 @@ void Simulation::Init(){
     planet_distance[9] = 1300;
     planet_distance[10] = 1600;
     planet_distance[11] = 1750;
-    planet_distance[12] = 2000;*/
+    planet_distance[12] = 2000;
+
+    planet_scaling[0] = 0.4;
+    planet_scaling[1] = 0.8;
+    planet_scaling[2] = 1.6;
+    planet_scaling[3] = 1.2;
+    planet_scaling[4] = 6.0;
+    planet_scaling[5] = 2.6;
+    planet_scaling[6] = 2.3;
+    planet_scaling[7] = 4.5;
+    planet_scaling[8] = 0.6;
+    planet_scaling[9] = 0.8;
+    planet_scaling[10] = 0.8;
+    planet_scaling[11] = 0.8;
+    planet_scaling[12] = 0.8;*/
 
     // 40.0 ; 70.0 ; 100.0 ; 150.0 ; 320.0 ; 560.0 ; 820.0 ; 1000.0
 
@@ -190,8 +190,8 @@ void Simulation::Init(){
     ZwergPlaneten[0].setOrbitType("kreisBewegung", planet_distance[8]*distanceScale, 1/(4.221*365.0));        //Ceres
     ZwergPlaneten[1].setOrbitType("kreisBewegung", planet_distance[9]*distanceScale,1/(247.343*365.0));       // Pluto
     ZwergPlaneten[2].setOrbitType("kreisBewegung", planet_distance[10]*distanceScale, 1/(284.287*365.0));       //haumea
-    ZwergPlaneten[3].setOrbitType("kreisBewegung", planet_distance[11]*distanceScale, 1/(307.180*365.0));
-    ZwergPlaneten[4].setOrbitType("kreisBewegung", planet_distance[12]*distanceScale, 1/(204203));
+    ZwergPlaneten[3].setOrbitType("kreisBewegung", planet_distance[11]*distanceScale, 1/(307.180*365.0));       //makemake
+    ZwergPlaneten[4].setOrbitType("kreisBewegung", planet_distance[12]*distanceScale, 1/(204203));              //eris
 
     ZwergPlaneten[0].setScaling(QVector3D(planet_scaling[8],planet_scaling[8],planet_scaling[8]));
     ZwergPlaneten[1].setScaling(QVector3D(planet_scaling[9],planet_scaling[9],planet_scaling[9]));
@@ -241,8 +241,8 @@ void Simulation::Run(){
 void Simulation::Reset(){
     /*  When the simulation is reset, the following steps follow:
      * 1) Simulation Timer is stopped.
-     * 2) Every planet returns to its starting position
-     * 3) The scaling is reset to its default value
+     * 2) Every planet returns to its starting position -> position is set, by using the planet_distance[] list, which can be set by multiple methods
+     * 3) The scaling is reset to its default value -> not default value, the scaling is set using the planet_scaling[] list, which can be set by multiple methods
      *
      */
 
@@ -254,6 +254,8 @@ void Simulation::Reset(){
         Planeten[i].resetPosition();
     }
 
+
+    //set new position and scaling for each planet
     qDebug()<<distanceScale;
     Planeten[0].setOrbitType("kreisBewegung", planet_distance[0] * distanceScale, 1/87.969);
     Planeten[1].setOrbitType("kreisBewegung", planet_distance[1] * distanceScale, 1/224.701);
@@ -286,7 +288,7 @@ void Simulation::Reset(){
     ZwergPlaneten[4].setScaling(QVector3D(planet_scaling[12],planet_scaling[12],planet_scaling[12]));
 }
 
-void Simulation::setSpeedMultiplier(qreal multiplier){      // what is this
+void Simulation::setSpeedMultiplier(qreal multiplier){      // what is this //this is used in the speed dial see Layer_MainGUI.qml for reference
     Planet::speedMultiplier = multiplier;
 }
 
@@ -328,8 +330,10 @@ void Simulation::setPreset_main(){
 
     //qDebug() << "wert mercury : " << distance_mercury;
 
-    qDebug() << "wert merkur liste: " <<planet_distance[0];
+    qDebug() << "wert merkur liste: " <<planet_distance[0];     //only for testing purposes
 
+
+    //set standard values for distance and scaling
     planet_distance[0] = 40;
     planet_distance[2] = 70;
     planet_distance[3] = 150;
@@ -351,7 +355,7 @@ void Simulation::setPreset_main(){
     planet_scaling[5] = 2.6;
     planet_scaling[6] = 2.3;
     planet_scaling[7] = 4.5;
-    planet_scaling[8] = 1.4;
+    planet_scaling[8] = 0.6;
     planet_scaling[9] = 0.8;
     planet_scaling[10] = 0.8;
     planet_scaling[11] = 0.8;
@@ -363,13 +367,13 @@ void Simulation::setPreset_main(){
 
     //qDebug() << "wert mercury : " << distance_mercury;
 
-    qDebug() << "wert merkur liste: " <<planet_distance[0];
+    qDebug() << "wert merkur liste: " <<planet_distance[0];         //used only for testing purposes
 
-    qDebug()<<"Simulation.cpp: setPreset_main() erfolgreich aufgerufen.";
+    qDebug()<<"Simulation.cpp: setPreset_main() erfolgreich aufgerufen.";           //indicates methods runtime, used for testing purposes
 
-    Reset();
+    Reset();        //resets positions and scaling, and uses standard values, see above
 
-    startTimer();
+    startTimer();       //starts simulation after Reset(); stopped it
 
 }
 
