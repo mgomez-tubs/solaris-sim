@@ -7,6 +7,8 @@ float Planet::speedMultiplier = 1.0;
 
 ////          CONSTRUCTOR                   ////
 Planet::Planet(){
+    this->radius = 0.0;
+    this->radius2 = 0.0;
 }
 
 ////          SETTERS                       ////

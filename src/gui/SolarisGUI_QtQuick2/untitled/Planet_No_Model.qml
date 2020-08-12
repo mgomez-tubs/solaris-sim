@@ -16,7 +16,7 @@ Node {
     property alias planetCameraEulerRotation : planetCamera.eulerRotation
     property alias planetTilt: planetCamera.eulerRotation.y
 
-    property string planetInfoString : "texto"
+    property string planetInfoString : "No information is available/ could be loaded for this planet ..."
 
     eulerRotation: Qt.vector3d(90,0,0)
 
@@ -112,10 +112,6 @@ Node {
                 }
 
                 position: Qt.vector3d(0, 0, 75)
-                onPositionChanged: function(){
-                    console.log("Possition changed" + planetCamera.position)
-                }
-
                 eulerRotation: Qt.vector3d(0, 0, 0)
                 clipNear: 1
                 fieldOfViewOrientation: Camera.Vertical

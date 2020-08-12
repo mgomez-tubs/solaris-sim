@@ -3,6 +3,7 @@ import QtQuick.Extras 1.4
 import QtQuick.Controls 2.15
 
 Item {
+    id: layer_mainGUI
     anchors.fill: parent        // very important
     width: 800
     height: 600
@@ -122,6 +123,13 @@ Item {
         anchors.right: parent.right
     }
 
+    PresetSelectMenu {
+        id: presetSelectMenu
+        visible: false
+        // Center the menu on screen
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+    }
 }
 
 /*##^##
