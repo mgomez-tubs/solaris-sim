@@ -110,6 +110,7 @@ void Simulation::Init(){
 
     //use only for testing purposes
     planet_distance[0] = 0;
+    planet_distance[1] = 0;
     planet_distance[2] = 0;
     planet_distance[3] = 0;
     planet_distance[4] = 0;
@@ -335,7 +336,8 @@ void Simulation::setPreset_main(){
 
     //set standard values for distance and scaling
     planet_distance[0] = 40;
-    planet_distance[2] = 70;
+    planet_distance[1] = 70;
+    planet_distance[2] = 100;
     planet_distance[3] = 150;
     planet_distance[4] = 320;
     planet_distance[5] = 560;
