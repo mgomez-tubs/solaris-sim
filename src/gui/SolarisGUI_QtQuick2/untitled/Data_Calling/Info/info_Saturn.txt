@@ -1,20 +1,24 @@
-SATURN
----
-Avg Radius		58232 		km
-Mass			5.6834x10^26 	kg
----
-Sideric Period		10759.22 d
-Synodic Period		378.1	d	
-Length of Day		0 d 9 h 50 min
-Num of Satelites	82
----
+<h1>SATURN</h1>
+<p>
+Avg Radius		58232 		km<br>
+Mass			5.6834x10^26 	kg<br>
+<br>
+Sideric Period		10759.22 d<br>
+Synodic Period		378.1	d<br>
+Length of Day		0 d 9 h 50 min<br>
+Num of Satelites	82<br>
+<br>
 Srf gravity (1 Bar lvl)	1.065 g	  10.44	m/s^2
 Avg 1 Bar lvl Temp Eqt	134 		K
----
+<br>
+</p>
+
+<p>
 Information
 
 Saturn is most known for its extensive rings which are mostly compeosd of ice and smaller rocks. Titan the largest of Saturns moons (larger than Mercury) is the only moon with a notable Atmosphere.
----
+<br>
 Exploration
 
 Saturn had 3 flybys by the Voyager and the Pioneer 11 probes. the Cassini Huygens Probe explored the Saturn systen for 13 years and sending the Hyugens Probe down to the surface of Titan.
+</p>
