@@ -239,7 +239,7 @@ Item {
         color: "#bdbdbd"
 
         TextInput {
-            id: planeDistance_1
+            id: textInput
             x: 0
             y: 0
             width: 107
@@ -247,7 +247,6 @@ Item {
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 12
-            placeholderText: qstr("Distance Planet 1")
             onAccepted: {console.log(textInput.text)
                 setParameter_helper(text)
                 getPlanet_helper(1)
