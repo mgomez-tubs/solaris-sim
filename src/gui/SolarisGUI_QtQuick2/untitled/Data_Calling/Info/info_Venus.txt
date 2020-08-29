@@ -17,5 +17,9 @@ Avg Srf Temp Eqt	        737 		K<br>
 Venus is similiar in size, weight and general composition to the earth, but in many other respect it is different. The Atmosphere is mainly composed of CO2 and the resulting greenhouse effect lifts the surface temperature to about 737 K, making it with about a quarter of the solar light it hotter than the surface of Mercury. It is also one of two Planets which is turning retrograde.
 <br>
 <h3>Exploration</h3>
+<<<<<<< HEAD
 There were about 42 launches to Venus mostly by the Soviet Union and the United States with the soviet Venera series making the first landings on another planet and returning Images. Some Probes like Gallileo, Cassini and BepiColombo used Venus for Gravity assists to reach their targets like Jupiter, Saturn or Mercury.
+=======
+There were about 42 launches to Venus mostly by the Soviet Union and the United States with the soviet Venera series making the first landings on another planet and returning Images. Some Probes like Gallileo, Cassini and BepiColombo used Venus for Gravity assists to reach their targets like Jupoter, Saturn or Mercury.
+>>>>>>> dev-presets-smallfix
 </p>
