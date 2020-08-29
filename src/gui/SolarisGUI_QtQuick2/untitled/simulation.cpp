@@ -79,6 +79,8 @@ void Simulation::Init(){
     connect(rootObject,SIGNAL(resetSimulation()),   this,SLOT(Reset()));
     connect(rootObject,SIGNAL(setSpeedMultiplier(qreal)), this,SLOT(setSpeedMultiplier(qreal)));
     connect(rootObject,SIGNAL(setPreset_main()), this,SLOT(setPreset_main()));
+    connect(rootObject,SIGNAL(getPlanet(qreal)), this,SLOT(getPlanet(qreal)));
+    connect(rootObject,SIGNAL(setParameter(qreal, qreal)), this,SLOT(setParameter(qreal, qreal)));
 
     //  Add the (main) Planets
     addPlanet(rootObject,"Merkur","merkur");    //0
@@ -435,11 +437,23 @@ void Simulation::getPlanet(qreal plt_tmp){
     planet_tmp = plt_tmp;
 }
 
-double Simulation::setParameter(qreal flt_tmp){
+void Simulation::setParameter(qreal flt_tmp, qreal array){
 
-    float flt_tmp1 = flt_tmp;
+    //float flt_tmp1 = flt_tmp;
     qDebug()<< "planet nr.:" <<planet_tmp <<"wurde auf den Wert:" << flt_tmp <<"geaendert";
-    return flt_tmp1;
+
+    if (array == 0){
+        int flt_tmp1 = flt_tmp;
+        planet_distance[planet_tmp] = flt_tmp1;
+    }
+    else if (array ==1){
+        double flt_tmp2 = flt_tmp;
+        planet_scaling[planet_tmp] = flt_tmp2;
+    }
+    else qDebug()<<"array nicht bekannt";
+
+    Reset();
+    startTimer();
 }
 
 QString Simulation::getPlanetInfoString(int planetID){

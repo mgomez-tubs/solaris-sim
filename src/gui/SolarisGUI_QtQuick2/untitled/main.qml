@@ -25,7 +25,7 @@ ApplicationWindow {
 
     //          Signals
     signal getPath(string path)
-    signal setParameter(real flt_tmp)
+    signal setParameter(real flt_tmp, real array)
     signal getPlanet(real plt_tmp)
     signal setPreset_main()
     signal savePreset()
@@ -41,14 +41,14 @@ ApplicationWindow {
         setPreset_main()
     }
 
-    function setParameter_helper(){
+    function setParameter_helper(flt_tmp, array){
         console.log("Funktion setParameter_helper() wurde aufgerufen.")
-        setParameter(flt_tmp)
+        setParameter(flt_tmp, array)
     }
 
-    function getPlanet_helper(){
+    function getPlanet_helper(plt_tmp){
         console.log("Funktion getPlanet_helper() wurde aufgerufen.")
-        getPlanet()
+        getPlanet(plt_tmp)
     }
 
     function savePreset_helper(){

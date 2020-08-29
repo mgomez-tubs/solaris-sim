@@ -67,7 +67,7 @@ public:
 private slots:
     void getPlanet(qreal);
     void getPath(QString);
-    double setParameter(qreal);
+    void setParameter(qreal, qreal);
     void write(QJsonObject &json) const;
     void read(const QJsonObject &json);
     void tooglePlayPause();
