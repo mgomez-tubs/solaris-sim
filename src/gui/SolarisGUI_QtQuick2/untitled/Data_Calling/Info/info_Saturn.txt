@@ -9,16 +9,14 @@ Length of Day		0 d 9 h 50 min<br>
 Num of Satelites	82<br>
 <br>
 Srf gravity (1 Bar lvl)	1.065 g	  10.44	m/s^2
-Avg 1 Bar lvl Temp Eqt	134 		K
-<br>
+Avg 1 Bar lvl Temp Eqt	134 		K<br>
 </p>
-
 <p>
-Information
-
+<h3>Information</h3>
+<br>
 Saturn is most known for its extensive rings which are mostly compeosd of ice and smaller rocks. Titan the largest of Saturns moons (larger than Mercury) is the only moon with a notable Atmosphere.
 <br>
-Exploration
-
+<h3>Exploration</h3>
+<br>
 Saturn had 3 flybys by the Voyager and the Pioneer 11 probes. the Cassini Huygens Probe explored the Saturn systen for 13 years and sending the Hyugens Probe down to the surface of Titan.
 </p>

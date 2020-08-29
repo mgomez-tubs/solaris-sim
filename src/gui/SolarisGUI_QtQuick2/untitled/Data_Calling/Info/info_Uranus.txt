@@ -12,13 +12,12 @@ Srf gravity (1 Bar lvl)	0.886 g	  8.69	m/s^2
 Avg 1 Bar lvl Temp Eqt	76 		K
 <br>
 </p>
-
 <p>
-Information
-
+<h3>Information</h3>
+<br>
 Uranus has an axial tilt of about 97° making the axis almos parallel to the plane of the orbit. It has the coldest known planetary atmosphere making it an "ice giant".
 <br>
-Exploration
-
+<h3>Exploration</h3>
+<br>
 The only exploration by a probe has been made by Voyager 2 with a flyby
 </p>

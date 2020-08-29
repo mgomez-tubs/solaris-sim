@@ -10,15 +10,11 @@ Num of Satelites	14<br>
 <br>
 Srf gravity (1 Bar lvl)	1.14 g	  11.15	m/s^2<br>
 Avg 1 Bar lvl Temp Eqt	72 		K<br>
-<br>
 </p>
-
 <p>
-Information
-
+<h3>Information</h3>
 The eight planet of the Sol-System, the second "ice-giant" and the outermost planet. it is the only planet not visible by the naked eye from the surface of earth. the atmosphere of neptune has stomr similiar to jupiters "red spot" though they are not as well known. 
 <br>
-Exploration
-
+<h3>Exploration</h3>
 The only exploration by a probe has been made by Voyager 2 with a flyby
 </p>
