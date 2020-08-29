@@ -4,6 +4,9 @@
 #include <QTimer>
 #include "planet.h"
 #include "debugwindow.h"
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
 
 // External libraries
 
@@ -15,6 +18,7 @@ public:
     int planet_distance[13];
     double planet_scaling[13];
     float distanceScale;
+    int planet_tmp;
 
     Simulation(QObject*);
     QTimer * SIMULATION_TIMER;
@@ -47,6 +51,8 @@ public:
         anzahlZwergPlaneten()++;
     }
 
+
+
     void startTimer();
     void stopTimer();
 
@@ -59,9 +65,15 @@ public:
     QVector<float> getPlanetOrbitInfo(int planetID);
 
 private slots:
+    void getPlanet(qreal);
+    void getPath(QString);
+    double setParameter(qreal);
+    void write(QJsonObject &json) const;
+    void read(const QJsonObject &json);
     void tooglePlayPause();
     void Reset();
     void setSpeedMultiplier(qreal);
+    void savePreset();
     void setPreset_main();
 };
 

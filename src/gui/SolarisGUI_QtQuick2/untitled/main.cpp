@@ -87,6 +87,9 @@ int main(int argc, char *argv[])
     // Create engine object
     QQmlApplicationEngine engine;
 
+    // Pass applicationDirPath property to qml
+    engine.rootContext()->setContextProperty("applicationDirPath", QGuiApplication::applicationDirPath());
+
     // Import custom QML Objects
     qmlRegisterType<DrawCircleQt>("DrawCircleQt",1,0,"DrawCircleQt");
 

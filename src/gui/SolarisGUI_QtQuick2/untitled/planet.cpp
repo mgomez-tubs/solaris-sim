@@ -46,6 +46,9 @@ void setPreset_main(){
     //console.log("test")
 }
 
+void savePreset(){
+}
+
 void Planet::setOrbitType(QString type, float radius, float speed){
     if(type == "kreisBewegung"){
         this->radius =radius;

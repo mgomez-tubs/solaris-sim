@@ -15,6 +15,7 @@ public:
     // static vars
     static float speedMultiplier;
 
+
     // Available orbit methods
     void move1();
     void kreisBewegung();
@@ -28,6 +29,8 @@ public:
     QVector3D defaultPosition;
     float tiltAngle = 0.0;
     QVector3D scale;
+//    qreal flt_tmp;
+//    qreal plt_tmp;
 
     // Move 1 specific properties
     float currentAngle;
@@ -63,6 +66,8 @@ public:
     // Adders
 
     // Setters
+    void write(QJsonObject &json) const;  //for writing planet data
+    void savePreset();
     void setPreset_main();
     void setOrbitType(QString,float,float);
     void setProperties(QObject *,QString,QString);
@@ -76,6 +81,7 @@ public:
     void setInfoTextHTML(QString);
 
     // Getters
+    void read(const QJsonObject &json); //for reading planet data
     QString getName();
     QVector3D getDefaultPosition();
     QObject * getPlanetHandler();

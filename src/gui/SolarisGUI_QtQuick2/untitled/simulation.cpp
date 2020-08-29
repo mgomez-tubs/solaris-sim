@@ -293,6 +293,11 @@ void Simulation::setSpeedMultiplier(qreal multiplier){      // what is this //th
     Planet::speedMultiplier = multiplier;
 }
 
+void Simulation::getPath(QString path){
+    QString file = path;
+    qDebug() << "path ist:" << path;
+}
+
 // Timer control
 void Simulation::startTimer(){
     qDebug()<<"Simulation Started";
@@ -377,6 +382,64 @@ void Simulation::setPreset_main(){
 
     startTimer();       //starts simulation after Reset(); stopped it
 
+}
+
+void Simulation::write(QJsonObject &json) const{ //for-schleife schreiben
+
+    json["mercury_distance"] = planet_distance[0];
+    json["venus_distance"] = planet_distance[1];
+    json["earth_distance"] = planet_distance[2];
+    json["mars_distance"] = planet_distance[3];
+    json["jupiter_distance"] = planet_distance[4];
+    json["saturn_distance"] = planet_distance[5];
+    json["uranus_distance"] = planet_distance[6];
+    json["neptun_distance"] = planet_distance[7];
+    json["ceres_distance"] = planet_distance[8];
+    json["pluto_distance"] = planet_distance[9];
+    json["haumea_distance"] = planet_distance[10];
+    json["makemake_distance"] = planet_distance[11];
+    json["eris_distance"] = planet_distance[12];
+
+    json["mercury_scaling"] = planet_scaling[0];
+    json["venus_scaling"] = planet_scaling[1];
+    json["earth_scaling"] = planet_scaling[2];
+    json["mars_scaling"] = planet_scaling[3];
+    json["jupiter_scaling"] = planet_scaling[4];
+    json["saturn_scaling"] = planet_scaling[5];
+    json["uranus_scaling"] = planet_scaling[6];
+    json["neptun_scaling"] = planet_scaling[7];
+    json["ceres_scaling"] = planet_scaling[8];
+    json["pluto_scaling"] = planet_scaling[9];
+    json["haumea_scaling"] = planet_scaling[10];
+    json["makemake_scaling"] = planet_scaling[11];
+    json["eris_scaling"] = planet_scaling[12];
+
+}
+
+void Simulation::read(const QJsonObject &json){
+
+    if (json.contains("mercury_distance") && json["mercury_distance"].isDouble())
+            planet_distance[1] = json["name"].toInt();
+
+}
+
+void Simulation::savePreset(){
+
+    qDebug() << "funktion wurde aufgerufen.";
+
+
+
+}
+
+void Simulation::getPlanet(qreal plt_tmp){
+    planet_tmp = plt_tmp;
+}
+
+double Simulation::setParameter(qreal flt_tmp){
+
+    float flt_tmp1 = flt_tmp;
+    qDebug()<< "planet nr.:" <<planet_tmp <<"wurde auf den Wert:" << flt_tmp <<"geaendert";
+    return flt_tmp1;
 }
 
 QString Simulation::getPlanetInfoString(int planetID){

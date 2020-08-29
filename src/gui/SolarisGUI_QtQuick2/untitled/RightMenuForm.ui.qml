@@ -1,4 +1,6 @@
 import QtQuick 2.4
+import QtQuick 2.2
+import QtQuick.Dialogs 1.0
 import QtQuick.Controls 2.15
 import Qt.labs.platform 1.1
 
@@ -321,7 +323,6 @@ Item {
             anchors.top: menuCameras.bottom
             anchors.topMargin: 2
 
-
             Button {
                 id: button
                 x: 36
@@ -331,23 +332,24 @@ Item {
                 anchors.top: parent.top
                 anchors.topMargin: 30
 
-                FolderDialog {
+
+                /*FolderDialog {
                     id: folderDialog
                     currentFolder: viewer.folder
                     acceptLabel: "speichern"
-                }
-
+                }*/
                 MouseArea {
                     id: button_mouseArea
-                    y: 0
-                    height: 0
-                    anchors.topMargin: 5
-                    anchors.bottom: parent.bottom
-                    anchors.top: parent.top
+                    anchors.fill: parent
 
+                    //y: 0
+                    //height: 0
+                    //anchors.topMargin: 5
+                    //anchors.bottom: parent.bottom
+                    //anchors.top: parent.top
                     Connections {
                         target: button_mouseArea
-                        onClicked: folderDialog.open()
+                        onClicked: savePreset_helper()
                     }
                 }
             }
@@ -361,17 +363,36 @@ Item {
                 anchors.top: button.bottom
                 anchors.topMargin: 5
 
+                Item{
+                    id: document
+                    property var source: fileDialog.file
+                    onSourceChanged: function(){ console.log("Selected File:" +source)
+                    }
+                }
+
                 FileDialog {
                     id: fileDialog
                     currentFile: document.source
                     acceptLabel: "laden"
+                    nameFilters: ["Presets (*.json)", "All files(*)"]
+//                    property alias selectedFilename: fileDialog.fileUrl
+                    folder: "file:///" + applicationDirPath + "/presets/"
+
+                    onAccepted: {
+                        console.log("you chose: ")
+                        console.log(document.source)
+                    }
+                    onRejected: {
+                        console.log("canceled")
+                    }
                 }
 
                 MouseArea {
                     id: button1_mouseArea
-                    anchors.left: parent.left
-                    anchors.top: parent.top
+                    anchors.fill: parent
 
+                    //anchors.left: parent.left
+                    //anchors.top: parent.top
                     Connections {
                         target: button1_mouseArea
                         onClicked: fileDialog.open()
@@ -391,10 +412,10 @@ Item {
                 MouseArea {
                     id: button2_mouseArea
                     anchors.fill: parent
+
                     //anchors.right: parent.right
                     //anchors.left: parent.left
                     //anchors.top: parent.top
-
                     Connections {
                         target: button2_mouseArea
                         onClicked: setPreset_main_helper()
@@ -411,18 +432,17 @@ Item {
                 anchors.top: button2.bottom
                 anchors.topMargin: 5
 
-
                 MouseArea {
                     id: button3_mouseArea
                     anchors.fill: parent
                     // @disable-check M222
                     onClicked: function () {
                         presetSelectMenu.visible = !presetSelectMenu.visible
-
                     }
                 }
             }
         }
+
         /*NewPresetsMenu{
             id: newPresetsMenu
             x: 0
@@ -434,16 +454,4 @@ Item {
             anchors.rightMargin: 5
         }*/
     }
-
 }
-
-
-
-
-/*##^##
-Designer {
-    D{i:0;formeditorZoom:1.75}D{i:15;anchors_height:100;anchors_width:100;anchors_x:0;anchors_y:"-25"}
-D{i:18;anchors_height:100;anchors_width:100}D{i:26;anchors_y:29}D{i:30;anchors_y:55}
-D{i:34;anchors_y:81}D{i:37;anchors_y:107}
-}
-##^##*/

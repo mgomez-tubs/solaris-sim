@@ -101,7 +101,7 @@ Item {
         wheelEnabled: true
         focusPolicy: Qt.NoFocus
         stepSize: 0.1
-        to: 10
+        to: 15
         value: 1
         onValueChanged: setSpeedMultiplier(value)
     }

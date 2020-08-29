@@ -24,16 +24,36 @@ ApplicationWindow {
     property int fps: 0
 
     //          Signals
+    signal getPath(string path)
+    signal setParameter(real flt_tmp)
+    signal getPlanet(real plt_tmp)
     signal setPreset_main()
+    signal savePreset()
     signal mainWclosed()
     signal tooglePlayPause()
     signal resetSimulation()
     signal setSpeedMultiplier(real multiplier)
 
+
     //          Signal Helpers
     function setPreset_main_helper(){
         console.log("Funktion setPreset_main_helper() wurde aufgerufen.")
         setPreset_main()
+    }
+
+    function setParameter_helper(){
+        console.log("Funktion setParameter_helper() wurde aufgerufen.")
+        setParameter(flt_tmp)
+    }
+
+    function getPlanet_helper(){
+        console.log("Funktion getPlanet_helper() wurde aufgerufen.")
+        getPlanet()
+    }
+
+    function savePreset_helper(){
+        console.log("Funktion savePreset_helper() wurde aufgerufen.")
+        savePreset()
     }
 
     function tooglePlayPause_helper(){
@@ -76,7 +96,7 @@ ApplicationWindow {
             }
         }
 
-        property Node currentPlanet : undefined
+        //property Node currentPlanet : undefined
         function setCurrentPlanet(planet : Node) {
             currentPlanet = planet;
         }
