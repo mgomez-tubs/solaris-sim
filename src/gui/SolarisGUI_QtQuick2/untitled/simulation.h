@@ -51,8 +51,6 @@ public:
         anzahlZwergPlaneten()++;
     }
 
-
-
     void startTimer();
     void stopTimer();
 
@@ -66,14 +64,10 @@ public:
 
 private slots:
     void getPlanet(qreal);
-    void getPath(QString);
     void setParameter(qreal, qreal);
-    void write(QJsonObject &json) const;
-    void read(const QJsonObject &json);
     void tooglePlayPause();
     void Reset();
     void setSpeedMultiplier(qreal);
-    void savePreset();
     void setPreset_main();
 };
 

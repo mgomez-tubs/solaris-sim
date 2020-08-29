@@ -166,15 +166,6 @@ Item {
                     verticalAlignment: Text.AlignVCenter
                     anchors.leftMargin: 20
                 }
-
-
-                /*
-                MouseArea {
-                    id: rectangle5_mouseArea
-                    anchors.fill: parent
-                    // @disable-check M222
-                    onClicked: view.planetCamera_handler("defaultCamera")
-                }*/
             }
 
             Rectangle {
@@ -324,85 +315,9 @@ Item {
             anchors.topMargin: 2
 
             Button {
-                id: button
-                x: 36
-                width: 128
-                height: 20
-                text: qsTr("Save Preset")
-                anchors.top: parent.top
-                anchors.topMargin: 30
-
-
-                /*FolderDialog {
-                    id: folderDialog
-                    currentFolder: viewer.folder
-                    acceptLabel: "speichern"
-                }*/
-                MouseArea {
-                    id: button_mouseArea
-                    anchors.fill: parent
-
-                    //y: 0
-                    //height: 0
-                    //anchors.topMargin: 5
-                    //anchors.bottom: parent.bottom
-                    //anchors.top: parent.top
-                    Connections {
-                        target: button_mouseArea
-                        onClicked: savePreset_helper()
-                    }
-                }
-            }
-
-            Button {
-                id: button1
-                x: 36
-                width: 128
-                height: 20
-                text: qsTr("Load Preset")
-                anchors.top: button.bottom
-                anchors.topMargin: 5
-
-                Item{
-                    id: document
-                    property var source: fileDialog.file
-                    onSourceChanged: function(){ console.log("Selected File:" +source)
-                    }
-                }
-
-                FileDialog {
-                    id: fileDialog
-                    currentFile: document.source
-                    acceptLabel: "laden"
-                    nameFilters: ["Presets (*.json)", "All files(*)"]
-//                    property alias selectedFilename: fileDialog.fileUrl
-                    folder: "file:///" + applicationDirPath + "/presets/"
-
-                    onAccepted: {
-                        console.log("you chose: ")
-                        console.log(document.source)
-                    }
-                    onRejected: {
-                        console.log("canceled")
-                    }
-                }
-
-                MouseArea {
-                    id: button1_mouseArea
-                    anchors.fill: parent
-
-                    //anchors.left: parent.left
-                    //anchors.top: parent.top
-                    Connections {
-                        target: button1_mouseArea
-                        onClicked: fileDialog.open()
-                    }
-                }
-            }
-
-            Button {
                 id: button2
                 x: 36
+                y: 30
                 width: 128
                 height: 20
                 text: qsTr("Use standard Preset")
@@ -412,10 +327,6 @@ Item {
                 MouseArea {
                     id: button2_mouseArea
                     anchors.fill: parent
-
-                    //anchors.right: parent.right
-                    //anchors.left: parent.left
-                    //anchors.top: parent.top
                     Connections {
                         target: button2_mouseArea
                         onClicked: setPreset_main_helper()
@@ -426,6 +337,7 @@ Item {
             Button {
                 id: button3
                 x: 36
+                y: 55
                 width: 128
                 height: 20
                 text: qsTr("Create new Preset")
@@ -442,16 +354,5 @@ Item {
                 }
             }
         }
-
-        /*NewPresetsMenu{
-            id: newPresetsMenu
-            x: 0
-            y: 0
-            height: 400
-            visible: false
-            opacity: 0.75
-            anchors.right: parent.right
-            anchors.rightMargin: 5
-        }*/
     }
 }
