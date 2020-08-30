@@ -96,7 +96,7 @@ ApplicationWindow {
             }
         }
 
-        //property Node currentPlanet : undefined
+        property Node currentPlanet : undefined
         function setCurrentPlanet(planet : Node) {
             currentPlanet = planet;
         }
