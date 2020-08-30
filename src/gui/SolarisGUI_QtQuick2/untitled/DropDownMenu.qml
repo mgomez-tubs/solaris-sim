@@ -23,7 +23,6 @@ Item {
             }
         }
     ]
-    // @disable-check M224
     Behavior on height {
 
         PropertyAnimation {
@@ -80,8 +79,7 @@ Item {
             z: 10
             scale: 1
             Connections {
-                // @disable-check M222
-                onClicked: function () {
+                function onClicked() {
                     if (maximized == false) {
                         menu.state = "max"
                     } else {

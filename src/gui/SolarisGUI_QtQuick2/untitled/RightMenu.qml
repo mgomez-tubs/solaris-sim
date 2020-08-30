@@ -8,6 +8,7 @@ Item {
     width: 200
     height: 500
 
+    // Menu Container
     Rectangle {
         id: rectangle
         color: "#3f0641"
@@ -77,7 +78,7 @@ Item {
                     display: AbstractButton.IconOnly
 
                     Connections {
-                        onToggled: function () {
+                        function onToggled() {
                             view.toogleOrbits()
                         }
                     }
@@ -142,8 +143,9 @@ Item {
             anchors.top: menuView.bottom
             anchors.topMargin: 2
 
+            // Default Camera
             Rectangle {
-                // Default Camera
+
                 id: rectangle5
                 x: 0
                 width: 200
@@ -167,6 +169,7 @@ Item {
                 }
             }
 
+            // Angle View
             Rectangle {
                 id: rectangle6
                 x: 0
@@ -183,31 +186,6 @@ Item {
                     x: 20
                     y: -25
                     text: qsTr("Angle View")
-                    font.pixelSize: 12
-                    anchors.fill: parent
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
-                    anchors.leftMargin: 20
-                }
-            }
-
-            Rectangle {
-                // Planet View
-                id: rectangle7
-                x: 0
-                width: 200
-                height: 25
-                color: "#c6cecf"
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.topMargin: 0
-                anchors.horizontalCenterOffset: 0
-                anchors.top: rectangle6.bottom
-
-                Text {
-                    id: rectangle7_text
-                    x: 20
-                    y: 5
-                    text: qsTr("Planet View 1 (Erde)")
                     font.pixelSize: 12
                     anchors.fill: parent
                     horizontalAlignment: Text.AlignLeft
@@ -236,7 +214,7 @@ Item {
                     anchors.leftMargin: 20
                 }
                 anchors.horizontalCenterOffset: 0
-                anchors.top: rectangle7.bottom
+                anchors.top: rectangle6.bottom
             }
 
             RadioButton {
@@ -265,20 +243,6 @@ Item {
                 scale: 0.75
                 display: AbstractButton.IconOnly
                 onCheckedChanged: view.planetCamera_handler("angledView")
-            }
-
-            RadioButton {
-                id: radioButton_planetView
-                x: 154
-                y: 68
-                text: qsTr("")
-                focusPolicy: Qt.NoFocus
-                anchors.verticalCenter: rectangle7.verticalCenter
-                anchors.right: parent.right
-                anchors.rightMargin: 5
-                scale: 0.75
-                display: AbstractButton.IconOnly
-                onCheckedChanged: view.planetCamera_handler("erde")
             }
 
             RadioButton {
@@ -311,33 +275,54 @@ Item {
 
             Button {
                 id: button2
-                x: 36
-                y: 30
-                width: 128
-                height: 20
-                text: qsTr("Use standard Preset")
-                anchors.top: button1.bottom
-                anchors.topMargin: 5
+                width: 180
+                height: 25
+                //text: qsTr("Use standard Preset")
+                font.pointSize: 9
+                anchors.top: parent.top
+                anchors.right: parent.right
+                anchors.rightMargin: 0
+                anchors.left: parent.left
+                anchors.leftMargin: 0
+                anchors.topMargin: 25
 
                 MouseArea {
                     id: button2_mouseArea
                     anchors.fill: parent
                     Connections {
                         target: button2_mouseArea
-                        onClicked: setPreset_main_helper()
+                        function onClicked(){
+                            setPreset_main_helper()
+                        }
+
                     }
+                }
+
+                Text {
+                    id: rectangle7_text2
+                    x: 20
+                    y: 5
+                    text: qsTr("Use Standard Preset")
+                    font.pixelSize: 12
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                    anchors.fill: parent
+                    anchors.leftMargin: 20
                 }
             }
 
             Button {
                 id: button3
-                x: 36
                 y: 55
-                width: 128
-                height: 20
-                text: qsTr("Create new Preset")
+                width: 180
+                height: 25
+                //text: qsTr("Create new Preset")
+                anchors.right: parent.right
+                anchors.rightMargin: 0
+                anchors.left: parent.left
+                anchors.leftMargin: 0
                 anchors.top: button2.bottom
-                anchors.topMargin: 5
+                anchors.topMargin: 0
 
                 MouseArea {
                     id: button3_mouseArea
@@ -346,7 +331,26 @@ Item {
                         presetSelectMenu.visible = !presetSelectMenu.visible
                     }
                 }
+
+                Text {
+                    id: rectangle7_text3
+                    x: 20
+                    y: 5
+                    text: qsTr("Create New Preset")
+                    font.pixelSize: 12
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                    anchors.fill: parent
+                    anchors.leftMargin: 20
+                }
             }
         }
     }
 }
+
+/*##^##
+Designer {
+    D{i:23;anchors_width:128;anchors_x:36;anchors_y:30}D{i:27;anchors_width:128;anchors_x:36}
+D{i:22;invisible:true}
+}
+##^##*/

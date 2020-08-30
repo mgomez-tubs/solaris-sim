@@ -57,6 +57,10 @@ ApplicationWindow {
         resetSimulation();
     }
 
+    function removeAllOrbits(){
+        orbitSpawner.removeAllComponents();
+    }
+
     //          Handlers
     onFpsChanged: {
         fpsCounter.elementText=window.fps + " fps"
@@ -105,14 +109,18 @@ ApplicationWindow {
         /* Planet Orbits */
 
         function receiveOrbit(orbit: double){
+            console.log("Added planet " + orbits.length)
             // Push Orbit in Orbits list
             orbits.push(orbit);
             // Insert new Orbit
             orbitSpawner.addComponent(orbit);
         }
 
+
+
         property bool showOrbits : false
 
+        /*
         onOrbitsChanged:
         {
             console.log("orbits changed")
@@ -121,7 +129,7 @@ ApplicationWindow {
             for(var i = 0; i < orbits.length; i++) {
                 addComponent(orbits[i]);
             }
-        }
+        }*/
 
         onShowOrbitsChanged:
             if(showOrbits){
@@ -382,10 +390,16 @@ ApplicationWindow {
             }
 
             function removeAllComponents(){
-                for (var i = orbitCount; i<view.orbits.length; i--){
+                // Empty Array
+
+            console.log("Length before: " + view.orbits.length)
+                for (var i = view.orbits.length; i>0; i--){
+                    console.log("ORBITS REMOVED?")
                     let instance = instances.pop()
                     instance.destroy();
                 }
+                view.orbits.length = 0
+            console.log("Length after: " + view.orbits.length)
             }
         }
 

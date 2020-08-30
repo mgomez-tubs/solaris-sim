@@ -1,4 +1,3 @@
-//#include <QGuiApplication>
 #include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QDebug>
@@ -114,7 +113,7 @@ int main(int argc, char *argv[])
     QDirIterator itInfo(":/Data_Calling/Info/", QDirIterator::NoIteratorFlags);
     while(itInfo.hasNext())
     {
-        itInfo.next();        // this looks weird but please dont touch it
+        itInfo.next();
         QString f = path_Info;
         f.append(itInfo.fileName());
         //qDebug()<< itInfo.filePath();

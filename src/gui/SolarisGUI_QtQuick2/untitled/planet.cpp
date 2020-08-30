@@ -61,8 +61,6 @@ void Planet::setOrbitType(QString type, float radius, float speed){
         this->currentAngle = 0.0;
         this->position = QVector3D(radius,0.0,0.0);
         this->defaultPosition = QVector3D(radius,0.0,0.0);
-        // setRadius(); // change to addRadius()
-        qDebug()<<"Circular rotation was set for"<<this->name;
     }else{
         qDebug()<<"Error setting orbit type. Typo?";
     }
