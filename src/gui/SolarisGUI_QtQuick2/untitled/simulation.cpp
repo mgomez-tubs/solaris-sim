@@ -3,8 +3,8 @@
 #include <QDir>
 #include <QDirIterator>
 
-#include "Data_Calling/Header_Info.h"
-#include "Data_Calling/Header_Planet.h"
+#include "Data_Calling/Header_fin.h"
+
 #include <vector>
 
 // ++++                     Constructor                        ++++ //
@@ -442,9 +442,9 @@ void Simulation::setParameter(qreal flt_tmp, qreal array){
  *  Get external data for the planet information
  */
 QString Simulation::getPlanetInfoString(int planetID){
-    Information Info;
+    Data_Call Info;
     QString s;
-    std::vector<std::vector<std::string>> infoOUT = Info.calling();
+    std::vector<std::vector<std::string>> infoOUT = Info.calling("Info.txt");
     std::string str;
 
     unsigned int j = 0;
@@ -463,16 +463,21 @@ QString Simulation::getPlanetInfoString(int planetID){
  *  Get external data for the planet orbit information (currently not used)
  */
 QVector<float> Simulation::getPlanetOrbitInfo(int planetID){
-    call Call;
-    float f;
-    QVector<float> v;       // vector to be returned
-    std::vector<std::vector<float>> dataOUT = Call.calling();
+    Data_Call Call;
+    std::string f;
+    QVector<QString> v;       // vector to be returned
+    std::vector<std::vector<std::string>> dataOUT = Call.calling("PlData.txt");
 
     unsigned int i = 0;
     do{
         f = dataOUT[planetID][i];    // First element: planet ID
-        v.append(f);
+        v.append(QString::fromStdString(f));
         i++;
     } while (i < dataOUT[planetID].size());
-    return v;
+
+    QVector<float> v_toFloat;
+    for(int i = 0; i < v.length();i++){
+        v_toFloat.append(v[i].toFloat());
+    }
+    return v_toFloat;
 }

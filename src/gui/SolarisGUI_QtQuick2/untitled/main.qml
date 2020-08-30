@@ -390,16 +390,13 @@ ApplicationWindow {
             }
 
             function removeAllComponents(){
-                // Empty Array
-
-            console.log("Length before: " + view.orbits.length)
+                //console.log("Length before: " + view.orbits.length)
                 for (var i = view.orbits.length; i>0; i--){
-                    console.log("ORBITS REMOVED?")
                     let instance = instances.pop()
                     instance.destroy();
                 }
                 view.orbits.length = 0
-            console.log("Length after: " + view.orbits.length)
+                //console.log("Length after: " + view.orbits.length)
             }
         }
 

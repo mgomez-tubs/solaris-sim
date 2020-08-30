@@ -92,6 +92,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     Data_Calling/Header_Info.h \
     Data_Calling/Header_Planet.h \
+    Data_Calling/Header_fin.h \
     QML/drawcircleqt.h \
     debugwindow.h \
     planet.h \
