@@ -230,6 +230,22 @@ Item {
         }
     }
 
+    Button {
+        id: button
+        x: 373
+        y: 0
+        width: 27
+        height: 27
+        text: qsTr("X")
+        font.pointSize: 14
+        font.bold: true
+
+        //@disable-check M222
+        onClicked: function () {
+            presetSelectMenu.visible = !presetSelectMenu.visible
+        }
+    }
+
     Rectangle {
         id: rectangle2
         x: 8
@@ -248,8 +264,8 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 12
             validator: IntValidator{bottom: 0; top: 5000;}
-                focus: true
-                color: acceptableInput ? "green" : "red"
+            focus: true
+            color: acceptableInput ? "green" : "red"
             // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput.text)
                 // @disable-check M222
@@ -273,13 +289,12 @@ Item {
             y: -1
             width: 107
             height: 20
-            //displayText: qsTr("Distance Planet 2")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             validator: IntValidator{bottom: 0; top: 5000;}
-                focus: true
-                color: acceptableInput ? "green" : "red"
+            focus: true
+            color: acceptableInput ? "green" : "red"
             // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput1.text)
                 // @disable-check M222
@@ -288,6 +303,7 @@ Item {
                 setParameter_helper(textInput1.text, 0)}
         }
     }
+
 
     Rectangle {
         id: rectangle4
@@ -302,13 +318,12 @@ Item {
             y: 0
             width: 107
             height: 20
-            //displayText: qsTr("Distance Planet 3")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             validator: IntValidator{bottom: 0; top: 5000;}
-                focus: true
-                color: acceptableInput ? "green" : "red"
+            focus: true
+            color: acceptableInput ? "green" : "red"
             // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput2.text)
                 // @disable-check M222
@@ -331,13 +346,12 @@ Item {
             y: 0
             width: 107
             height: 20
-            //displayText: qsTr("Distance Planet 4")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             validator: IntValidator{bottom: 0; top: 5000;}
-                focus: true
-                color: acceptableInput ? "green" : "red"
+            focus: true
+            color: acceptableInput ? "green" : "red"
             // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput3.text)
                 // @disable-check M222
@@ -360,13 +374,12 @@ Item {
             y: 0
             width: 107
             height: 20
-            //displayText: qsTr("Distance Planet 5")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             validator: IntValidator{bottom: 0; top: 5000;}
-                focus: true
-                color: acceptableInput ? "green" : "red"
+            focus: true
+            color: acceptableInput ? "green" : "red"
             // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput4.text)
                 // @disable-check M222
@@ -389,13 +402,12 @@ Item {
             y: -1
             width: 107
             height: 20
-            //displayText: qsTr("Distance Planet 6")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             validator: IntValidator{bottom: 0; top: 5000;}
-                focus: true
-                color: acceptableInput ? "green" : "red"
+            focus: true
+            color: acceptableInput ? "green" : "red"
             // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput5.text)
                 // @disable-check M222
@@ -418,13 +430,12 @@ Item {
             y: 0
             width: 107
             height: 20
-            //displayText: qsTr("Distance Planet 7")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             validator: IntValidator{bottom: 0; top: 5000;}
-                focus: true
-                color: acceptableInput ? "green" : "red"
+            focus: true
+            color: acceptableInput ? "green" : "red"
             // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput6.text)
                 // @disable-check M222
@@ -447,13 +458,12 @@ Item {
             y: 0
             width: 107
             height: 20
-            //displayText: qsTr("Distance Planet 8")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             validator: IntValidator{bottom: 0; top: 5000;}
-                focus: true
-                color: acceptableInput ? "green" : "red"
+            focus: true
+            color: acceptableInput ? "green" : "red"
             // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput7.text)
                 // @disable-check M222
@@ -476,13 +486,12 @@ Item {
             y: 0
             width: 107
             height: 20
-            //displayText: qsTr("Distance Planet 9")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             validator: IntValidator{bottom: 0; top: 5000;}
-                focus: true
-                color: acceptableInput ? "green" : "red"
+            focus: true
+            color: acceptableInput ? "green" : "red"
             // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput8.text)
                 // @disable-check M222
@@ -505,13 +514,12 @@ Item {
             y: -1
             width: 107
             height: 20
-            //displayText: qsTr("Distance Planet 10")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             validator: IntValidator{bottom: 0; top: 5000;}
-                focus: true
-                color: acceptableInput ? "green" : "red"
+            focus: true
+            color: acceptableInput ? "green" : "red"
             // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput9.text)
                 // @disable-check M222
@@ -534,13 +542,12 @@ Item {
             y: 0
             width: 107
             height: 20
-            //displayText: qsTr("Distance Planet 11")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             validator: IntValidator{bottom: 0; top: 5000;}
-                focus: true
-                color: acceptableInput ? "green" : "red"
+            focus: true
+            color: acceptableInput ? "green" : "red"
             // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput10.text)
                 // @disable-check M222
@@ -563,13 +570,12 @@ Item {
             y: 0
             width: 107
             height: 20
-            //displayText: qsTr("Distance Planet 12")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             validator: IntValidator{bottom: 0; top: 5000;}
-                focus: true
-                color: acceptableInput ? "green" : "red"
+            focus: true
+            color: acceptableInput ? "green" : "red"
             // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput11.text)
                 // @disable-check M222
@@ -592,7 +598,6 @@ Item {
             y: 0
             width: 107
             height: 20
-            //displayText: qsTr("Scaling Planet 1")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -619,7 +624,6 @@ Item {
             y: -1
             width: 107
             height: 20
-            //displayText: qsTr("Scaling Planet 2")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -646,7 +650,6 @@ Item {
             y: 0
             width: 107
             height: 20
-            //displayText: qsTr("Scaling Planet 3")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -673,7 +676,6 @@ Item {
             y: 0
             width: 107
             height: 20
-            //displayText: qsTr("Scaling Planet 4")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -700,7 +702,6 @@ Item {
             y: 0
             width: 107
             height: 20
-            //displayText: qsTr("Scaling Planet 5")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -727,7 +728,6 @@ Item {
             y: -1
             width: 107
             height: 20
-            //displayText: qsTr("Scaling Planet 6")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -754,7 +754,6 @@ Item {
             y: 0
             width: 107
             height: 20
-            //displayText: qsTr("Scaling Planet 7")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -781,7 +780,6 @@ Item {
             y: 0
             width: 107
             height: 20
-            //displayText: qsTr("Scaling Planet 8")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -808,7 +806,6 @@ Item {
             y: 0
             width: 107
             height: 20
-            //displayText: qsTr("Scaling Planet 9")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -835,7 +832,6 @@ Item {
             y: 0
             width: 107
             height: 20
-            //displayText: qsTr("Scaling Planet 10")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -862,7 +858,6 @@ Item {
             y: 0
             width: 107
             height: 20
-            //displayText: qsTr("Scaling Planet 11")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -889,7 +884,6 @@ Item {
             y: 0
             width: 107
             height: 20
-            //displayText: qsTr("Scaling Planet 12")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -902,4 +896,5 @@ Item {
                 setParameter_helper(textInput23.text, 1)}
         }
     }
+
 }

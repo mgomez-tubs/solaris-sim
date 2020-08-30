@@ -24,11 +24,9 @@ ApplicationWindow {
     property int fps: 0
 
     //          Signals
-    signal getPath(string path)
     signal setParameter(real flt_tmp, real array)
     signal getPlanet(real plt_tmp)
     signal setPreset_main()
-    signal savePreset()
     signal mainWclosed()
     signal tooglePlayPause()
     signal resetSimulation()
@@ -49,11 +47,6 @@ ApplicationWindow {
     function getPlanet_helper(plt_tmp){
         console.log("Funktion getPlanet_helper() wurde aufgerufen.")
         getPlanet(plt_tmp)
-    }
-
-    function savePreset_helper(){
-        console.log("Funktion savePreset_helper() wurde aufgerufen.")
-        savePreset()
     }
 
     function tooglePlayPause_helper(){

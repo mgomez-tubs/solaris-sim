@@ -104,12 +104,6 @@ void Simulation::Init(){
 
     distanceScale = 3;
 
-    //int distance_mercury = 40, distance_venus = 70, distance_earth = 100, distance_mars = 150, distance_jupiter = 320, distance_saturn = 560, distance_uranus = 820, distance_neptun = 1000;
-
-    //int distance_venus = 40, distance_earth = 40, distance_mars = 40, distance_jupiter = 40, distance_saturn = 40, distance_uranus = 40, distance_neptun = 40;
-
-    //distance_mercury = 0;
-
     //use only for testing purposes
     planet_distance[0] = 0;
     planet_distance[1] = 0;
@@ -295,11 +289,6 @@ void Simulation::setSpeedMultiplier(qreal multiplier){      // what is this //th
     Planet::speedMultiplier = multiplier;
 }
 
-void Simulation::getPath(QString path){
-    QString file = path;
-    qDebug() << "path ist:" << path;
-}
-
 // Timer control
 void Simulation::startTimer(){
     qDebug()<<"Simulation Started";
@@ -336,10 +325,7 @@ void Simulation::tooglePlayPause(){
 
 void Simulation::setPreset_main(){
 
-    //qDebug() << "wert mercury : " << distance_mercury;
-
     qDebug() << "wert merkur liste: " <<planet_distance[0];     //only for testing purposes
-
 
     //set standard values for distance and scaling
     planet_distance[0] = 40;
@@ -370,11 +356,7 @@ void Simulation::setPreset_main(){
     planet_scaling[11] = 0.8;
     planet_scaling[12] = 0.8;
 
-    // 40.0 ; 70.0 ; 100.0 ; 150.0 ; 320.0 ; 560.0 ; 820.0 ; 1000.0
-
-    //distance_mercury = 40,
-
-    //qDebug() << "wert mercury : " << distance_mercury;
+    // 40.0 ; 70.0 ; 100.0 ; 150.0 ; 320.0 ; 560.0 ; 820.0 ; 1000.0 <- use as reference
 
     qDebug() << "wert merkur liste: " <<planet_distance[0];         //used only for testing purposes
 
@@ -386,70 +368,24 @@ void Simulation::setPreset_main(){
 
 }
 
-void Simulation::write(QJsonObject &json) const{ //for-schleife schreiben
-
-    json["mercury_distance"] = planet_distance[0];
-    json["venus_distance"] = planet_distance[1];
-    json["earth_distance"] = planet_distance[2];
-    json["mars_distance"] = planet_distance[3];
-    json["jupiter_distance"] = planet_distance[4];
-    json["saturn_distance"] = planet_distance[5];
-    json["uranus_distance"] = planet_distance[6];
-    json["neptun_distance"] = planet_distance[7];
-    json["ceres_distance"] = planet_distance[8];
-    json["pluto_distance"] = planet_distance[9];
-    json["haumea_distance"] = planet_distance[10];
-    json["makemake_distance"] = planet_distance[11];
-    json["eris_distance"] = planet_distance[12];
-
-    json["mercury_scaling"] = planet_scaling[0];
-    json["venus_scaling"] = planet_scaling[1];
-    json["earth_scaling"] = planet_scaling[2];
-    json["mars_scaling"] = planet_scaling[3];
-    json["jupiter_scaling"] = planet_scaling[4];
-    json["saturn_scaling"] = planet_scaling[5];
-    json["uranus_scaling"] = planet_scaling[6];
-    json["neptun_scaling"] = planet_scaling[7];
-    json["ceres_scaling"] = planet_scaling[8];
-    json["pluto_scaling"] = planet_scaling[9];
-    json["haumea_scaling"] = planet_scaling[10];
-    json["makemake_scaling"] = planet_scaling[11];
-    json["eris_scaling"] = planet_scaling[12];
-
-}
-
-void Simulation::read(const QJsonObject &json){
-
-    if (json.contains("mercury_distance") && json["mercury_distance"].isDouble())
-            planet_distance[1] = json["name"].toInt();
-
-}
-
-void Simulation::savePreset(){
-
-    qDebug() << "funktion wurde aufgerufen.";
-
-
-
-}
-
 void Simulation::getPlanet(qreal plt_tmp){
     planet_tmp = plt_tmp;
 }
 
 void Simulation::setParameter(qreal flt_tmp, qreal array){
 
-    //float flt_tmp1 = flt_tmp;
-    qDebug()<< "planet nr.:" <<planet_tmp <<"wurde auf den Wert:" << flt_tmp <<"geaendert";
+    qDebug()<< "planet nr.:" <<planet_tmp <<"wurde auf den Wert:" << flt_tmp <<"geaendert"; // used for testing purposes
 
-    if (array == 0){
+    if (array == 0){                            //checks which array is edited
         int flt_tmp1 = flt_tmp;
         planet_distance[planet_tmp] = flt_tmp1;
     }
+
     else if (array ==1){
         double flt_tmp2 = flt_tmp;
         planet_scaling[planet_tmp] = flt_tmp2;
     }
+
     else qDebug()<<"array nicht bekannt";
 
     Reset();
