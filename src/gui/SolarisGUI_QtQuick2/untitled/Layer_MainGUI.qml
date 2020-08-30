@@ -82,7 +82,7 @@ Item {
         id: rightMenu
         x: 590
         y: 37
-        height: 450
+        height: 250
         visible: false
         opacity: 0.75
         anchors.right: parent.right

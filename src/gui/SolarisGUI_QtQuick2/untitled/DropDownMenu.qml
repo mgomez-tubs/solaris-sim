@@ -5,8 +5,9 @@ Item {
     id: menu
     width: 200
     height: 25
-    clip: true
-    property alias menuHeight: menu.height
+    property real maxheight: 200
+    property alias maxheight : menu.maxheight
+    clip: false
     states: [
         State {
             name: "min"
@@ -19,7 +20,7 @@ Item {
             name: "max"
             PropertyChanges {
                 target: menu
-                height: 200
+                height: menu.maxheight
             }
         }
     ]
@@ -29,6 +30,8 @@ Item {
             easing.type: Easing.InOutQuad
         }
     }
+    property alias menuHeight: menu.height
+    property alias rowHeight: row.height
     property alias menuClip: menu.clip
     property alias elementText: element.text
 
@@ -91,3 +94,9 @@ Item {
         }
     }
 }
+
+/*##^##
+Designer {
+    D{i:0;height:25;width:200}
+}
+##^##*/

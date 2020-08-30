@@ -76,8 +76,6 @@ ApplicationWindow {
         anchors.fill: parent
         camera: centerCamera
 
-
-
         //                           Handlers                            //
         function planetCamera_handler(cameraName : String){
             if (cameraName==="defaultCamera"){
@@ -91,7 +89,7 @@ ApplicationWindow {
             else if (cameraName==="freeView"){
                 freeView.position = view.camera.position
                 freeView.eulerRotation = view.camera.eulerRotation
-                view.camera=freeView
+                view.camera=centerCamera
             }
         }
 
@@ -107,7 +105,7 @@ ApplicationWindow {
             return planets
         }
 
-        //                           Planet Orbit Control                           //
+        //                           Planet Orbit Control                //
         property var orbits : []
         property bool showOrbits : false
 
@@ -153,10 +151,8 @@ ApplicationWindow {
             ]
 
             // Qt 2.15
-            antialiasingMode: SceneEnvironment.MSAA            // Multisample AA
-            antialiasingQuality: "VeryHigh"         // High quality
-
-
+            antialiasingMode: SceneEnvironment.MSAA             // Multisample AA
+            antialiasingQuality: "VeryHigh"                     // High quality
             backgroundMode: SceneEnvironment.Color
         }
 
@@ -200,6 +196,7 @@ ApplicationWindow {
                                   "\nrotx: " + Math.round(eulerRotation.x) + "\nroty: " + Math.round(eulerRotation.y) + "\nrotz: " + Math.round(eulerRotation.z)
             }*/
         }
+
         Node {
             id: node_centerCamera
             property real distance : 1400

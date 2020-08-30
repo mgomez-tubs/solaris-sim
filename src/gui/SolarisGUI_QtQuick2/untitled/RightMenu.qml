@@ -6,21 +6,28 @@ import Qt.labs.platform 1.1
 
 Item {
     width: 200
-    height: 500
+    height: 200
+
+    function activeTabHandler(){
+
+    }
 
     // Menu Container
     Rectangle {
         id: rectangle
+        height: 200
         color: "#3f0641"
         anchors.rightMargin: 0
-        anchors.bottomMargin: 8
+        anchors.bottomMargin: 0
         anchors.leftMargin: 0
-        anchors.topMargin: -8
+        anchors.topMargin: 0
         anchors.fill: parent
 
         DropDownMenu {
             id: menuView
             x: 8
+            maxheight: 100
+            rowHeight: 200
             maximized: false
             menuClip: true
             clip: false
@@ -32,10 +39,11 @@ Item {
             Rectangle {
                 id: rectangle1
                 x: 0
-                y: 32
                 width: 200
                 height: 25
                 color: "#c6cecf"
+                anchors.top: parent.top
+                anchors.topMargin: 25
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 Text {
@@ -129,6 +137,8 @@ Item {
         DropDownMenu {
             id: menuCameras
             x: 0
+            maxheight: 100
+            rowHeight: 200
             clip: false
             maximized: false
             opacity: 1
@@ -154,7 +164,7 @@ Item {
                     id: rectangle5_text
                     x: 20
                     y: 5
-                    text: qsTr("Top View")
+                    text: qsTr("Fixed Top View")
                     font.pixelSize: 12
                     anchors.fill: parent
                     horizontalAlignment: Text.AlignLeft
@@ -179,7 +189,7 @@ Item {
                     id: rectangle6_text
                     x: 20
                     y: -25
-                    text: qsTr("Angle View")
+                    text: qsTr("Fixed Angle View")
                     font.pixelSize: 12
                     anchors.fill: parent
                     horizontalAlignment: Text.AlignLeft
@@ -200,7 +210,7 @@ Item {
                     id: rectangle7_text1
                     x: 20
                     y: 5
-                    text: qsTr("FreeView")
+                    text: qsTr("Free View")
                     anchors.fill: parent
                     horizontalAlignment: Text.AlignLeft
                     font.pixelSize: 12
@@ -259,6 +269,7 @@ Item {
             id: menuPresets
             x: 0
             y: 81
+            maxheight: 75
             anchors.horizontalCenterOffset: 0
             anchors.horizontalCenter: parent.horizontalCenter
             clip: false
@@ -315,8 +326,8 @@ Item {
                 anchors.rightMargin: 0
                 anchors.left: parent.left
                 anchors.leftMargin: 0
-                anchors.top: button2.bottom
-                anchors.topMargin: 0
+                anchors.top: button2.top
+                anchors.topMargin: 25
 
                 MouseArea {
                     id: button3_mouseArea
@@ -344,7 +355,7 @@ Item {
 
 /*##^##
 Designer {
-    D{i:22;anchors_width:128;anchors_x:36;anchors_y:30}D{i:26;anchors_width:128;anchors_x:36}
-D{i:21;invisible:true}
+    D{i:0;formeditorZoom:1.25}D{i:3;anchors_y:32}D{i:11;invisible:true}D{i:22;anchors_width:128;anchors_x:36;anchors_y:30}
+D{i:26;anchors_width:128;anchors_x:36}
 }
 ##^##*/
