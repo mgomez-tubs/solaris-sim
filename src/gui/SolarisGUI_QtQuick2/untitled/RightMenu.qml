@@ -67,8 +67,9 @@ Item {
                     display: AbstractButton.IconOnly
 
                     Connections {
+                        target: rectangle1_switch
                         function onToggled() {
-                            view.toogleOrbits()
+                            view.disableOrbits()
                         }
                     }
                 }

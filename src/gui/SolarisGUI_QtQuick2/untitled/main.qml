@@ -61,6 +61,8 @@ ApplicationWindow {
         orbitSpawner.removeAllComponents();
     }
 
+
+
     //          Handlers
     onFpsChanged: {
         fpsCounter.elementText=window.fps + " fps"
@@ -75,6 +77,8 @@ ApplicationWindow {
         objectName: "view"
         anchors.fill: parent
         camera: centerCamera
+
+
 
         //                           Handlers                            //
         function planetCamera_handler(cameraName : String){
@@ -105,8 +109,21 @@ ApplicationWindow {
             return planets
         }
 
+        //                           Planet Orbit Control                           //
         property var orbits : []
-        /* Planet Orbits */
+        property bool showOrbits : false
+
+        function disableOrbits(){
+            if(showOrbits){
+                orbitSpawner.hideOrbits();
+                showOrbits = !showOrbits;
+                console.log("Orbits disabled")
+            } else {
+                orbitSpawner.showOrbits();
+                showOrbits = !showOrbits;
+                console.log("Orbits enabled")
+            }
+        }
 
         function receiveOrbit(orbit: double){
             console.log("Added planet " + orbits.length)
@@ -115,45 +132,6 @@ ApplicationWindow {
             // Insert new Orbit
             orbitSpawner.addComponent(orbit);
         }
-
-
-
-        property bool showOrbits : false
-
-        /*
-        onOrbitsChanged:
-        {
-            console.log("orbits changed")
-            // Delete last
-            orbitSpawner.removeAllComponents();
-            for(var i = 0; i < orbits.length; i++) {
-                addComponent(orbits[i]);
-            }
-        }*/
-
-        onShowOrbitsChanged:
-            if(showOrbits){
-                /*
-                for(var i = 0; i<12;i++)
-                    orbitSpawner.addComponent(i*100)
-                    */
-
-            } else {
-                orbitSpawner.removeAllComponents();
-                console.log("Orbits disabled")
-            }
-
-/*
-        function toogleOrbits(){
-            if(circularOrbits.visible){
-                circularOrbits.visible=false
-                console.log("Orbits disabled")
-            } else {
-                circularOrbits.visible = !circularOrbits.visible
-                console.log("Orbits enabled")
-            }
-        }
-*/
 
         //          Keyboard control - preferable in a separate file?    //
         Keys.onPressed: DefaultKeys.func(event);
@@ -373,6 +351,20 @@ ApplicationWindow {
             id: orbitSpawner
             property var orbitCount: 0
             property var instances : []
+
+            function hideOrbits(){
+                console.log("disable orbits <<<<")
+                for(var i = 0; i<instances.length;i++){
+                    instances[i].visible = false;
+                }
+            }
+
+            function showOrbits(){
+                console.log("show orbits <<<<")
+                for(var i = 0; i<instances.length;i++){
+                    instances[i].visible = true;
+                }
+            }
 
             function addComponent(radius: double){
                 var orbitComponent = Qt.createComponent("OrbitKreis.qml");
