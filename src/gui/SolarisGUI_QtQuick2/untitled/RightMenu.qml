@@ -19,25 +19,14 @@ Item {
         anchors.fill: parent
 
         DropDownMenu {
-            id: menuGeneral
-            x: 0
-            menuClip: true
-            clip: false
-            elementText: "General"
-            anchors.top: parent.top
-            anchors.topMargin: 0
-            anchors.horizontalCenter: parent.horizontalCenter
-        }
-
-        DropDownMenu {
             id: menuView
             x: 8
             maximized: false
             menuClip: true
             clip: false
             elementText: "View"
-            anchors.top: menuGeneral.bottom
-            anchors.topMargin: 2
+            anchors.top: parent.top
+            anchors.topMargin: 0
             anchors.horizontalCenter: parent.horizontalCenter
 
             Rectangle {
@@ -350,7 +339,7 @@ Item {
 
 /*##^##
 Designer {
-    D{i:23;anchors_width:128;anchors_x:36;anchors_y:30}D{i:27;anchors_width:128;anchors_x:36}
-D{i:22;invisible:true}
+    D{i:22;anchors_width:128;anchors_x:36;anchors_y:30}D{i:26;anchors_width:128;anchors_x:36}
+D{i:21;invisible:true}
 }
 ##^##*/

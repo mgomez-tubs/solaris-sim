@@ -105,7 +105,7 @@ Item {
         value: 1
         onValueChanged: setSpeedMultiplier(value)
     }
-
+/*
     ButtonForm {
         id: buttonInfo
         MouseArea {
@@ -121,7 +121,7 @@ Item {
         anchors.rightMargin: 10
         anchors.bottom: buttonSettings.top
         anchors.right: parent.right
-    }
+    }*/
 
     PresetSelectMenu {
         id: presetSelectMenu
