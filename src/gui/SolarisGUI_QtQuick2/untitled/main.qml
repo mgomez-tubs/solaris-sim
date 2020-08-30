@@ -61,8 +61,6 @@ ApplicationWindow {
         orbitSpawner.removeAllComponents();
     }
 
-
-
     //          Handlers
     onFpsChanged: {
         fpsCounter.elementText=window.fps + " fps"
@@ -123,6 +121,11 @@ ApplicationWindow {
                 showOrbits = !showOrbits;
                 console.log("Orbits enabled")
             }
+        }
+
+        function changeOrbitOpacity(o: double){
+            orbitSpawner.changeOpacity(o)
+
         }
 
         function receiveOrbit(orbit: double){
@@ -363,6 +366,12 @@ ApplicationWindow {
                 console.log("show orbits <<<<")
                 for(var i = 0; i<instances.length;i++){
                     instances[i].visible = true;
+                }
+            }
+
+            function changeOpacity(opacity: real){
+                for(var i = 0; i<instances.length;i++){
+                    instances[i].opacity = opacity;
                 }
             }
 

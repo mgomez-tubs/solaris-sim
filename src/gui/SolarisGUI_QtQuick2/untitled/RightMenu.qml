@@ -87,7 +87,7 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 Text {
                     id: rectangle2_text
-                    text: qsTr("Orbit Opacity (coming...)")
+                    text: qsTr("Orbit Opacity")
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
                     font.pixelSize: 12
@@ -108,7 +108,7 @@ Item {
                 anchors.horizontalCenterOffset: 0
 
                 Slider {
-                    id: rectangle3_slider
+                    id: opacitySlider
                     x: -28
                     y: 8
                     width: 240
@@ -118,6 +118,10 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     scale: 0.7
                     value: 0.5
+                    onValueChanged: function(){
+                        console.log(opacitySlider.value)
+                        view.changeOrbitOpacity(opacitySlider.value)
+                    }
                 }
             }
         }
