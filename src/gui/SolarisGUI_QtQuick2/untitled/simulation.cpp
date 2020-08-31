@@ -118,6 +118,7 @@ void Simulation::Init(){
     connect(rootObject,SIGNAL(getPlanet(qreal)), this,SLOT(getPlanet(qreal)));
     connect(rootObject,SIGNAL(setParameter(qreal, qreal)), this,SLOT(setParameter(qreal, qreal)));
     connect(rootObject,SIGNAL(setDistance_Scale(qreal)), this,SLOT(setDistance_Scale(qreal)));
+    connect(rootObject,SIGNAL(newStart()), this,SLOT(newStart()));
 
     //  Add the (main) Planets
     addPlanet(rootObject,"Merkur","merkur");    //0
@@ -382,9 +383,7 @@ void Simulation::setPreset_main(){
 
     distanceScale = 3;
 
-    Reset();        //resets positions and scaling, and uses standard values, see above
-
-    startTimer();       //starts simulation after Reset(); stopped it
+    newStart();
 
 }
 
@@ -392,8 +391,7 @@ void Simulation::setDistance_Scale(qreal scaling){
     int scaling_tmp = scaling;
     distanceScale = scaling_tmp;
 
-    Reset();
-    startTimer();
+    newStart();
 }
 
 void Simulation::getPlanet(qreal plt_tmp){
@@ -427,7 +425,11 @@ bool Simulation::setParameter(qreal flt_tmp, qreal array){
 
     return success;
 
+}
+
+void Simulation::newStart(){
     Reset();
+
     startTimer();
 }
 

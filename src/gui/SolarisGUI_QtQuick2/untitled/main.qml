@@ -24,6 +24,7 @@ ApplicationWindow {
     property int fps: 0
 
     //          Signals
+    signal newStart()
     signal setDistance_Scale(real scaling)
     signal setParameter(real flt_tmp, real array)
     signal getPlanet(real plt_tmp)
@@ -35,6 +36,11 @@ ApplicationWindow {
 
 
     //          Signal Helpers
+    function newStart_helper(){
+        console.log("Funktion newStart() wurde aufgerufen.")
+        newStart()
+    }
+
     function setDistance_Scale_helper(scaling){
         console.log("Funktion setDistance_Scale_helper() wurde aufgerufen.")
         setDistance_Scale(scaling)

@@ -5,7 +5,7 @@ import QtQuick.Controls 2.0
 Item {
     id: element
     width: 400
-    height: 550
+    height: 560
 
     Rectangle {
         id: rectangle1
@@ -229,12 +229,25 @@ Item {
                 verticalAlignment: Text.AlignVCenter
                 font.pixelSize: 12
             }
+
+            Text {
+                id: element18
+                x: 147
+                y: 480
+                width: 107
+                height: 20
+                text: qsTr("Planet 13")
+                font.pixelSize: 12
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                font.family: "arial"
+            }
         }
 
         Text {
             id: element17
             x: 8
-            y: 500
+            y: 520
             width: 107
             height: 20
             text: qsTr("Distane Scaling:")
@@ -246,7 +259,7 @@ Item {
         Rectangle {
             id: rectangle26
             x: 147
-            y: 500
+            y: 520
             width: 107
             height: 20
             color: "#bdbdbd"
@@ -266,7 +279,9 @@ Item {
                     bottom: 1
                 }
 
-                onAccepted: setDistance_Scale_helper(textInput24.text)
+                onAccepted: {setDistance_Scale_helper(textInput24.text)
+                    newStart_helper()
+                }
             }
         }
     }
@@ -309,6 +324,7 @@ Item {
             onAccepted: {console.log(textInput.text)
                 getPlanet_helper(0)
                 setParameter_helper(textInput.text, 0)
+                newStart_helper()
             }
         }
     }
@@ -334,7 +350,9 @@ Item {
             color: acceptableInput ? "green" : "red"
             onAccepted: {console.log(textInput1.text)
                 getPlanet_helper(1)
-                setParameter_helper(textInput1.text, 0)}
+                setParameter_helper(textInput1.text, 0)
+                newStart_helper()
+            }
         }
     }
 
@@ -360,7 +378,9 @@ Item {
             color: acceptableInput ? "green" : "red"
             onAccepted: {console.log(textInput2.text)
                 getPlanet_helper(2)
-                setParameter_helper(textInput2.text, 0)}
+                setParameter_helper(textInput2.text, 0)
+                newStart_helper()
+            }
         }
     }
 
@@ -385,7 +405,9 @@ Item {
             color: acceptableInput ? "green" : "red"
             onAccepted: {console.log(textInput3.text)
                 getPlanet_helper(3)
-                setParameter_helper(textInput3.text, 0)}
+                setParameter_helper(textInput3.text, 0)
+                newStart_helper()
+            }
         }
     }
 
@@ -410,7 +432,9 @@ Item {
             color: acceptableInput ? "green" : "red"
             onAccepted: {console.log(textInput4.text)
                 getPlanet_helper(4)
-                setParameter_helper(textInput4.text, 0)}
+                setParameter_helper(textInput4.text, 0)
+                newStart_helper()
+            }
         }
     }
 
@@ -435,7 +459,9 @@ Item {
             color: acceptableInput ? "green" : "red"
             onAccepted: {console.log(textInput5.text)
                 getPlanet_helper(5)
-                setParameter_helper(textInput5.text, 0)}
+                setParameter_helper(textInput5.text, 0)
+                newStart_helper()
+            }
         }
     }
 
@@ -460,7 +486,9 @@ Item {
             color: acceptableInput ? "green" : "red"
             onAccepted: {console.log(textInput6.text)
                 getPlanet_helper(6)
-                setParameter_helper(textInput6.text, 0)}
+                setParameter_helper(textInput6.text, 0)
+                newStart_helper()
+            }
         }
     }
 
@@ -485,7 +513,9 @@ Item {
             color: acceptableInput ? "green" : "red"
             onAccepted: {console.log(textInput7.text)
                 getPlanet_helper(7)
-                setParameter_helper(textInput7.text, 0)}
+                setParameter_helper(textInput7.text, 0)
+                newStart_helper()
+            }
         }
     }
 
@@ -510,7 +540,9 @@ Item {
             color: acceptableInput ? "green" : "red"
             onAccepted: {console.log(textInput8.text)
                 getPlanet_helper(8)
-                setParameter_helper(textInput8.text, 0)}
+                setParameter_helper(textInput8.text, 0)
+                newStart_helper()
+            }
         }
     }
 
@@ -535,7 +567,9 @@ Item {
             color: acceptableInput ? "green" : "red"
             onAccepted: {console.log(textInput9.text)
                 getPlanet_helper(9)
-                setParameter_helper(textInput9.text, 0)}
+                setParameter_helper(textInput9.text, 0)
+                newStart_helper()
+            }
         }
     }
 
@@ -560,7 +594,9 @@ Item {
             color: acceptableInput ? "green" : "red"
             onAccepted: {console.log(textInput10.text)
                 getPlanet_helper(10)
-                setParameter_helper(textInput10.text, 0)}
+                setParameter_helper(textInput10.text, 0)
+                newStart_helper()
+            }
         }
     }
 
@@ -585,7 +621,9 @@ Item {
             color: acceptableInput ? "green" : "red"
             onAccepted: {console.log(textInput11.text)
                 getPlanet_helper(11)
-                setParameter_helper(textInput11.text, 0)}
+                setParameter_helper(textInput11.text, 0)
+                newStart_helper()
+            }
         }
     }
 
@@ -608,7 +646,9 @@ Item {
             inputMask: "9.99"
             onAccepted: {console.log(textInput12.text)
                 getPlanet_helper(0)
-                setParameter_helper(textInput12.text, 1)}
+                setParameter_helper(textInput12.text, 1)
+                newStart_helper()
+            }
         }
     }
 
@@ -631,7 +671,9 @@ Item {
             inputMask: "9.99"
             onAccepted: {console.log(textInput13.text)
                 getPlanet_helper(1)
-                setParameter_helper(textInput13.text, 1)}
+                setParameter_helper(textInput13.text, 1)
+                newStart_helper()
+            }
         }
     }
 
@@ -654,7 +696,9 @@ Item {
             inputMask: "9.99"
             onAccepted: {console.log(textInput14.text)
                 getPlanet_helper(2)
-                setParameter_helper(textInput14.text, 1)}
+                setParameter_helper(textInput14.text, 1)
+                newStart_helper()
+            }
         }
     }
 
@@ -677,7 +721,9 @@ Item {
             inputMask: "9.99"
             onAccepted: {console.log(textInput15.text)
                 getPlanet_helper(3)
-                setParameter_helper(textInput15.text, 1)}
+                setParameter_helper(textInput15.text, 1)
+                newStart_helper()
+            }
         }
     }
 
@@ -700,7 +746,9 @@ Item {
             inputMask: "9.99"
             onAccepted: {console.log(textInput16.text)
                 getPlanet_helper(4)
-                setParameter_helper(textInput16.text, 1)}
+                setParameter_helper(textInput16.text, 1)
+                newStart_helper()
+            }
         }
     }
 
@@ -723,7 +771,9 @@ Item {
             inputMask: "9.99"
             onAccepted: {console.log(textInput17.text)
                 getPlanet_helper(5)
-                setParameter_helper(textInput17.text, 1)}
+                setParameter_helper(textInput17.text, 1)
+                newStart_helper()
+            }
         }
     }
 
@@ -746,7 +796,9 @@ Item {
             inputMask: "9.99"
             onAccepted: {console.log(textInput18.text)
                 getPlanet_helper(6)
-                setParameter_helper(textInput18.text, 1)}
+                setParameter_helper(textInput18.text, 1)
+                newStart_helper()
+            }
         }
     }
 
@@ -769,7 +821,9 @@ Item {
             inputMask: "9.99"
             onAccepted: {console.log(textInput19.text)
                 getPlanet_helper(7)
-                setParameter_helper(textInput19.text, 1)}
+                setParameter_helper(textInput19.text, 1)
+                newStart_helper()
+            }
         }
     }
 
@@ -792,7 +846,9 @@ Item {
             inputMask: "9.99"
             onAccepted: {console.log(textInput20.text)
                 getPlanet_helper(8)
-                setParameter_helper(textInput20.text, 1)}
+                setParameter_helper(textInput20.text, 1)
+                newStart_helper()
+            }
         }
     }
 
@@ -815,7 +871,9 @@ Item {
             inputMask: "9.99"
             onAccepted: {console.log(textInput21.text)
                 getPlanet_helper(9)
-                setParameter_helper(textInput21.text, 1)}
+                setParameter_helper(textInput21.text, 1)
+                newStart_helper()
+            }
         }
     }
 
@@ -838,7 +896,9 @@ Item {
             inputMask: "9.99"
             onAccepted: {console.log(textInput22.text)
                 getPlanet_helper(10)
-                setParameter_helper(textInput22.text, 1)}
+                setParameter_helper(textInput22.text, 1)
+                newStart_helper()
+            }
         }
     }
 
@@ -861,7 +921,64 @@ Item {
             inputMask: "9.99"
             onAccepted: {console.log(textInput23.text)
                 getPlanet_helper(11)
-                setParameter_helper(textInput23.text, 1)}
+                setParameter_helper(textInput23.text, 1)
+                newStart_helper()
+            }
+        }
+    }
+
+    Rectangle {
+        id: rectangle27
+        x: 8
+        y: 480
+        width: 107
+        height: 20
+        color: "#bdbdbd"
+        TextInput {
+            id: textInput25
+            x: 0
+            y: 0
+            width: 107
+            height: 20
+            color: acceptableInput ? "green" : "red"
+            font.pixelSize: 12
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            validator: IntValidator {
+                bottom: 0
+                top: 5000
+            }
+            focus: true
+            onAccepted: {console.log(textInput25.text)
+                getPlanet_helper(12)
+                setParameter_helper(textInput25.text, 0)
+                newStart_helper()
+            }
+        }
+    }
+
+    Rectangle {
+        id: rectangle28
+        x: 285
+        y: 480
+        width: 107
+        height: 20
+        color: "#bdbdbd"
+        TextInput {
+            id: textInput26
+            x: 0
+            y: 0
+            width: 107
+            height: 20
+            font.pixelSize: 12
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            inputMask: "9.99"
+            onAccepted: {console.log(textInput26.text)
+                getPlanet_helper(12)
+                setParameter_helper(textInput26.text, 1)
+                newStart_helper()
+            }
         }
     }
 
