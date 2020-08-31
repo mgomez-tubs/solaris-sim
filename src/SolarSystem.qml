@@ -24,10 +24,6 @@ Node {
         quadraticFade: 0
     }
 
-    // + implement something like https://stackoverflow.com/questions/31206813/how-to-find-qml-item-by-its-string-id
-    // to access planets (and further himmleskörper) by string name
-    // [!!] change size with property sphereScale:
-
     Merkur {
         id: merkur
     }
@@ -67,11 +63,7 @@ Node {
     Pluto{
         id : pluto
     }
-/*
-    Charon{
-        id: charon
-    }
-*/
+
     Haumea{
         id: haumea
     }

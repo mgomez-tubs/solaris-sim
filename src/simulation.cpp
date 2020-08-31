@@ -261,8 +261,13 @@ void Simulation::Reset(){
     QMetaObject::invokeMethod(rootObject, "removeAllOrbits");
 
     // Reset position for each planet
-    for(int i = 1; i<anzahlPlaneten();i++){
+    for(int i = 0; i<anzahlPlaneten();i++){
         Planeten[i].resetPosition();
+    }
+
+    // Reset position for small planet
+    for(int i = 0; i<anzahlZwergPlaneten();i++){
+        ZwergPlaneten[i].resetPosition();
     }
 
     //set new position and scaling for each planet

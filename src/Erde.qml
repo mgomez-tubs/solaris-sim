@@ -7,10 +7,4 @@ Planet_No_Model {
         id: assetsErde
         scale: Qt.vector3d(0.1,0.1,0.1)
     }
-
-    Planet {
-        objectName: "mond"
-        planetPosition: Qt.vector3d(50,0,0)
-        planetScale: Qt.vector3d(0.02,0.02,0.02)
-    }
 }

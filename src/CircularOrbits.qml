@@ -2,6 +2,11 @@ import QtQuick 2.15
 
 import QtQuick3D 1.15
 
+/*
+    Before dynamic orbits where implemented the orbits were written manually for each planet
+    This file remains as reference, because it documents an error that happened and that was hard to find (although easy to fix)
+  */
+
 Node {
     visible: false
     opacity: .45

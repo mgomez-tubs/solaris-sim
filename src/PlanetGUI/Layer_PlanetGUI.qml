@@ -1,10 +1,15 @@
 import QtQuick 2.0
 import "qrc:/MainGUI" as GUIAssets
 
+/*
+ *  This is the Layer that becomes active when the Info button is clicked
+ *
+ */
 
 Item {
     id: layer_planetGUI
 
+    // Fill the Information to be displayed with the Information stored in the current planet
     function fillPlanetInfo(name :String, numbers: String, info: String, exploration: String){
         planetName.text         = " ";      // no html on this one
         planetInfo.text      = " ";      // hmm
@@ -41,6 +46,7 @@ Item {
         MouseArea {
             id: goBackButton_mouseArea
             anchors.fill: parent
+            // When pressing the Back button change the current layer to the Main GUI layer
             onClicked: function(){
                 view.layerHandler("MainGUI");
                 view.enableInfoButton()

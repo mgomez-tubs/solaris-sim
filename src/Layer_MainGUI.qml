@@ -2,6 +2,12 @@ import QtQuick 2.15
 import QtQuick.Extras 1.4
 import QtQuick.Controls 2.15
 
+
+/*
+ *  This is the Default Layer that becomes active when the program is opened
+ */
+
+
 Item {
     id: layer_mainGUI
     objectName: "layer_mainGUI"
@@ -9,11 +15,12 @@ Item {
     width: 800
     height: 600
 
-    function enableInfoButton(){        // Toogles the Info Button
+
+    function enableInfoButton(){        // Enables the Info Button
         buttonInfo.visible = true
     }
 
-    function disableInfoButton(){
+    function disableInfoButton(){       // Disables the Info Button
         buttonInfo.visible = false
     }
 
@@ -34,6 +41,7 @@ Item {
             id: playButton_mouseArea
             anchors.fill: parent
 
+            // When the play button is pressed, toogle between Play/Paused states
             Connections {
                 target: playButton_mouseArea
                 function onClicked(){
@@ -62,6 +70,7 @@ Item {
 
             Connections {
                 target: stopButton_mouseArea
+                // When this button button is pressed, stop the simulation
                 function onClicked(){
                     resetSimulation_helper();
                 }
@@ -80,6 +89,7 @@ Item {
         MouseArea {
             id: buttonSettings_mouseArea
             anchors.fill: parent
+            // When this button is pressed, open the settings menu
             onClicked: {
                 if(!rightMenu.visible){
                     rightMenu.visible = true;
@@ -123,7 +133,7 @@ Item {
             id: buttonInfo_mouseArea1
             anchors.fill : parent
             onClicked: function(){     
-                // Change layer
+                // Change currento layer to the Planet Layer
                 view.layerHandler("PlanetGUI")
             }
         }
