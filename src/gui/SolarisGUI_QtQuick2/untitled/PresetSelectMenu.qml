@@ -5,7 +5,7 @@ import QtQuick.Controls 2.0
 Item {
     id: element
     width: 400
-    height: 500
+    height: 550
 
     Rectangle {
         id: rectangle1
@@ -41,6 +41,8 @@ Item {
 
         Item {
             id: element16
+            x: 0
+            y: 0
             width: 400
             height: 500
 
@@ -228,6 +230,45 @@ Item {
                 font.pixelSize: 12
             }
         }
+
+        Text {
+            id: element17
+            x: 8
+            y: 500
+            width: 107
+            height: 20
+            text: qsTr("Distane Scaling:")
+            font.pixelSize: 12
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+        }
+
+        Rectangle {
+            id: rectangle26
+            x: 147
+            y: 500
+            width: 107
+            height: 20
+            color: "#bdbdbd"
+            TextInput {
+                id: textInput24
+                x: 0
+                y: 0
+                width: 107
+                height: 20
+                color: acceptableInput ? "green" : "red"
+                font.pixelSize: 12
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                focus: true
+                validator: IntValidator {
+                    top: 15
+                    bottom: 1
+                }
+
+                onAccepted: setDistance_Scale_helper(textInput24.text)
+            }
+        }
     }
 
     Button {
@@ -240,7 +281,6 @@ Item {
         font.pointSize: 14
         font.bold: true
 
-        //@disable-check M222
         onClicked: function () {
             presetSelectMenu.visible = !presetSelectMenu.visible
         }
@@ -266,11 +306,8 @@ Item {
             validator: IntValidator{bottom: 0; top: 5000;}
             focus: true
             color: acceptableInput ? "green" : "red"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput.text)
-                // @disable-check M222
                 getPlanet_helper(0)
-                // @disable-check M222
                 setParameter_helper(textInput.text, 0)
             }
         }
@@ -295,11 +332,8 @@ Item {
             validator: IntValidator{bottom: 0; top: 5000;}
             focus: true
             color: acceptableInput ? "green" : "red"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput1.text)
-                // @disable-check M222
                 getPlanet_helper(1)
-                // @disable-check M222
                 setParameter_helper(textInput1.text, 0)}
         }
     }
@@ -324,11 +358,8 @@ Item {
             validator: IntValidator{bottom: 0; top: 5000;}
             focus: true
             color: acceptableInput ? "green" : "red"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput2.text)
-                // @disable-check M222
                 getPlanet_helper(2)
-                // @disable-check M222
                 setParameter_helper(textInput2.text, 0)}
         }
     }
@@ -352,11 +383,8 @@ Item {
             validator: IntValidator{bottom: 0; top: 5000;}
             focus: true
             color: acceptableInput ? "green" : "red"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput3.text)
-                // @disable-check M222
                 getPlanet_helper(3)
-                // @disable-check M222
                 setParameter_helper(textInput3.text, 0)}
         }
     }
@@ -380,11 +408,8 @@ Item {
             validator: IntValidator{bottom: 0; top: 5000;}
             focus: true
             color: acceptableInput ? "green" : "red"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput4.text)
-                // @disable-check M222
                 getPlanet_helper(4)
-                // @disable-check M222
                 setParameter_helper(textInput4.text, 0)}
         }
     }
@@ -408,11 +433,8 @@ Item {
             validator: IntValidator{bottom: 0; top: 5000;}
             focus: true
             color: acceptableInput ? "green" : "red"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput5.text)
-                // @disable-check M222
                 getPlanet_helper(5)
-                // @disable-check M222
                 setParameter_helper(textInput5.text, 0)}
         }
     }
@@ -436,11 +458,8 @@ Item {
             validator: IntValidator{bottom: 0; top: 5000;}
             focus: true
             color: acceptableInput ? "green" : "red"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput6.text)
-                // @disable-check M222
                 getPlanet_helper(6)
-                // @disable-check M222
                 setParameter_helper(textInput6.text, 0)}
         }
     }
@@ -464,11 +483,8 @@ Item {
             validator: IntValidator{bottom: 0; top: 5000;}
             focus: true
             color: acceptableInput ? "green" : "red"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput7.text)
-                // @disable-check M222
                 getPlanet_helper(7)
-                // @disable-check M222
                 setParameter_helper(textInput7.text, 0)}
         }
     }
@@ -492,11 +508,8 @@ Item {
             validator: IntValidator{bottom: 0; top: 5000;}
             focus: true
             color: acceptableInput ? "green" : "red"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput8.text)
-                // @disable-check M222
                 getPlanet_helper(8)
-                // @disable-check M222
                 setParameter_helper(textInput8.text, 0)}
         }
     }
@@ -520,11 +533,8 @@ Item {
             validator: IntValidator{bottom: 0; top: 5000;}
             focus: true
             color: acceptableInput ? "green" : "red"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput9.text)
-                // @disable-check M222
                 getPlanet_helper(9)
-                // @disable-check M222
                 setParameter_helper(textInput9.text, 0)}
         }
     }
@@ -548,11 +558,8 @@ Item {
             validator: IntValidator{bottom: 0; top: 5000;}
             focus: true
             color: acceptableInput ? "green" : "red"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput10.text)
-                // @disable-check M222
                 getPlanet_helper(10)
-                // @disable-check M222
                 setParameter_helper(textInput10.text, 0)}
         }
     }
@@ -576,11 +583,8 @@ Item {
             validator: IntValidator{bottom: 0; top: 5000;}
             focus: true
             color: acceptableInput ? "green" : "red"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput11.text)
-                // @disable-check M222
                 getPlanet_helper(11)
-                // @disable-check M222
                 setParameter_helper(textInput11.text, 0)}
         }
     }
@@ -602,11 +606,8 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             inputMask: "9.99"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput12.text)
-                // @disable-check M222
                 getPlanet_helper(0)
-                // @disable-check M222
                 setParameter_helper(textInput12.text, 1)}
         }
     }
@@ -628,11 +629,8 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             inputMask: "9.99"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput13.text)
-                // @disable-check M222
                 getPlanet_helper(1)
-                // @disable-check M222
                 setParameter_helper(textInput13.text, 1)}
         }
     }
@@ -654,11 +652,8 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             inputMask: "9.99"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput14.text)
-                // @disable-check M222
                 getPlanet_helper(2)
-                // @disable-check M222
                 setParameter_helper(textInput14.text, 1)}
         }
     }
@@ -680,11 +675,8 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             inputMask: "9.99"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput15.text)
-                // @disable-check M222
                 getPlanet_helper(3)
-                // @disable-check M222
                 setParameter_helper(textInput15.text, 1)}
         }
     }
@@ -706,11 +698,8 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             inputMask: "9.99"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput16.text)
-                // @disable-check M222
                 getPlanet_helper(4)
-                // @disable-check M222
                 setParameter_helper(textInput16.text, 1)}
         }
     }
@@ -732,11 +721,8 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             inputMask: "9.99"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput17.text)
-                // @disable-check M222
                 getPlanet_helper(5)
-                // @disable-check M222
                 setParameter_helper(textInput17.text, 1)}
         }
     }
@@ -758,11 +744,8 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             inputMask: "9.99"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput18.text)
-                // @disable-check M222
                 getPlanet_helper(6)
-                // @disable-check M222
                 setParameter_helper(textInput18.text, 1)}
         }
     }
@@ -784,11 +767,8 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             inputMask: "9.99"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput19.text)
-                // @disable-check M222
                 getPlanet_helper(7)
-                // @disable-check M222
                 setParameter_helper(textInput19.text, 1)}
         }
     }
@@ -810,11 +790,8 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             inputMask: "9.99"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput20.text)
-                // @disable-check M222
                 getPlanet_helper(8)
-                // @disable-check M222
                 setParameter_helper(textInput20.text, 1)}
         }
     }
@@ -836,11 +813,8 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             inputMask: "9.99"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput21.text)
-                // @disable-check M222
                 getPlanet_helper(9)
-                // @disable-check M222
                 setParameter_helper(textInput21.text, 1)}
         }
     }
@@ -862,11 +836,8 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             inputMask: "9.99"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput22.text)
-                // @disable-check M222
                 getPlanet_helper(10)
-                // @disable-check M222
                 setParameter_helper(textInput22.text, 1)}
         }
     }
@@ -888,11 +859,8 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             inputMask: "9.99"
-            // @disable-check M223 // @disable-check M222
             onAccepted: {console.log(textInput23.text)
-                // @disable-check M222
                 getPlanet_helper(11)
-                // @disable-check M222
                 setParameter_helper(textInput23.text, 1)}
         }
     }
