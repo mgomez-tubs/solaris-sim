@@ -69,16 +69,17 @@ void consoleOutputHandler_verbose(QtMsgType type, const QMessageLogContext &cont
         }
 }
 
+/*
+ *  Main Cpp function - entry point
+ */
 int main(int argc, char *argv[])
 {
     // ++++                     Load Window and Engine                        ++++ //
     // Create Window
-    QApplication app(argc, argv);   // use QApplication only for debug widget, else QGuiApplication is more appropiate
-                                    // if changing to QGuiApplication remove QApplication header!
-    QSurfaceFormat::setDefaultFormat(QQuick3D::idealSurfaceFormat());
+    QApplication app(argc, argv);
 
     // Environment variables
-    // qDebug()<<qputenv("QSG_INFO", "1");
+    // qDebug()<<qputenv("QSG_INFO", "1");  // Shows more detailed information about
 
     // Install handler for console output
     qInstallMessageHandler(consoleOutputHandler);
@@ -140,6 +141,7 @@ int main(int argc, char *argv[])
     QFile::copy(":/Data_Calling/PlData.txt", qApp->applicationDirPath()+"/PlData.txt");
     QFile::setPermissions(qApp->applicationDirPath()+"/PlData.txt", QFileDevice::ReadOwner|QFileDevice::WriteOwner);
     // ++++                     -----------------------                        ++++ //
+
 
     // Create a pointer to the root QML Object (needed for editing QML properties)
     QObject *rootObject = engine.rootObjects().first();
