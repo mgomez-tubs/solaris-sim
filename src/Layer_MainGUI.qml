@@ -24,6 +24,10 @@ Item {
         buttonInfo.visible = false
     }
 
+    function deselectViews(){           // Deselects the FreeView checker in the View submenu (to allow going back to the initial view)
+        rightMenu.freeViewChecked = false
+    }
+
     ButtonForm {
         id: playButton
         width: 50

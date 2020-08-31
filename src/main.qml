@@ -79,6 +79,8 @@ ApplicationWindow {
     }
 
 
+
+
     //                  Global Handlers
 
     // Refresh FPS
@@ -163,7 +165,7 @@ ApplicationWindow {
         }
 
         function receiveOrbit(orbit: double){       // Get Orbits position as a double
-            console.log("Added planet " + orbits.length)
+            //console.log("Added planet " + orbits.length)
             // Push Orbit in Orbits list
             orbits.push(orbit);
             // Insert new Orbit
@@ -171,23 +173,33 @@ ApplicationWindow {
         }
 
 
-        // Control of the info button
+        // Enable the info button
         function enableInfoButton(){
             if(layerLoader.item.objectName === "layer_mainGUI")
             layerLoader.item.enableInfoButton();
         }
+
+        // Disable the info button
         function disableInfoButton(){
             if(layerLoader.item.objectName === "layer_mainGUI")
             layerLoader.item.disableInfoButton();
         }
 
+        // Deselect the FreeView radio button
+        function deselectViews(){
+            layerLoader.item.deselectViews();
+        }
+
         Node {                      // Free View Camera (currently unused)
             id: cameraPivot
             pivot: Qt.vector3d(0,0,0)
+
             PerspectiveCamera {
                 id: freeView
                 position: Qt.vector3d(0, 0, 1000)
                 eulerRotation: Qt.vector3d(0, 0, 0)
+                clipFar: 100000
+
             }
         }
 
@@ -198,7 +210,7 @@ ApplicationWindow {
                 topCamera.position      = Qt.vector3d(0, 0, 7960);
                 topCamera.eulerRotation = Qt.vector3d(0, 0, 0);
             }
-
+            clipFar: 100000
             position: Qt.vector3d(0, 0, 1500)
             eulerRotation: Qt.vector3d(0, 0, 0)        // arguments are in degrees, positive numbers rotate clockwise
         }
@@ -210,6 +222,7 @@ ApplicationWindow {
                 angledView.position      = Qt.vector3d(0, -1228, 400)
                 angledView.eulerRotation = Qt.vector3d(71, 0, 0)
             }
+            clipFar: 100000
             position: Qt.vector3d(0, -1228, 400)
             eulerRotation: Qt.vector3d(71, 0, 0)        // arguments are in degrees, positive numbers rotate clockwise
         }
@@ -236,6 +249,7 @@ ApplicationWindow {
                      //on position changed: change euler rotation
                      eulerRotation: Qt.vector3d(0, 0, 0)
                      clipNear: 1
+                     clipFar: 100000
                      fieldOfViewOrientation: Camera.Vertical
                 }
             }
@@ -299,6 +313,9 @@ ApplicationWindow {
 
                     // Enable the Info Button
                     view.enableInfoButton()
+
+                    // Deselect the FreeView Toogler from the menu
+                    view.deselectViews()
 
                     var pickedObject = clickPos.objectHit;
                     pickedObject.isPicked = !pickedObject.isPicked;

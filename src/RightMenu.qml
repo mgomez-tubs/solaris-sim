@@ -7,6 +7,7 @@ import Qt.labs.platform 1.1
 Item {
     width: 200
     height: 200
+    property alias freeViewChecked : radioButton_freeView.checked
 
     // Menu Container
     Rectangle {
@@ -125,7 +126,7 @@ Item {
                     value: 0.5
                     // Change the orbit opacity when the slider value is changed
                     onValueChanged: function(){
-                        console.log(opacitySlider.value)
+                        //console.log(opacitySlider.value)
                         view.changeOrbitOpacity(opacitySlider.value)
                     }
                 }

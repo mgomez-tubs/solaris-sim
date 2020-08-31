@@ -130,6 +130,7 @@ Node {
                 position: Qt.vector3d(0, 0, 75)
                 eulerRotation: Qt.vector3d(0, 0, 0)
                 clipNear: 1
+                clipFar: 5000
                 fieldOfViewOrientation: Camera.Vertical
 
             }
