@@ -30,7 +30,7 @@ Item {
                 id: element1
                 x: 66
                 y: 0
-                text: qsTr("Edit Preset")
+                text: qsTr("Create Preset")
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 font.pixelSize: 12

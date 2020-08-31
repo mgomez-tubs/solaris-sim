@@ -348,7 +348,7 @@ Item {
                     id: rectangle7_text3
                     x: 20
                     y: 5
-                    text: qsTr("Create New Preset")
+                    text: qsTr("Create Preset")
                     font.pixelSize: 12
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
