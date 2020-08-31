@@ -4,9 +4,19 @@ import QtQuick.Controls 2.15
 
 Item {
     id: layer_mainGUI
+    objectName: "layer_mainGUI"
     anchors.fill: parent        // very important
     width: 800
     height: 600
+
+    function enableInfoButton(){        // Toogles the Info Button
+        buttonInfo.visible = true
+    }
+
+    function disableInfoButton(){
+        buttonInfo.visible = false
+    }
+
     ButtonForm {
         id: playButton
         width: 50

@@ -232,7 +232,11 @@ Item {
                 anchors.rightMargin: 5
                 scale: 0.75
                 display: AbstractButton.IconOnly
-                onCheckedChanged: view.planetCamera_handler("defaultCamera")
+                onCheckedChanged: function(){
+                    view.planetCamera_handler("defaultCamera")
+                    view.disableInfoButton()
+                }
+
             }
 
             RadioButton {
@@ -246,7 +250,10 @@ Item {
                 anchors.rightMargin: 5
                 scale: 0.75
                 display: AbstractButton.IconOnly
-                onCheckedChanged: view.planetCamera_handler("angledView")
+                onCheckedChanged: function() {
+                    view.planetCamera_handler("angledView")
+                }
+
             }
 
             RadioButton {

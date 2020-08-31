@@ -73,6 +73,7 @@ ApplicationWindow {
         orbitSpawner.removeAllComponents();
     }
 
+
     //          Global Handlers
     onFpsChanged: {
         fpsCounter.elementText=window.fps + " fps"
@@ -142,6 +143,18 @@ ApplicationWindow {
             // Insert new Orbit
             orbitSpawner.addComponent(orbit);
         }
+
+
+        // Control of the info button
+        function enableInfoButton(){
+            if(layerLoader.item.objectName === "layer_mainGUI")
+            layerLoader.item.enableInfoButton();
+        }
+        function disableInfoButton(){
+            if(layerLoader.item.objectName === "layer_mainGUI")
+            layerLoader.item.disableInfoButton();
+        }
+
 
         //          Keyboard control - preferable in a separate file?    //
         Keys.onPressed: DefaultKeys.func(event);
@@ -266,6 +279,7 @@ ApplicationWindow {
         MouseArea {
             id: viewMouseArea
             anchors.fill: parent
+
             onClicked: {
                 var clickPos = view.pick(mouse.x,mouse.y);
                 if(clickPos.objectHit){
@@ -275,8 +289,13 @@ ApplicationWindow {
                 }
             }
             onDoubleClicked: {
+
                 var clickPos = view.pick(mouse.x,mouse.y);
                 if(clickPos.objectHit){
+
+                    // Enable the Info Button
+                    view.enableInfoButton()
+
                     var pickedObject = clickPos.objectHit;
                     pickedObject.isPicked = !pickedObject.isPicked;
                     // Toggle the isPicked property for the model

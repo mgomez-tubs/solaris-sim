@@ -43,6 +43,7 @@ Item {
             anchors.fill: parent
             onClicked: function(){
                 view.layerHandler("MainGUI");
+                view.enableInfoButton()
             }
         }
 

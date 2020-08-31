@@ -4,11 +4,14 @@ import QtQuick3D.Helpers 1.15
 
 Planet_No_Model{
     objectName: "sonne"
+    planetIsPickable: false
     Model {
         //AxisHelper { enableXYGrid: false; enableXZGrid: false ; enableYZGrid: false }
         position: Qt.vector3d(0, 0, 0)
         scale: Qt.vector3d(1, 1, 1)
         source: "#Sphere"
+
+
         materials: [
             DefaultMaterial{
                 id: material

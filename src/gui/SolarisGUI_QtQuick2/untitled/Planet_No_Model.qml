@@ -25,6 +25,7 @@ Node {
 
     property string planetInfoString : "No information is available/ could be loaded for this planet ..."
 
+    property alias planetIsPickable: sphereHitbox.pickable
     eulerRotation: Qt.vector3d(90,0,0)
 
     function receive(vector: vector3d, angle : double){
@@ -58,6 +59,7 @@ Node {
         property alias planetCamera :rootNode.planetCamera
         property alias objectName: rootNode.objectName
         property alias planetInfoString: rootNode.planetInfoString
+
     }
 
     Node{
