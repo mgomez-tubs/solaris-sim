@@ -69,6 +69,9 @@ void consoleOutputHandler_verbose(QtMsgType type, const QMessageLogContext &cont
         }
 }
 
+/*
+ *  Main Cpp function - entry point
+ */
 int main(int argc, char *argv[])
 {
     // ++++                     Load Window and Engine                        ++++ //
@@ -140,6 +143,7 @@ int main(int argc, char *argv[])
     QFile::copy(":/Data_Calling/PlData.txt", qApp->applicationDirPath()+"/PlData.txt");
     QFile::setPermissions(qApp->applicationDirPath()+"/PlData.txt", QFileDevice::ReadOwner|QFileDevice::WriteOwner);
     // ++++                     -----------------------                        ++++ //
+
 
     // Create a pointer to the root QML Object (needed for editing QML properties)
     QObject *rootObject = engine.rootObjects().first();

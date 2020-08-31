@@ -3,11 +3,18 @@
 #include <QDir>
 #include <QDirIterator>
 
+// Header for handling external data
 #include "Data_Calling/Header_fin.h"
 
 #include <vector>
 
 // ++++                     Constructor                        ++++ //
+/*! \class Simulation.cpp
+ * \brief Creates the simulation object.
+ * \param rootObject - For interaction with QML, a pointer to the QML root object has to be
+ * passed as a pointer.
+ *
+ */
 Simulation::Simulation(QObject * rootObject)
 {
 
@@ -36,10 +43,13 @@ Simulation::Simulation(QObject * rootObject)
     connect(SIMULATION_TIMER, &QTimer::timeout, this, &Simulation::Run);
 }
 
-/*
- *  This function adds a Planet to the Planet array Planeten[] in the Simulation Object
- *  Name, ID and rootObject for QML are set up.
- *  It also tells the Simulation Object that a planet has been added and ups the planet counter.
+/*!
+ * \brief Adds a planet to the planet array Planeten[] in the Simulation Object.
+ *  The planet is given an order number and the input properties are set.
+ * \param rootObject - For interaction with QML, a pointer to the QML root object has to be
+ * passed as a pointer.
+ * \param name - The name of the planet
+ * \param id - The QML ID of the planet (corresponds to the property "objectName" in QML
  */
 void Simulation::addPlanet(QObject * rootObject, QString name, QString id){
     // Connections (currently only used for debugging purposes)
@@ -71,9 +81,9 @@ void Simulation::addPlanet(QObject * rootObject, QString name, QString id){
     this->addOnePlanet();
 }
 
-/*
- * This function works in the same way as Simulation::addPlanet() but it adds the planet to the
- * Small Planet Array
+/*!
+ * \brief This function works the same way as Simulation::addPlanet(), but it adds the planet to the
+ * small planet array ZwergPlaneten[].
  */
 void Simulation::addZwergPlanet(QObject *rootObject, QString name, QString id){
 
@@ -88,13 +98,15 @@ void Simulation::addZwergPlanet(QObject *rootObject, QString name, QString id){
 }
 
 
-/*
- *  Initiliazation of the Planets is done in the following steps
+/*!
+ *  \brief Planet initialization.
+ *
  *  1) Set Up QML Connections
- *  2) Add the Planets through Simulation::addPlanet()
- *  3) Add the main Planets through Simulation::addZwergPlanet
- *  4) Set Planets Orbits
- *  5) Fill Planet Information Data from external files
+ *  2) Add the main Planets through Simulation::addPlanet()
+ *  3) Add the small Planets through Simulation::addZwergPlanet
+ *  4) Set up planets orbits
+ *  5) Fill planet information data from external files
+ *
  */
 void Simulation::Init(){
 
@@ -241,11 +253,12 @@ void Simulation::Init(){
         //qDebug()<<"Writing Text info for planet " << Planeten[i].getName();
         Planeten[i].setInfoTextHTML(getPlanetInfoString(i));
     }
+    // ++++                     -----------------------                        ++++ //
 
 }
 
-/*
- *  Run Simulation
+/*!
+ *  \brief Run Simulation
  */
 void Simulation::Run(){
 /*  This function is constantly called according to the QTimer SIMULATION TIMER
@@ -259,8 +272,8 @@ void Simulation::Run(){
     }
 }
 
-/*
- *  Reset Simulation
+/*!
+ *  \brief Reset Simulation
  */
 void Simulation::Reset(){
     /*  When the simulation is reset, the following steps follow:
@@ -314,15 +327,15 @@ void Simulation::Reset(){
     ZwergPlaneten[4].setScaling(QVector3D(planet_scaling[12],planet_scaling[12],planet_scaling[12]));
 }
 
-/*
- *  Handler for the speed multiplier
+/*!
+ *  \brief Handler for the speed multiplier
  */
 void Simulation::setSpeedMultiplier(qreal multiplier){      // what is this //this is used in the speed dial see Layer_MainGUI.qml for reference
     Planet::speedMultiplier = multiplier;
 }
 
-/*
- *  Start Simulation Timer
+/*!
+ *  \brief Start Simulation Timer
  */
 void Simulation::startTimer(){
     qDebug()<<"Simulation Started";
@@ -336,8 +349,8 @@ void Simulation::startTimer(){
 #endif
 }
 
-/*
- *  Stop Simulation Timer
+/*!
+ *  \brief Stop Simulation Timer
  */
 void Simulation::stopTimer(){
     qDebug()<<"Simulation Paused";
@@ -349,8 +362,8 @@ void Simulation::stopTimer(){
 #endif
 }
 
-/*
- *  Toogle Simulation Timer (Start/Stop)
+/*!
+ *  \brief Toogle Simulation Timer (Start/Stop)
  */
 void Simulation::tooglePlayPause(){
     /*  This function toogles between the paused and resumed states
@@ -363,8 +376,8 @@ void Simulation::tooglePlayPause(){
     }
 }
 
-/*
- *  Set Presets
+/*!
+ *  \brief Set Presets
  */
 void Simulation::setPreset_main(){
 
@@ -415,8 +428,8 @@ void Simulation::getPlanet(qreal plt_tmp){
     planet_tmp = plt_tmp;
 }
 
-/*
- *  Set Distances
+/*!
+ *  \brief Set Distances
  */
 void Simulation::setParameter(qreal flt_tmp, qreal array){
 
@@ -438,8 +451,9 @@ void Simulation::setParameter(qreal flt_tmp, qreal array){
     startTimer();
 }
 
-/*
- *  Get external data for the planet information
+/*!
+ *  \brief Get external data for the planet information
+ * \return
  */
 QString Simulation::getPlanetInfoString(int planetID){
     Data_Call Info;
@@ -459,8 +473,8 @@ QString Simulation::getPlanetInfoString(int planetID){
     return s;
 }
 
-/*
- *  Get external data for the planet orbit information (currently not used)
+/*!
+ *  \brief Get external data for the planet orbit information
  */
 QVector<float> Simulation::getPlanetOrbitInfo(int planetID){
     Data_Call Call;

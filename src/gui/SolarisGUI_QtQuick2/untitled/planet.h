@@ -9,14 +9,20 @@ class Planet : public QObject
 {
     Q_OBJECT
 public:
-    explicit Planet();
-    QString name = "UNDEFINED";     // Default name for not created planets.
 
-    // static vars
+    // ++++                     Constructor                             ++++ //
+
+    explicit Planet();
+
+    // ++++                     Static members                          ++++ //
+
     static float speedMultiplier;
 
+    // ++++                     Object members                          ++++ //
 
-    // Available orbit methods
+    QString name = "UNDEFINED";     // Default name for not placeholder planets.
+
+    // Orbit methods
     void move1();
     void kreisBewegung();
 
@@ -32,12 +38,11 @@ public:
 //    qreal flt_tmp;
 //    qreal plt_tmp;
 
-    // Move 1 specific properties
+    // "Kreisbewegung" specific properties
     float currentAngle;
     float radius;       // distance to the first pivot point, for almost every planet: distance towards the sun
     float radius2;      // distance to the second pivot point, only for pluto
     float speed;
-
 
     // Structs
     // Data for the calculation of the planets orbit
@@ -53,7 +58,7 @@ public:
         float l_m = 0.0;                                     // mittlere entfernung zur sonne in [m]
     }orDt;
 
-    // Text data to display on planet clicked
+    // Text data to be display on planet clicked
     struct infoTextStr {
         QString title;
         QString data;
@@ -61,11 +66,11 @@ public:
         QString explo;
     }planetInfo;
 
+    // String for storing the external text in a single QString
     QString infoTextHTML;
 
-    // Adders
+    // ++++                     Setters                             ++++ //
 
-    // Setters
     void write(QJsonObject &json) const;  //for writing planet data
     void savePreset();
     void setPreset_main();
@@ -73,27 +78,35 @@ public:
     void setProperties(QObject *,QString,QString);
     void setScaling(QVector3D);
     void setName(QString);
-    void resetPosition();
     void setId(QString);
     void setOrder(int);
     void setRadius();
     void setTiltAngle(float);
     void setInfoTextHTML(QString);
 
-    // Getters
+    // ++++                     Getters                             ++++ //
+
     void read(const QJsonObject &json); //for reading planet data
     QString getName();
     QVector3D getDefaultPosition();
     QObject * getPlanetHandler();
     float getTiltAngle();
 
-    // Destructor
+    // Simulation methods
+    void resetPosition();
+    //[!][!][!][!][!][!][!]
+    // Methods for movement control are in a separate file -> see orbits.cpp
+    //[!][!][!][!][!][!][!]
+
+    // ++++                     Destructor                             ++++ //
     ~Planet();
 
+    // ++++                     Signals                             ++++ //
 signals:
     void rowNameEmitter(QString value);
     void positionEmitter(int, QVector3D,float);
 
+    // ++++                     Slots                             ++++ //
 public slots:
     void positionEmitter_helper();
 };
