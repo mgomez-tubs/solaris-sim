@@ -250,7 +250,7 @@ Item {
             y: 520
             width: 107
             height: 20
-            text: qsTr("Distane Scaling:")
+            text: qsTr("Distance Scaling:")
             font.pixelSize: 12
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
