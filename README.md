@@ -1,3 +1,11 @@
-# GRUPPENNAME
+# Solaris
+## Kurzbeschreibung
+Mit Hilfe von Solaris können Planeten und ausgewählte Zwergplaneten des Sonnensystems in eine benutzerfreundliche GUI dargestellt werden. Alle Himmelskörper verfügen über hochdetaillierten Texturen und können einzeln ausgewählt werden, danach kann durch erneutes Klicken eine direkte Darstellung der allgemeinen Informationen des Himmelskörpers erfolgen. Das Programm stellt dazu verschiedene Möglichkeiten zur Steuerung der Simulation und der Darstellung bereit.
 
-Dies ist eine Repository-Vorlage inkl. Wiki für Gruppen, die im SoSe 2020 das Modul Anwendungsorientierte Programmierung für Ingenieure (API) am Institut für Flugführung (IFF) der TU Braunschweig belegen.
+## Kompilieren
+Das Programm wurde mithilfe von Qt Creator erstellt. Die Projektdatei kann unter src/untitled.pro gefunden werden.
+
+## Gruppenmitglieder
+Søren Peters  
+Jens Ohland  
+Mauricio Gomez  
