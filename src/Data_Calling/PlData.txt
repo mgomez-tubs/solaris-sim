@@ -1,0 +1,8 @@
+.\planets\pl_mercury.txt
+.\planets\pl_venus.txt
+.\planets\pl_earth.txt
+.\planets\pl_mars.txt
+.\planets\pl_jupiter.txt
+.\planets\pl_saturn.txt
+.\planets\pl_uranus.txt
+.\planets\pl_neptune.txt

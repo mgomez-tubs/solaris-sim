@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>textures/2k_sun.jpg</file>
+    </qresource>
+</RCC>

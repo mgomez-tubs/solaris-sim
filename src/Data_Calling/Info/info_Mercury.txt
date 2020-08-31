@@ -1,0 +1,20 @@
+<h1>MERCURY</h1>
+    Avg Radius 2439.7 km
+    Mass 3.3011x10^23 kg
+    Sideric Period 87.9691 d
+    Synodic Period 115.88 d
+    Length of Day 58 d 15 h 30 min
+    Num of Satelites 0
+    <br>
+    Srf gravity 0.38 g  3,7 m/s^2
+    Avg Srf Atm Press ~0.5x10^-9 Pa
+    Avg Srf Temp Eqt 340 K
+<h2>Information</h2>
+Mercury is the innermost Planet of the Sol-System and one of four "terrestial planets", meaning it is composed mainly of solid material. It is also the smallest Planer comparable in size to the moons Ganymede or Titan but more massive than
+these. Being the innermost planet means that Mercury is the closest one to all the other planets for the longest amount
+of time.
+<h2>Exploration</h2>
+Currently there are three missions to mercury two of them past and one ongoing. The two NASA probes Mariner 10 launched
+in 1973 and MESSENGER launched in 2004 discovered a magnetic field and Mapped the whole surface of Mercury. The Ongoing
+BepiColombo mission by the ESA and JAXA, launched in 2018, is designed to explore the physical properties of the planets
+as well as properties of the magnetic field.

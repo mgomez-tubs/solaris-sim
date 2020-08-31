@@ -1,8 +1,0 @@
-.\Info\info_Mercury.txt
-.\Info\info_Venus.txt
-.\Info\info_Earth.txt
-.\Info\info_Mars.txt
-.\Info\info_Jupiter.txt
-.\Info\info_Saturn.txt
-.\Info\info_Uranus.txt
-.\Info\info_Neptune.txt
