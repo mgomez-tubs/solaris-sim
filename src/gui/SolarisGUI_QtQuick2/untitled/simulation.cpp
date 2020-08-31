@@ -117,6 +117,7 @@ void Simulation::Init(){
     connect(rootObject,SIGNAL(setPreset_main()), this,SLOT(setPreset_main()));
     connect(rootObject,SIGNAL(getPlanet(qreal)), this,SLOT(getPlanet(qreal)));
     connect(rootObject,SIGNAL(setParameter(qreal, qreal)), this,SLOT(setParameter(qreal, qreal)));
+    connect(rootObject,SIGNAL(setDistance_Scale(qreal)), this,SLOT(setDistance_Scale(qreal)));
 
     //  Add the (main) Planets
     addPlanet(rootObject,"Merkur","merkur");    //0
@@ -139,38 +140,9 @@ void Simulation::Init(){
 
     distanceScale = 3;
 
-    //use only for testing purposes
-    planet_distance[0] = 0;
-    planet_distance[1] = 0;
-    planet_distance[2] = 0;
-    planet_distance[3] = 0;
-    planet_distance[4] = 0;
-    planet_distance[5] = 0;
-    planet_distance[6] = 0;
-    planet_distance[7] = 0;
-    planet_distance[8] = 0;
-    planet_distance[9] = 0;
-    planet_distance[10] = 0;
-    planet_distance[11] = 0;
-    planet_distance[12] = 0;
-
-    //use only for testing purposes
-    planet_scaling[0] = 0;
-    planet_scaling[1] = 0;
-    planet_scaling[2] = 0;
-    planet_scaling[3] = 0;
-    planet_scaling[4] = 0;
-    planet_scaling[5] = 0;
-    planet_scaling[6] = 0;
-    planet_scaling[7] = 0;
-    planet_scaling[8] = 0;
-    planet_scaling[9] = 0;
-    planet_scaling[10] = 0;
-    planet_scaling[11] = 0;
-    planet_scaling[12] = 0;
-
-    /*planet_distance[0] = 40;
-    planet_distance[2] = 70;
+    planet_distance[0] = 40;
+    planet_distance[1] = 70;
+    planet_distance[2] = 100;
     planet_distance[3] = 150;
     planet_distance[4] = 320;
     planet_distance[5] = 560;
@@ -194,9 +166,7 @@ void Simulation::Init(){
     planet_scaling[9] = 0.8;
     planet_scaling[10] = 0.8;
     planet_scaling[11] = 0.8;
-    planet_scaling[12] = 0.8;*/
-
-    // 40.0 ; 70.0 ; 100.0 ; 150.0 ; 320.0 ; 560.0 ; 820.0 ; 1000.0
+    planet_scaling[12] = 0.8;
 
     // Set up planet orbits
     // Syntax: void setOrbitType({type of orbit},{distance to the sun},{scale of the distance},{angular velocity}
@@ -381,8 +351,6 @@ void Simulation::tooglePlayPause(){
  */
 void Simulation::setPreset_main(){
 
-    qDebug() << "wert merkur liste: " <<planet_distance[0];     //only for testing purposes
-
     //set standard values for distance and scaling
     planet_distance[0] = 40;
     planet_distance[1] = 70;
@@ -412,16 +380,20 @@ void Simulation::setPreset_main(){
     planet_scaling[11] = 0.8;
     planet_scaling[12] = 0.8;
 
-    // 40.0 ; 70.0 ; 100.0 ; 150.0 ; 320.0 ; 560.0 ; 820.0 ; 1000.0 <- use as reference
-
-    qDebug() << "wert merkur liste: " <<planet_distance[0];         //used only for testing purposes
-
-    qDebug()<<"Simulation.cpp: setPreset_main() erfolgreich aufgerufen.";           //indicates methods runtime, used for testing purposes
+    distanceScale = 3;
 
     Reset();        //resets positions and scaling, and uses standard values, see above
 
     startTimer();       //starts simulation after Reset(); stopped it
 
+}
+
+void Simulation::setDistance_Scale(qreal scaling){
+    int scaling_tmp = scaling;
+    distanceScale = scaling_tmp;
+
+    Reset();
+    startTimer();
 }
 
 void Simulation::getPlanet(qreal plt_tmp){
@@ -431,28 +403,36 @@ void Simulation::getPlanet(qreal plt_tmp){
 /*!
  *  \brief Set Distances
  */
-void Simulation::setParameter(qreal flt_tmp, qreal array){
+bool Simulation::setParameter(qreal flt_tmp, qreal array){
+
+    bool success;
 
     qDebug()<< "planet nr.:" <<planet_tmp <<"wurde auf den Wert:" << flt_tmp <<"geaendert"; // used for testing purposes
 
     if (array == 0){                            //checks which array is edited
         int flt_tmp1 = flt_tmp;
         planet_distance[planet_tmp] = flt_tmp1;
+        success = true;
     }
 
     else if (array ==1){
         double flt_tmp2 = flt_tmp;
         planet_scaling[planet_tmp] = flt_tmp2;
+        success = true;
     }
 
-    else qDebug()<<"array nicht bekannt";
+    else{
+        success = false;
+        qDebug()<<"array nicht bekannt";}
+
+    return success;
 
     Reset();
     startTimer();
 }
 
 /*!
- * \brief Get external data for the planet information
+ *  \brief Get external data for the planet information
  * \return
  */
 QString Simulation::getPlanetInfoString(int planetID){

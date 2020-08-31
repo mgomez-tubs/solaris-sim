@@ -19,6 +19,10 @@ Planet::Planet(){
 /*!
  *  \brief Set planet name
  */
+// ++++                     Setters                                     ++++ //
+/*!
+ *  \brief Set planet name
+ */
 void Planet::setName(QString name){
     this->name = name;
 }

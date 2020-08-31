@@ -79,8 +79,9 @@ public:
     QVector<float> getPlanetOrbitInfo(int planetID);
 
 private slots:
+    void setDistance_Scale(qreal);
     void getPlanet(qreal);
-    void setParameter(qreal, qreal);
+    bool setParameter(qreal, qreal);
     void tooglePlayPause();
     void Reset();
     void setSpeedMultiplier(qreal);

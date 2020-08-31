@@ -70,10 +70,6 @@ public:
     QString infoTextHTML;
 
     // ++++                     Setters                             ++++ //
-
-    void write(QJsonObject &json) const;  //for writing planet data
-    void savePreset();
-    void setPreset_main();
     void setOrbitType(QString,float,float);
     void setProperties(QObject *,QString,QString);
     void setScaling(QVector3D);
@@ -85,8 +81,6 @@ public:
     void setInfoTextHTML(QString);
 
     // ++++                     Getters                             ++++ //
-
-    void read(const QJsonObject &json); //for reading planet data
     QString getName();
     QVector3D getDefaultPosition();
     QObject * getPlanetHandler();

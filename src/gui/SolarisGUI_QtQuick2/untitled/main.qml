@@ -24,6 +24,7 @@ ApplicationWindow {
     property int fps: 0
 
     //          Signals
+    signal setDistance_Scale(real scaling)
     signal setParameter(real flt_tmp, real array)
     signal getPlanet(real plt_tmp)
     signal setPreset_main()
@@ -34,6 +35,11 @@ ApplicationWindow {
 
 
     //          Signal Helpers
+    function setDistance_Scale_helper(scaling){
+        console.log("Funktion setDistance_Scale_helper() wurde aufgerufen.")
+        setDistance_Scale(scaling)
+    }
+
     function setPreset_main_helper(){
         console.log("Funktion setPreset_main_helper() wurde aufgerufen.")
         setPreset_main()
@@ -412,6 +418,6 @@ ApplicationWindow {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:0.5}
+    D{i:0;active3dScene:1;formeditorZoom:0.5}
 }
 ##^##*/
