@@ -8,7 +8,7 @@ CONFIG += c++17
 CONFIG += qtquickcompiler
 CONFIG += qml_debug
 CONFIG += resources_big         # this is needed for huge files in qrc, else memory will fill to its max
-#CONFIG += console qml_debug
+#CONFIG += console
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -16,7 +16,7 @@ CONFIG += resources_big         # this is needed for huge files in qrc, else mem
 # deprecated API to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 
-DEFINES += DEBUG_IS_ENABLED        # uncomment to get debug feats - clean project directly afterwards!!
+#DEFINES += DEBUG_IS_ENABLED        # uncomment to get debug feats - clean project directly afterwards!!
 
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.

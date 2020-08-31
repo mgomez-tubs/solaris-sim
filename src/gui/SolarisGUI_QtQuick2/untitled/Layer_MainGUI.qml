@@ -108,6 +108,7 @@ Item {
 
     ButtonForm {
         id: buttonInfo
+        visible: false
         MouseArea {
             id: buttonInfo_mouseArea1
             anchors.fill : parent

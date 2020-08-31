@@ -259,30 +259,6 @@ ApplicationWindow {
             }
         }
 
-        /*
-        Rectangle {
-            property alias text : rectangle1_text.text
-            id: rectangle1
-            x: 601
-            y: 43
-            width: 245
-            height: 193
-            color: "#ffffff"
-            visible: true
-
-            Text {
-                id: rectangle1_text
-                text: qsTr("Z1")
-                visible: true
-                anchors.fill: parent
-                lineHeight: 1
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: 20
-
-            }
-        }*/
-
          //          MouseArea on WHOLE view, to make objects "pickable"  //
         MouseArea {
             id: viewMouseArea
@@ -359,14 +335,14 @@ ApplicationWindow {
             property var instances : []
 
             function hideOrbits(){
-                console.log("disable orbits <<<<")
+                //console.log("disable orbits <<<<")
                 for(var i = 0; i<instances.length;i++){
                     instances[i].visible = false;
                 }
             }
 
             function showOrbits(){
-                console.log("show orbits <<<<")
+                //console.log("show orbits <<<<")
                 for(var i = 0; i<instances.length;i++){
                     instances[i].visible = true;
                 }
