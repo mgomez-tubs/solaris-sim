@@ -36,6 +36,7 @@ ApplicationWindow {
 
 
     //          Signal Helpers
+    //                  Presets
     function newStart_helper(){
         console.log("Funktion newStart() wurde aufgerufen.")
         newStart()
@@ -61,24 +62,31 @@ ApplicationWindow {
         getPlanet(plt_tmp)
     }
 
+    //                  Main GUI Buttons
+    // Call the signal tooglePlayPause()
     function tooglePlayPause_helper(){
         tooglePlayPause()
     }
 
+    // Call the signal resetSimulation()
     function resetSimulation_helper(){
         resetSimulation();
     }
 
+    // Call the signal removeAllOrbits()
     function removeAllOrbits(){
         orbitSpawner.removeAllComponents();
     }
 
 
-    //          Global Handlers
+    //                  Global Handlers
+
+    // Refresh FPS
     onFpsChanged: {
         fpsCounter.elementText=window.fps + " fps"
     }
 
+    // Close Program when QML Window is closed (through signal)
     onClosing:  {
         mainWclosed()
     }
@@ -88,36 +96,54 @@ ApplicationWindow {
         objectName: "view"
         anchors.fill: parent
         camera: centerCamera
+        //  Keyboard control
+        Keys.onPressed: DefaultKeys.func(event);
+
+
+        //! [environment properties]
+        environment: SceneEnvironment{
+            clearColor: "black"
+
+            // Qt 2.15
+            antialiasingMode: SceneEnvironment.MSAA             // Multisample AA
+            antialiasingQuality: "VeryHigh"                     // High quality
+            backgroundMode: SceneEnvironment.Color
+        }
+
+        // Properties
+        property Node currentPlanet : undefined
+        property var orbits : []
+        property bool showOrbits : false
+
+
+        //                           Functions                           //
 
         //                           Handlers                            //
         // Handler for the current camera
+        // Parameter: String with the name of the camera to be received
         function planetCamera_handler(cameraName : String){
-            if (cameraName==="defaultCamera"){      // Default Camera
+            if (cameraName==="defaultCamera"){      // Change to Default Camera
                 view.camera=topCamera
                 topCamera.reset()
             }
-            else if (cameraName==="angledView"){    // Angled View
+            else if (cameraName==="angledView"){    // Change to Angled View
                 view.camera=angledView
                 angledView.reset()
             }
-            else if (cameraName==="freeView"){      // Free View
+            else if (cameraName==="freeView"){      // Change to Free View
                 freeView.position = view.camera.position
                 freeView.eulerRotation = view.camera.eulerRotation
                 view.camera=centerCamera
             }
         }
 
-        property Node currentPlanet : undefined
+
         function setCurrentPlanet(planet : Node) {  // Sets the active current planet
             currentPlanet = planet;
         }
 
 
-        //                           Functions                           //
-
-        //                           Planet Orbit Control                //
-        property var orbits : []
-        property bool showOrbits : false
+        //                      Planet Orbit Control                    //
 
         function disableOrbits(){                   // Disable Orbit lines
             if(showOrbits){
@@ -155,29 +181,6 @@ ApplicationWindow {
             layerLoader.item.disableInfoButton();
         }
 
-
-        //          Keyboard control - preferable in a separate file?    //
-        Keys.onPressed: DefaultKeys.func(event);
-
-        //! [environment properties]
-        environment: SceneEnvironment{
-            clearColor: "black"
-
-            effects: [
-                /*
-                HDRBloomTonemap{
-                    bloomThreshold: .95
-
-                }*/
-
-            ]
-
-            // Qt 2.15
-            antialiasingMode: SceneEnvironment.MSAA             // Multisample AA
-            antialiasingQuality: "VeryHigh"                     // High quality
-            backgroundMode: SceneEnvironment.Color
-        }
-
         Node {                      // Free View Camera (currently unused)
             id: cameraPivot
             pivot: Qt.vector3d(0,0,0)
@@ -190,33 +193,25 @@ ApplicationWindow {
 
         PerspectiveCamera {         // Top Camera
             id: topCamera
+            // Reset the camera to its default values
             function reset(){
                 topCamera.position      = Qt.vector3d(0, 0, 7960);
                 topCamera.eulerRotation = Qt.vector3d(0, 0, 0);
             }
 
             position: Qt.vector3d(0, 0, 1500)
-            /*
-            onPositionChanged: function(){
-                rectangle1.text = "x: "      + Math.round(position.x)      + "\ny: "    + Math.round(position.y)      + "\nz: "    + Math.round(position.z)     +
-                                  "\nrotx: " + Math.round(eulerRotation.x) + "\nroty: " + Math.round(eulerRotation.y) + "\nrotz: " + Math.round(eulerRotation.z)
-            }*/
             eulerRotation: Qt.vector3d(0, 0, 0)        // arguments are in degrees, positive numbers rotate clockwise
         }
 
         PerspectiveCamera {         // Angled View
             id: angledView
+            // Reset the camera to its default values
             function reset(){
                 angledView.position      = Qt.vector3d(0, -1228, 400)
                 angledView.eulerRotation = Qt.vector3d(71, 0, 0)
             }
             position: Qt.vector3d(0, -1228, 400)
             eulerRotation: Qt.vector3d(71, 0, 0)        // arguments are in degrees, positive numbers rotate clockwise
-            /*
-            onPositionChanged: function(){
-                rectangle1.text = "x: "      + Math.round(position.x)      + "\ny: "    + Math.round(position.y)      + "\nz: "    + Math.round(position.z)     +
-                                  "\nrotx: " + Math.round(eulerRotation.x) + "\nroty: " + Math.round(eulerRotation.y) + "\nrotz: " + Math.round(eulerRotation.z)
-            }*/
         }
 
         Node {                      // Center Camera
@@ -232,6 +227,7 @@ ApplicationWindow {
 
                 PerspectiveCamera {
                      id: centerCamera
+                     // Reset the camera to its default values
                      function reset(){
                          centerCamera.position = Qt.vector3d(0, -1228, 400)
                      }
@@ -245,7 +241,8 @@ ApplicationWindow {
             }
         }
 
-        InputController{            // Controlling of the keyboard input
+        InputController{
+            // Controlling of the keyboard input
             // In order to rotate the camera around an object:
             // Place the camera inside a node
             // Set the pivot of that node to the coordinate origin
@@ -269,6 +266,7 @@ ApplicationWindow {
                 interval: 1000
                 repeat: true
                 running: true
+                // Every time the intervall is reached the fps counter should be refreshed
                 onTriggered: {
                     window.fps=view.renderStats.fps
                 }
@@ -280,17 +278,23 @@ ApplicationWindow {
             id: viewMouseArea
             anchors.fill: parent
 
+            // Handler for when the planet is clicked
             onClicked: {
                 var clickPos = view.pick(mouse.x,mouse.y);
+                // If the program is used with console active
+                // clicking a planet will print a message showing which planet was clicked on
                 if(clickPos.objectHit){
                     var pickedObject = clickPos.objectHit;
                     pickedObject.isPicked = !pickedObject.isPicked;
                     console.log("Planet with id: " + pickedObject.objectName + " was clicked!");
                 }
             }
+
+            // Handler for when the planet is double clicked
             onDoubleClicked: {
 
                 var clickPos = view.pick(mouse.x,mouse.y);
+
                 if(clickPos.objectHit){
 
                     // Enable the Info Button
@@ -352,30 +356,37 @@ ApplicationWindow {
             }
         }
 
-        // Orbit spawner - also handles hiding and showing of the orbits
+        // Dynamic orbit creation - for a given radius it will create a circle which should represent the planet orbit
         Node {
             id: orbitSpawner
             property var orbitCount: 0
             property var instances : []
 
+            // Hides all of the planet orbits
             function hideOrbits(){
                 for(var i = 0; i<instances.length;i++){
                     instances[i].visible = false;
                 }
             }
 
+            // Show all of the planet orbits
             function showOrbits(){
                 for(var i = 0; i<instances.length;i++){
                     instances[i].visible = true;
                 }
             }
 
+            // Change opacity to the input value
+            // Parameter opacity - Opacity as a real from 0 to 1
             function changeOpacity(opacity: real){
                 for(var i = 0; i<instances.length;i++){
                     instances[i].opacity = opacity;
                 }
             }
 
+            // Add a 2D circle, which should act as the orbit
+            // By default every orbit has the opacity of .45
+            // Param radius - The radius of the circle
             function addComponent(radius: double){
                 var orbitComponent = Qt.createComponent("OrbitKreis.qml");
                 if (orbitComponent.status === Component.Ready){
@@ -391,6 +402,9 @@ ApplicationWindow {
                 orbitCount++
             }
 
+
+            // This removes every child component that was created by using this object
+            // Every time the orbits are changed, the previous orbits need to be removed
             function removeAllComponents(){
                 for (var i = view.orbits.length; i>0; i--){
                     let instance = instances.pop()
@@ -400,6 +414,7 @@ ApplicationWindow {
             }
         }
 
+        // Only when the 3D Viewer finished loading, the orbit are to be displayed
         Component.onCompleted: {
             view.showOrbits = true;
         }

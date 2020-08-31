@@ -32,6 +32,9 @@ Node {
 
     eulerRotation: Qt.vector3d(90,0,0)
 
+    // Receiver of planet location in vector form
+    // vector: Location des planets as as vector
+    // angle: Current angle of the planet
     function receive(vector: vector3d, angle : double){
         planetPosition = vector;
         currentAngle = angle * (180/Math.PI)+180;
@@ -59,7 +62,6 @@ Node {
     Node{
         id: spherenode
         eulerRotation: Qt.vector3d(0,currentAngle+90,0)
-
         // AxisHelper { enableXYGrid: false; enableXZGrid: false ; enableYZGrid: false }
 
         Model {

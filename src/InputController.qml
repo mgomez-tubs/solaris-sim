@@ -30,6 +30,12 @@
 import QtQuick 2.15
 import QtQuick3D 1.15
 
+/*
+    This file was taken from the Qt Source Code
+    It can also be accesed by using the QML Object WASDController
+    It is in the project for reference purpouses
+  */
+
 Item {
     id: root
     property Node controlledObject: undefined

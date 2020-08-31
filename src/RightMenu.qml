@@ -8,10 +8,6 @@ Item {
     width: 200
     height: 200
 
-    function activeTabHandler(){
-
-    }
-
     // Menu Container
     Rectangle {
         id: rectangle
@@ -76,6 +72,7 @@ Item {
 
                     Connections {
                         target: rectangle1_switch
+                        // Toogle between Orbits visible and not visible
                         function onToggled() {
                             view.disableOrbits()
                         }
@@ -126,6 +123,7 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     scale: 0.7
                     value: 0.5
+                    // Change the orbit opacity when the slider value is changed
                     onValueChanged: function(){
                         console.log(opacitySlider.value)
                         view.changeOrbitOpacity(opacitySlider.value)
@@ -232,6 +230,7 @@ Item {
                 anchors.rightMargin: 5
                 scale: 0.75
                 display: AbstractButton.IconOnly
+                // When this radio button is enabled, change to the default camera
                 onCheckedChanged: function(){
                     view.planetCamera_handler("defaultCamera")
                     view.disableInfoButton()
@@ -250,6 +249,7 @@ Item {
                 anchors.rightMargin: 5
                 scale: 0.75
                 display: AbstractButton.IconOnly
+                // When this radio button is enabled, change to the angled view camera
                 onCheckedChanged: function() {
                     view.planetCamera_handler("angledView")
                 }
@@ -268,6 +268,7 @@ Item {
                 anchors.rightMargin: 5
                 scale: 0.75
                 display: AbstractButton.IconOnly
+                // When this radio button is enabled, change to the freeview camera
                 onCheckedChanged: view.planetCamera_handler("freeView")
             }
         }
@@ -303,6 +304,7 @@ Item {
                     anchors.fill: parent
                     Connections {
                         target: button2_mouseArea
+                        // When this button is pressed, change the planet positions and scaling to the default ones
                         function onClicked(){
                             setPreset_main_helper()
                         }
@@ -339,6 +341,7 @@ Item {
                 MouseArea {
                     id: button3_mouseArea
                     anchors.fill: parent
+                    // When this button is pressed, open the presets menu
                     onClicked: function () {
                         presetSelectMenu.visible = !presetSelectMenu.visible
                     }

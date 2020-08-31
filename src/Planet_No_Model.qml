@@ -5,7 +5,6 @@ import QtQuick 2.15
 
 /*
 
-
     This Object is to be used only for planets for which an external model is providen.
 
   */
@@ -13,30 +12,33 @@ import QtQuick 2.15
 Node {
     id: rootNode
     property alias planetPosition: rootNode.position
-
     property alias planetScale: rootNode.scale
-
     property real  currentAngle : 0
-
     property alias planetCamera: planetCamera
     property alias planetCameraPosition : planetCamera.position
     property alias planetCameraEulerRotation : planetCamera.eulerRotation
     property alias planetTilt: planetCamera.eulerRotation.y
-
-    property string planetInfoString : "No information is available/ could be loaded for this planet ..."
-
+    property string planetInfoString : " "
     property alias planetIsPickable: sphereHitbox.pickable
+
     eulerRotation: Qt.vector3d(90,0,0)
 
+    // Receiver of planet location in vector form
+    // vector: Location des planets as as vector
+    // angle: Current angle of the planet
     function receive(vector: vector3d, angle : double){
         planetPosition = vector;
         currentAngle = angle * (180/Math.PI)+180;
     }
 
+    // Receiver of planet scaling in vector form
+    // vector: Vector for scaling the planet sphere (in x,y,z coordinates)
     function receiveScale (vector: vector3d,){
         planetScale = vector;
     }
 
+    // Receriver of planet information texts
+    // str: String with text to be displayed (using HTML text syntax)
     function receiveInfoString (str : string){
         planetInfoString = str;
     }
@@ -92,6 +94,9 @@ Node {
 
         */
 
+        /*
+                Planet Camera
+        */
         Node {
             id: cameraPivot
             pivot: Qt.vector3d(0,0,0)
@@ -101,20 +106,22 @@ Node {
                 property var positionBackup : Qt.vector3d(0,0,0)
                 property var rotationBackup : Qt.vector3d(0,0,0)
 
+
+                // Back up position of the planet (used when changing Main GUI Layer to Planet View Layer)
                 function backUp(){
                     var currentPosition = planetCamera.position;
                     var currentEulerRotation = cameraPivot.eulerRotation;
-                    // friendly reminder that javascript passes values by reference
-                    // javascript is the worst
                     planetCamera.positionBackup = Qt.vector3d(currentPosition.x,currentPosition.y,currentPosition.z)
                     planetCamera.rotationBackup = Qt.vector3d(currentEulerRotation.x,currentEulerRotation.y,currentEulerRotation.z)
                 }
 
+                // Restore the position of the planet before the planet view was activated (used when changing Main GUI Layer to Planet View Layer)
                 function restore(){
                     planetCamera.position = planetCamera.positionBackup;
                     cameraPivot.eulerRotation = planetCamera.rotationBackup;
                 }
 
+                // Reset the position of the Camera
                 function reset(){
                     planetCamera.position = Qt.vector3d(0,0,75)
                     planetCamera.parent.eulerRotation = Qt.vector3d(0,0,0)
