@@ -266,7 +266,6 @@ void Simulation::Reset(){
     }
 
     //set new position and scaling for each planet
-    qDebug()<<distanceScale;
     Planeten[0].setOrbitType("kreisBewegung", planet_distance[0] * distanceScale, 1/87.969);
     Planeten[1].setOrbitType("kreisBewegung", planet_distance[1] * distanceScale, 1/224.701);
     Planeten[2].setOrbitType("kreisBewegung", planet_distance[2] * distanceScale, 1/365.256);
@@ -399,31 +398,37 @@ void Simulation::getPlanet(qreal plt_tmp){
 }
 
 /*!
- *  \brief Set Distances
+ *  \brief setParameter
  */
+
+
 bool Simulation::setParameter(qreal flt_tmp, qreal array){
 
-    bool success;
+    bool success;                                                       //initializing the bool parameter success for usage later in this method
 
-    qDebug()<< "planet nr.:" <<planet_tmp <<"wurde auf den Wert:" << flt_tmp <<"geaendert"; // used for testing purposes
+    int array_swt = array;                                              //initializing an substitute integer for the following switch check
 
-    if (array == 0){                            //checks which array is edited
-        int flt_tmp1 = flt_tmp;
-        planet_distance[planet_tmp] = flt_tmp1;
-        success = true;
+    switch(array_swt){                                                  //check which array is meant to be edited
+        case 0:{                                                        //if the method transfers a 0 from the gui for array, the array-distance is to be edited
+            int flt_tmp1 = flt_tmp;                                     // initializing an substitute integer for the following value set
+            planet_distance[planet_tmp] = flt_tmp1;                     // set Value, value of the array spot is set using a substitute of the value which is transfered by the method from the gui
+            success = true;                                             //setting the bool parameter as true
+            break;
+        }
+        case 1:{                                                        //if the method transfers a 1 from the gui for array, the array-scaling is to be edited
+            double flt_tmp2 = flt_tmp;                                  // initializing an substitute double for the following "set value"
+            planet_scaling[planet_tmp] = flt_tmp2;                      // set Value, value of the array spot is set using a substitute of the value which is transfered by the method from the gui
+            success = true;                                             //setting the bool parameter as true
+            break;
+        }
+        default:{                                                       //if a false value for array is transfered no array is to be edited, instead it will show an error message
+            success = false;
+            qDebug()<<"ERROR: array nicht bekannt";
+        }
+
     }
 
-    else if (array ==1){
-        double flt_tmp2 = flt_tmp;
-        planet_scaling[planet_tmp] = flt_tmp2;
-        success = true;
-    }
-
-    else{
-        success = false;
-        qDebug()<<"array nicht bekannt";}
-
-    return success;
+    return success;                                                     //return bool value, for further usage if needed
 
 }
 
