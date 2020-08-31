@@ -434,8 +434,15 @@ void Simulation::newStart(){
 }
 
 /*!
- *  \brief Get external data for the planet information
- * \return
+ *  \brief Get external data for the planet information.
+ *  Using the external data reader Data_call a vector of vectors containing strings is created.
+ *  The first parameter of the vector infoOUT refers to the Planet ID
+ *  The second parameter of the vector infoOUT refers to the current line
+ *
+ *  Though a do while loop every line is read and saved in a QString.
+ *
+ *  \return A QString is returned with a HTML friendly string.
+ *  This is the string that is shown when the planet is double clicked.
  */
 QString Simulation::getPlanetInfoString(int planetID){
     Data_Call Info;
@@ -444,9 +451,12 @@ QString Simulation::getPlanetInfoString(int planetID){
     std::string str;
 
     unsigned int j = 0;
+    // The first parameter refers to the planet ID
+    // The second parameter refers to the current array position
+    // For the selected planet with planetID copy every std::string and save it in the QString s.
+    // After every line append a <br> which indicates a new line in HTML.
     do{
-        str = infoOUT[planetID][j];    // First element: planet ID
-        //std::cout << str << '\n';
+        str = infoOUT[planetID][j];
         s.append(QString::fromStdString(str));
         s.append("<br>");
         j++;
