@@ -3,6 +3,13 @@ import QtQuick3D.Helpers 1.15
 import DrawCircleQt 1.0
 import QtQuick 2.15
 
+/*
+
+
+    This Object is to be used only for planets for which an external model is providen.
+
+  */
+
 Node {
     id: rootNode
     property alias planetPosition: rootNode.position

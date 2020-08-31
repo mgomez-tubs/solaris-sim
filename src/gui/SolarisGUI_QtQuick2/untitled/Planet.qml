@@ -3,6 +3,19 @@ import QtQuick3D.Helpers 1.15
 import DrawCircleQt 1.0
 import QtQuick 2.15
 
+
+/*
+
+
+    This Object is to be used only for planets for which no external model is providen.
+    A sphere is used as the mesh.
+
+    Currently not used.
+
+  */
+
+
+
 Node {
     id: rootNode
     property alias planetPosition: rootNode.position

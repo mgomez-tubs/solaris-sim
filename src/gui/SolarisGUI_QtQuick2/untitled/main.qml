@@ -73,7 +73,7 @@ ApplicationWindow {
         orbitSpawner.removeAllComponents();
     }
 
-    //          Handlers
+    //          Global Handlers
     onFpsChanged: {
         fpsCounter.elementText=window.fps + " fps"
     }
@@ -82,23 +82,24 @@ ApplicationWindow {
         mainWclosed()
     }
 
-    View3D {
+    View3D {    // The main view
         id: view
         objectName: "view"
         anchors.fill: parent
         camera: centerCamera
 
         //                           Handlers                            //
+        // Handler for the current camera
         function planetCamera_handler(cameraName : String){
-            if (cameraName==="defaultCamera"){
+            if (cameraName==="defaultCamera"){      // Default Camera
                 view.camera=topCamera
                 topCamera.reset()
             }
-            else if (cameraName==="angledView"){
+            else if (cameraName==="angledView"){    // Angled View
                 view.camera=angledView
                 angledView.reset()
             }
-            else if (cameraName==="freeView"){
+            else if (cameraName==="freeView"){      // Free View
                 freeView.position = view.camera.position
                 freeView.eulerRotation = view.camera.eulerRotation
                 view.camera=centerCamera
@@ -106,22 +107,18 @@ ApplicationWindow {
         }
 
         property Node currentPlanet : undefined
-        function setCurrentPlanet(planet : Node) {
+        function setCurrentPlanet(planet : Node) {  // Sets the active current planet
             currentPlanet = planet;
         }
 
 
         //                           Functions                           //
-        function getPlanetList(){   // derzeit nicht benutzt
-            var planets = ["merkur","venus","erde","mars","jupiter","saturn","uranus","venus"]
-            return planets
-        }
 
         //                           Planet Orbit Control                //
         property var orbits : []
         property bool showOrbits : false
 
-        function disableOrbits(){
+        function disableOrbits(){                   // Disable Orbit lines
             if(showOrbits){
                 orbitSpawner.hideOrbits();
                 showOrbits = !showOrbits;
@@ -133,12 +130,12 @@ ApplicationWindow {
             }
         }
 
-        function changeOrbitOpacity(o: double){
+        function changeOrbitOpacity(o: double){     // Change Orbit opacity, as a double between 0 and 1
             orbitSpawner.changeOpacity(o)
 
         }
 
-        function receiveOrbit(orbit: double){
+        function receiveOrbit(orbit: double){       // Get Orbits position as a double
             console.log("Added planet " + orbits.length)
             // Push Orbit in Orbits list
             orbits.push(orbit);
@@ -149,7 +146,7 @@ ApplicationWindow {
         //          Keyboard control - preferable in a separate file?    //
         Keys.onPressed: DefaultKeys.func(event);
 
-        //! [environment]
+        //! [environment properties]
         environment: SceneEnvironment{
             clearColor: "black"
 
@@ -168,7 +165,7 @@ ApplicationWindow {
             backgroundMode: SceneEnvironment.Color
         }
 
-        Node {
+        Node {                      // Free View Camera (currently unused)
             id: cameraPivot
             pivot: Qt.vector3d(0,0,0)
             PerspectiveCamera {
@@ -178,7 +175,7 @@ ApplicationWindow {
             }
         }
 
-        PerspectiveCamera {
+        PerspectiveCamera {         // Top Camera
             id: topCamera
             function reset(){
                 topCamera.position      = Qt.vector3d(0, 0, 7960);
@@ -194,7 +191,7 @@ ApplicationWindow {
             eulerRotation: Qt.vector3d(0, 0, 0)        // arguments are in degrees, positive numbers rotate clockwise
         }
 
-        PerspectiveCamera {
+        PerspectiveCamera {         // Angled View
             id: angledView
             function reset(){
                 angledView.position      = Qt.vector3d(0, -1228, 400)
@@ -209,7 +206,7 @@ ApplicationWindow {
             }*/
         }
 
-        Node {
+        Node {                      // Center Camera
             id: node_centerCamera
             property real distance : 1400
             property real angle : 25
@@ -235,7 +232,7 @@ ApplicationWindow {
             }
         }
 
-        InputController{
+        InputController{            // Controlling of the keyboard input
             // In order to rotate the camera around an object:
             // Place the camera inside a node
             // Set the pivot of that node to the coordinate origin
@@ -248,7 +245,7 @@ ApplicationWindow {
 
         SolarSystem     { id: solarSystem}
 
-        Fps {
+        Fps {                       // FPS Counter
             id: fpsCounter
             anchors.right: parent.right
             anchors.rightMargin: 5
@@ -305,6 +302,7 @@ ApplicationWindow {
             }
         }
 
+        // Handler for the current layer
         function layerHandler(layer : String){
             if          (layer === "MainGUI"){
                 layerLoader.source = "MainGUI/Layer_MainGUI.qml"
@@ -335,20 +333,19 @@ ApplicationWindow {
             }
         }
 
+        // Orbit spawner - also handles hiding and showing of the orbits
         Node {
             id: orbitSpawner
             property var orbitCount: 0
             property var instances : []
 
             function hideOrbits(){
-                //console.log("disable orbits <<<<")
                 for(var i = 0; i<instances.length;i++){
                     instances[i].visible = false;
                 }
             }
 
             function showOrbits(){
-                //console.log("show orbits <<<<")
                 for(var i = 0; i<instances.length;i++){
                     instances[i].visible = true;
                 }
@@ -376,13 +373,11 @@ ApplicationWindow {
             }
 
             function removeAllComponents(){
-                //console.log("Length before: " + view.orbits.length)
                 for (var i = view.orbits.length; i>0; i--){
                     let instance = instances.pop()
                     instance.destroy();
                 }
                 view.orbits.length = 0
-                //console.log("Length after: " + view.orbits.length)
             }
         }
 

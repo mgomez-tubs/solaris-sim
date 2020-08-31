@@ -12,7 +12,7 @@ Item {
         planetExploration.text  += " ";     // rich text
     }
 
-    Text {
+    Text {      // The displayed text
         id: planetInfo
         y: 237
         width: 270
@@ -32,7 +32,7 @@ Item {
         font.pixelSize: 11
     }
 
-    GUIAssets.ButtonForm{
+    GUIAssets.ButtonForm{       // Button to go back
         buttonText: "Go Back"
         anchors.right: parent.right
         anchors.rightMargin: 10

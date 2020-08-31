@@ -2,32 +2,43 @@
 #include <QtQuick3DRuntimeRender>
 #include <math.h>
 
+/* The purpouse of this code is to create a circle made of infividual lines within Qt Quick 3D
+ * Qt Quick 3D does not have the native ability to create either lines or circles, only 3D meshes.
+ * For that reason a code for it had to be written.
+ */
+
+//! \brief Constructor
 DrawCircleQt::DrawCircleQt() : QQuick3DGeometry()
 {
 
 }
 
+//! \brief Destructor
 DrawCircleQt::~DrawCircleQt()
 {
 
 }
 
+//! \brief Returns the center point of the Circle (as a vector)
 QVector3D DrawCircleQt::centerPoint() const
 {
     return m_centerPoint;
 }
 
+//! \brief Returns the radius of the circle (as a float)
 float DrawCircleQt::radius() const
 {
     return m_radius;
 }
 
+//! \brief Returns the ammount of line stepes (as an int)
 int DrawCircleQt::lineSteps() const
 {
     return m_lineSteps;
 }
 
-
+//! \brief Sets the center point of the circle
+//! \param point - The middle point of the circle
 void DrawCircleQt::setCenterPoint(QVector3D point)
 {
     m_centerPoint = point;
@@ -36,6 +47,10 @@ void DrawCircleQt::setCenterPoint(QVector3D point)
     m_dirty = true;
 }
 
+/*!
+ * \brief Set the property: radius values
+ * \param radius - The radius of the circle
+ */
 void DrawCircleQt::setRadius(float radius)
 {
     radius = qMax(radius,1.0f);
@@ -47,6 +62,10 @@ void DrawCircleQt::setRadius(float radius)
     m_dirty = true;
 }
 
+/*!
+ * \brief Set the property: line steps
+ * \param steps - The ammount of line steps
+ */
 void DrawCircleQt::setLineSteps(int steps)
 {
     m_lineSteps = steps;
@@ -55,6 +74,13 @@ void DrawCircleQt::setLineSteps(int steps)
     m_dirty = true;
 }
 
+/*!
+ *  Fill the vertex data
+ * \param &vertexdata - Array of bytes corresponding to every dot that consitutes the line (hier circle)
+ * \param centerPoint - Property which describes the center from which the radius is to be calculated
+ * \param radius - The radius of the circele
+ * \param lineSteps - The ammount of line steps (sides) in which the circle is to be created
+ */
 static void fillVertexData(QByteArray &vertexData, QVector3D centerPoint, float radius,
                            int lineSteps)
 {
@@ -68,7 +94,9 @@ static void fillVertexData(QByteArray &vertexData, QVector3D centerPoint, float 
     float winkelStep = (2*M_PI)/lineSteps;
     float currentAngle = 0;
 
+    // This Loop reads the byte array and trand
     // First step: draw a circle with the basis vector (1,0,0) (0,1,0) (0,0,1)
+    // Second step: define the normal vector
     for (int i = 0; i < lineSteps+1; ++i) {
         // start position           /* z.B.: erste iteration, oben links
         dataPtr[0] = centerPoint.x()+cos(currentAngle)*radius;
@@ -86,10 +114,13 @@ static void fillVertexData(QByteArray &vertexData, QVector3D centerPoint, float 
     }
 }
 
-
+/*! \brief Constructs an object that can be understood and rendered with QML
+ *  \param node - Pointer to the node object to be parsed
+ *  \return node - The node object to be rendered
+ */
 QSSGRenderGraphObject *DrawCircleQt::updateSpatialNode(QSSGRenderGraphObject *node)
 {
-    if (m_dirty) {
+    if (m_dirty) {  // If there where no errors found and this bit was not reversed, proceed with creating
         QByteArray vertexData;
         fillVertexData(vertexData, m_centerPoint, m_radius, m_lineSteps);
         clear();

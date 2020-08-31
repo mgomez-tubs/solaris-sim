@@ -4,6 +4,7 @@
 /*
  *  This contains an early development DEBUG Window.
  *  It is accesible by enabling the flag QT_DEBUG_IS_ENABLED in untitled.pro
+ *  Should be disabled in the final version
  */
 
 DebugWindow::DebugWindow(QWidget *parent) :
